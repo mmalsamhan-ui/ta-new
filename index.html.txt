@@ -1,0 +1,2719 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Teacher Assistant - Classes 9/5 & 9/6</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            hand: ['"Caveat"', 'cursive'],
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            roseheart: {
+              50: '#fff1f2',
+              100: '#ffe4e6',
+              200: '#fecdd3',
+              500: '#f43f5e',
+              600: '#e11d48',
+              700: '#be123c',
+            },
+            c95: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            c96: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body.rtl {
+      direction: rtl;
+      font-family: 'Cairo', sans-serif;
+    }
+    .custom-pulse-ring {
+      animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.6); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(79, 70, 229, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+    }
+    .active-class-glow-blue {
+      box-shadow: 0 0 20px -2px rgba(37, 99, 235, 0.45);
+      border-color: #3b82f6;
+    }
+    .active-class-glow-green {
+      box-shadow: 0 0 20px -2px rgba(16, 185, 129, 0.45);
+      border-color: #10b981;
+    }
+    @media print {
+      header, #live-banner, #husband-quote-card, .no-print, .tab-nav-bar { display: none !important; }
+      #printable-section, #printable-section * { visibility: visible; }
+      body { background: #fff !important; color: #000 !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col antialiased selection:bg-rose-100 selection:text-rose-800">
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-2 sm:gap-4">
+        
+        <!-- App Title & Identity -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-rose-600 to-indigo-700 text-white flex items-center justify-center font-extrabold shadow-sm text-sm tracking-tight">
+            ETA
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-base sm:text-lg text-slate-900 tracking-tight">English Teacher Assistant</span>
+              <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 flex items-center gap-1">
+                <i data-lucide="heart" class="w-2.5 h-2.5 fill-rose-500 text-rose-500"></i>
+                <span>Pro Suite</span>
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 font-medium hidden md:block">Middle School English • Classes 9/5 & 9/6</p>
+          </div>
+        </div>
+
+        <!-- Class Quick Switcher with Live Active Indicator -->
+        <div class="flex items-center gap-2">
+          <div class="bg-slate-100 p-1 rounded-xl flex items-center border border-slate-200">
+            <button id="btn-quick-95" onclick="app.setActiveClass('c95')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-xs bg-white text-blue-700 relative">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600" id="dot-indicator-95"></span>
+              <span>Class 9/5</span>
+              <span id="badge-live-95" class="hidden text-[9px] font-extrabold bg-blue-600 text-white px-1.5 py-0.2 rounded-full uppercase ml-1 animate-pulse">Now</span>
+            </button>
+            <button id="btn-quick-96" onclick="app.setActiveClass('c96')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900 relative">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600" id="dot-indicator-96"></span>
+              <span>Class 9/6</span>
+              <span id="badge-live-96" class="hidden text-[9px] font-extrabold bg-emerald-600 text-white px-1.5 py-0.2 rounded-full uppercase ml-1 animate-pulse">Now</span>
+            </button>
+          </div>
+
+          <!-- Grade Paper CTA -->
+          <button onclick="app.openGradingDirect()" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition">
+            <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+            <span>Grade Work</span>
+          </button>
+
+          <!-- Language toggle -->
+          <button onclick="app.toggleLanguage()" class="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 border border-slate-200 hover:bg-slate-100 transition flex items-center gap-1">
+            <i data-lucide="languages" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span id="lang-indicator">EN</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs Bar -->
+    <div class="bg-white border-t border-slate-100 overflow-x-auto tab-nav-bar">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <nav class="flex space-x-1 sm:space-x-2 py-1.5 text-xs font-semibold whitespace-nowrap" id="tab-nav">
+          <button onclick="app.switchTab('schedule')" data-tab="schedule" class="tab-btn px-3 py-2 rounded-lg text-indigo-700 bg-indigo-50 flex items-center gap-1.5 transition">
+            <i data-lucide="clock-4" class="w-4 h-4 text-indigo-600"></i>
+            <span>Timetable & Bell</span>
+          </button>
+          <button onclick="app.switchTab('roster')" data-tab="roster" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
+            <span class="font-bold">Student AI Analysis & Skills</span>
+          </button>
+          <button onclick="app.switchTab('attendance')" data-tab="attendance" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="calendar-check-2" class="w-4 h-4 text-emerald-600"></i>
+            <span>Attendance</span>
+          </button>
+          <button onclick="app.switchTab('classwork')" data-tab="classwork" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="scan-line" class="w-4 h-4 text-blue-600"></i>
+            <span class="font-bold text-slate-900">Classwork & Quizzes (Camera AI)</span>
+          </button>
+          <button onclick="app.switchTab('planner')" data-tab="planner" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="book-open" class="w-4 h-4 text-violet-500"></i>
+            <span>Lesson Planner</span>
+          </button>
+          <button onclick="app.switchTab('powerpoints')" data-tab="powerpoints" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="presentation" class="w-4 h-4 text-amber-500"></i>
+            <span>PowerPoints</span>
+          </button>
+          <button onclick="app.switchTab('worksheets')" data-tab="worksheets" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="file-text" class="w-4 h-4 text-teal-600"></i>
+            <span>Worksheets</span>
+          </button>
+          <button onclick="app.switchTab('reports')" data-tab="reports" class="tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1.5 transition">
+            <i data-lucide="bar-chart-3" class="w-4 h-4 text-cyan-600"></i>
+            <span>Reports</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div id="live-banner" class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white border-b border-indigo-950/80 px-3 sm:px-6 py-2.5 shadow-sm">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 sm:gap-4 text-xs">
+      
+      <!-- Current Status & Period Highlight -->
+      <div class="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-bold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30" id="live-day-tag">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span id="txt-live-day">Sunday</span>
+        </span>
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Current Slot:</span>
+          <span class="font-bold text-white px-2 py-0.5 rounded-md bg-white/10" id="txt-live-period">Calculating...</span>
+        </div>
+        <div class="flex items-center gap-1.5" id="live-class-chip">
+          <!-- Populated by JS: e.g. Teaching Class 9/5 (Period 2) -->
+        </div>
+      </div>
+
+      <!-- Quick Action Controls & Simulator -->
+      <div class="flex items-center gap-3">
+        <div class="text-slate-300 font-mono text-[11px] hidden lg:block" id="txt-live-time">
+          11:30 AM
+        </div>
+        
+        <!-- Schedule Simulator Dropdown -->
+        <div class="flex items-center gap-1.5 bg-white/10 px-2 py-1 rounded-lg border border-white/10 text-[11px]">
+          <span class="text-slate-300 font-semibold">Simulate:</span>
+          <select id="sim-day-select" onchange="app.simulateScheduleChange()" class="bg-slate-900 text-white rounded px-1.5 py-0.5 text-xs border border-white/20 focus:outline-none">
+            <option value="auto">Live Auto Time</option>
+            <option value="Sun-P2">Sunday P2 (08:30) • 9/5</option>
+            <option value="Sun-P5">Sunday P5 (11:10) • 9/6</option>
+            <option value="Mon-P2">Monday P2 (08:30) • 9/5</option>
+            <option value="Mon-P3">Monday P3 (09:30) • 9/6</option>
+            <option value="Tue-P1">Tuesday P1 (07:40) • 9/6</option>
+            <option value="Tue-P3">Tuesday P3 (09:30) • 9/5</option>
+            <option value="Wed-P2">Wednesday P2 (08:30) • 9/6</option>
+            <option value="Wed-P6">Wednesday P6 (12:05) • 9/5</option>
+            <option value="Thu-P1">Thursday P1 (07:40) • 9/6</option>
+            <option value="Thu-P5">Thursday P5 (11:10) • 9/5</option>
+            <option value="Break-1">Break 1 (09:15 - 09:30)</option>
+          </select>
+        </div>
+
+        <button onclick="app.triggerCurrentPeriodAction()" id="btn-live-action" class="px-2.5 py-1 rounded-md bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-[11px] transition flex items-center gap-1 shadow-xs">
+          <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+          <span>Open Active Class</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-4 no-print" id="husband-quote-card">
+    <div class="bg-gradient-to-r from-rose-500 via-pink-600 to-rose-600 rounded-2xl p-4 text-white shadow-sm border border-rose-400/40 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+      
+      <div class="flex items-center gap-3.5 z-10">
+        <div class="w-11 h-11 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white shrink-0 shadow-inner">
+          <i data-lucide="heart-handshake" class="w-6 h-6 fill-white/20 text-white"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-[10px] uppercase tracking-widest font-extrabold px-2 py-0.5 bg-white/25 rounded-full text-rose-100 backdrop-blur-xs">
+              For My Wonderful Wife • Teacher • Mother
+            </span>
+            <span class="text-[11px] text-rose-200 font-medium">With All My Love ❤️</span>
+          </div>
+          <p id="husband-quote-text" class="font-hand text-xl sm:text-2xl mt-0.5 tracking-wide text-white leading-tight font-semibold">
+            "Your patience with your students, your boundless love for our children, and the warmth you bring to our home makes you my hero every single day."
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0 z-10 self-end md:self-auto">
+        <button onclick="app.cycleMotivationalQuote()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-bold rounded-xl transition flex items-center gap-1 backdrop-blur-xs border border-white/20">
+          <i data-lucide="sparkle" class="w-3.5 h-3.5 fill-amber-300 text-amber-300"></i>
+          <span>Next Loving Note</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 lg:p-8">
+
+    <!-- TAB 1: SCHEDULE -->
+    <section id="tab-content-schedule" class="tab-pane space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">School Bell Matrix</span>
+              <h1 class="text-xl font-bold text-slate-900">Weekly Timetable: Classes 9/5 & 9/6</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Official bell schedule with Sunday–Thursday teaching periods, breaks, and direct classroom actions.</p>
+          </div>
+
+          <!-- Timetable View Filter -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500">Filter View:</span>
+            <div class="inline-flex rounded-xl p-1 bg-slate-100 border border-slate-200">
+              <button onclick="app.setTimetableFilter('all')" id="filter-tt-all" class="px-3 py-1 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-xs">All Classes</button>
+              <button onclick="app.setTimetableFilter('c95')" id="filter-tt-95" class="px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 hover:text-blue-700">Class 9/5 Only</button>
+              <button onclick="app.setTimetableFilter('c96')" id="filter-tt-96" class="px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 hover:text-emerald-700">Class 9/6 Only</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly Timetable Matrix Grid -->
+        <div class="overflow-x-auto mt-4">
+          <table class="w-full text-xs text-left border-collapse min-w-[720px]">
+            <thead>
+              <tr class="bg-slate-50 border-y border-slate-200 text-slate-600 font-bold uppercase text-[11px]">
+                <th class="py-3 px-3 w-32">Bell & Period</th>
+                <th class="py-3 px-3 text-center">Sunday</th>
+                <th class="py-3 px-3 text-center">Monday</th>
+                <th class="py-3 px-3 text-center">Tuesday</th>
+                <th class="py-3 px-3 text-center">Wednesday</th>
+                <th class="py-3 px-3 text-center">Thursday</th>
+              </tr>
+            </thead>
+            <tbody id="timetable-matrix-body" class="divide-y divide-slate-100">
+              <!-- Dynamically rendered by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: STUDENT AI ANALYSIS & SKILL SECTIONS (GRAMMAR, SPELLING, READING, WRITING) -->
+    <section id="tab-content-roster" class="tab-pane hidden space-y-6">
+      
+      <!-- Class Banner with active status indicator -->
+      <div class="rounded-2xl p-6 text-white shadow-md relative overflow-hidden transition-all" id="roster-banner">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-xs" id="roster-class-pill">Class 9/5</span>
+              <span class="text-xs text-white/80" id="roster-schedule-desc">Schedule details</span>
+              <span id="roster-live-now-tag" class="hidden px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-400 text-slate-950 uppercase tracking-wider animate-pulse">● In Session Now</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold mt-1 text-white tracking-tight" id="roster-class-heading">Class 9/5 Student AI Diagnostics</h1>
+            <p class="text-white/80 text-xs mt-0.5">Section Mastery Tracking • Grammar, Spelling, Reading, & Writing Analysis with Actionable AI Flags</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="app.switchTab('attendance')" class="px-4 py-2 bg-white/20 hover:bg-white/30 text-white text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="check-circle" class="w-4 h-4"></i>
+              <span>Take Attendance</span>
+            </button>
+            <button onclick="app.openGradingForClass(app.activeClassId)" class="px-4 py-2 bg-white text-indigo-900 hover:bg-slate-100 text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+              <i data-lucide="camera" class="w-4 h-4"></i>
+              <span>Grade Paper</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric summary boxes with editable skill averages -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-6 pt-5 border-t border-white/20">
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-xs">
+            <p class="text-[11px] font-medium text-white/80">Students</p>
+            <p class="text-xl font-bold text-white mt-0.5" id="stat-student-count">10</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-xs">
+            <p class="text-[11px] font-medium text-white/80">Grammar Avg</p>
+            <p class="text-xl font-bold text-white mt-0.5" id="stat-avg-grammar">84%</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-xs">
+            <p class="text-[11px] font-medium text-white/80">Spelling Avg</p>
+            <p class="text-xl font-bold text-white mt-0.5" id="stat-avg-spelling">86%</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-xs">
+            <p class="text-[11px] font-medium text-white/80">Reading Avg</p>
+            <p class="text-xl font-bold text-white mt-0.5" id="stat-avg-reading">88%</p>
+          </div>
+          <div class="bg-white/10 rounded-xl p-3 backdrop-blur-xs">
+            <p class="text-[11px] font-medium text-white/80">AI Flags Active</p>
+            <p class="text-xl font-bold text-amber-300 mt-0.5" id="stat-class-flags">3 Active</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">Student Profiles & In-line Section Mastery</h2>
+            <p class="text-xs text-slate-500">Click any student or skill to adjust scores, update AI diagnostic flags, or log teacher notes.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <input type="text" id="roster-search" oninput="app.filterRosterTable()" placeholder="Search student name or ID..." class="text-xs px-3 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-48">
+            <button onclick="app.addNewDummyStudent()" class="text-xs px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+              <span>Add Student</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Student AI Diagnostics Table with In-line skills -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-500 font-semibold uppercase tracking-wider border-y border-slate-200">
+                <th class="py-3 px-3">Student</th>
+                <th class="py-3 px-3 text-center">Grammar</th>
+                <th class="py-3 px-3 text-center">Spelling</th>
+                <th class="py-3 px-3 text-center">Reading</th>
+                <th class="py-3 px-3 text-center">Writing</th>
+                <th class="py-3 px-3">AI Diagnostic Flag & Teacher Advice</th>
+                <th class="py-3 px-3 text-right">Quick Edit</th>
+              </tr>
+            </thead>
+            <tbody id="roster-table-body" class="divide-y divide-slate-100">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: ATTENDANCE -->
+    <section id="tab-content-attendance" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <h1 class="text-xl font-bold text-slate-900">Daily Attendance Record</h1>
+            <p class="text-xs text-slate-500 mt-0.5">Select class and date to take or edit attendance records.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+              <button onclick="app.setAttendanceClass('c95')" id="att-tab-95" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-700 shadow-xs">Class 9/5</button>
+              <button onclick="app.setAttendanceClass('c96')" id="att-tab-96" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600">Class 9/6</button>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5">
+              <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+              <input type="date" id="att-date-picker" onchange="app.renderAttendanceTable()" class="text-xs bg-transparent text-slate-800 font-medium focus:outline-none">
+            </div>
+            <button onclick="app.markAllAttendance('Present')" class="text-xs px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-semibold rounded-xl border border-emerald-200 transition flex items-center gap-1.5">
+              <i data-lucide="check" class="w-3.5 h-3.5"></i>
+              <span>Mark All Present</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
+          <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-between">
+            <div>
+              <p class="text-[11px] font-bold text-emerald-700 uppercase">Present</p>
+              <p class="text-xl font-bold text-emerald-800 mt-0.5" id="att-count-p">0</p>
+            </div>
+            <span class="w-7 h-7 rounded-full bg-emerald-200 text-emerald-800 flex items-center justify-center font-bold text-xs">P</span>
+          </div>
+          <div class="p-3 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-between">
+            <div>
+              <p class="text-[11px] font-bold text-rose-700 uppercase">Absent</p>
+              <p class="text-xl font-bold text-rose-800 mt-0.5" id="att-count-a">0</p>
+            </div>
+            <span class="w-7 h-7 rounded-full bg-rose-200 text-rose-800 flex items-center justify-center font-bold text-xs">A</span>
+          </div>
+          <div class="p-3 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-between">
+            <div>
+              <p class="text-[11px] font-bold text-amber-700 uppercase">Late</p>
+              <p class="text-xl font-bold text-amber-800 mt-0.5" id="att-count-l">0</p>
+            </div>
+            <span class="w-7 h-7 rounded-full bg-amber-200 text-amber-800 flex items-center justify-center font-bold text-xs">L</span>
+          </div>
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-between">
+            <div>
+              <p class="text-[11px] font-bold text-blue-700 uppercase">Excused</p>
+              <p class="text-xl font-bold text-blue-800 mt-0.5" id="att-count-e">0</p>
+            </div>
+            <span class="w-7 h-7 rounded-full bg-blue-200 text-blue-800 flex items-center justify-center font-bold text-xs">E</span>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600 font-semibold border-y border-slate-200">
+                <th class="py-3 px-4">Student</th>
+                <th class="py-3 px-4">Status Marking</th>
+                <th class="py-3 px-4">Teacher Remark</th>
+                <th class="py-3 px-4 text-right">Current Status</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-table-body" class="divide-y divide-slate-100"></tbody>
+          </table>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 mt-4 border-t border-slate-100">
+          <span class="text-xs text-slate-400" id="att-status-note">Attendance auto-cached. Click save to record permanently.</span>
+          <button onclick="app.saveAttendance()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+            <i data-lucide="save" class="w-4 h-4"></i>
+            <span>Save Attendance</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: CLASSWORK & QUIZZES (CAMERA AI & TEACHER REVIEW) -->
+    <section id="tab-content-classwork" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800">Vision AI Grading</span>
+              <h1 class="text-xl font-bold text-slate-900">Camera Scanner & AI Paper Grader</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Capture photos of student worksheets or quizzes. The AI compares against the master key and flags any ambiguous handwriting or phrasing for teacher review.</p>
+          </div>
+          <button onclick="app.resetGradingFlow()" class="px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 font-semibold rounded-xl transition flex items-center gap-1.5 self-start md:self-auto">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>New Student Paper</span>
+          </button>
+        </div>
+
+        <!-- Stepper Pills -->
+        <div class="grid grid-cols-4 gap-2 text-center text-xs font-bold">
+          <div id="cw-pill-1" class="py-2 rounded-xl bg-indigo-600 text-white flex items-center justify-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-white text-indigo-700 flex items-center justify-center text-[10px]">1</span>
+            <span class="hidden sm:inline">Student & Task</span>
+          </div>
+          <div id="cw-pill-2" class="py-2 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center text-[10px]">2</span>
+            <span class="hidden sm:inline">Master Key</span>
+          </div>
+          <div id="cw-pill-3" class="py-2 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center text-[10px]">3</span>
+            <span class="hidden sm:inline">Capture Paper</span>
+          </div>
+          <div id="cw-pill-4" class="py-2 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center gap-1.5">
+            <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 flex items-center justify-center text-[10px]">4</span>
+            <span class="hidden sm:inline">Review & Approve</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Student & Task -->
+      <div id="cw-step-pane-1" class="cw-pane bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <span class="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">1</span>
+          Select Student and Assignment Details
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Class</label>
+            <select id="cw-select-class" onchange="app.onGradingClassChanged()" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option value="c95">Class 9/5</option>
+              <option value="c96">Class 9/6</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Student</label>
+            <select id="cw-select-student" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold"></select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Assignment / Quiz</label>
+            <input type="text" id="cw-input-title" value="Unit 4: Past Perfect & Modals of Deduction" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Date</label>
+            <input type="date" id="cw-input-date" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-3">
+          <button onclick="app.setGradingStep(2)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+            <span>Next: Configure Answer Key</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Master Answer Key -->
+      <div id="cw-step-pane-2" class="cw-pane hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">2</span>
+              Configure Master Correct Answer Key
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">Specify primary answers, acceptable grammatical alternatives, and mark values.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="app.addAnswerKeyQuestion()" class="px-3 py-1.5 text-xs bg-indigo-50 text-indigo-700 hover:bg-indigo-100 font-bold rounded-xl transition flex items-center gap-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Add Question</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="answer-key-rows" class="space-y-3"></div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="app.setGradingStep(1)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Back</span>
+          </button>
+          <button onclick="app.setGradingStep(3)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+            <span>Next: Capture Student Paper</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Camera Capture & Upload -->
+      <div id="cw-step-pane-3" class="cw-pane hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">3</span>
+              Photograph or Upload Student Paper
+            </h2>
+            <p class="text-xs text-slate-500 mt-0.5">Use your mobile/laptop camera or upload images. Multiple pages supported.</p>
+          </div>
+          <button onclick="app.loadDemoPaper()" class="px-3.5 py-1.5 bg-violet-50 text-violet-700 hover:bg-violet-100 border border-violet-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Load Sample Student Sheet (Instant Demo)</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-7 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200 p-6 flex flex-col items-center justify-center text-center relative min-h-[320px]">
+            <div id="cam-active-box" class="hidden w-full flex flex-col items-center">
+              <div class="relative w-full max-w-md bg-black rounded-xl overflow-hidden shadow aspect-[4/3]">
+                <video id="webcam-video" autoplay playsinline muted class="w-full h-full object-cover"></video>
+                <div class="absolute inset-0 border-2 border-white/40 pointer-events-none rounded-xl m-4 flex flex-col justify-between p-2">
+                  <span class="text-[10px] text-white/90 bg-black/50 px-2 py-0.5 rounded font-mono self-start">FRAME STUDENT PAPER</span>
+                  <span class="text-[10px] text-white/90 bg-black/50 px-2 py-0.5 rounded font-mono self-end">AUTO-EXPOSURE</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 mt-4">
+                <button onclick="app.captureSnapshot()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-2 custom-pulse-ring">
+                  <i data-lucide="camera" class="w-4 h-4"></i>
+                  <span>Snap Photo Now</span>
+                </button>
+                <button onclick="app.closeCamera()" class="px-4 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold rounded-xl transition">
+                  Cancel
+                </button>
+              </div>
+            </div>
+
+            <div id="cam-idle-box" class="space-y-4">
+              <div class="w-16 h-16 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto shadow-inner">
+                <i data-lucide="camera" class="w-8 h-8"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-800 text-sm">Take a photo of the student's paper</h3>
+                <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1">Works on iPhone, iPad, Android tablets, laptops, and desktop webcams.</p>
+              </div>
+              <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button onclick="app.openLiveCamera()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+                  <i data-lucide="camera" class="w-4 h-4"></i>
+                  <span>📷 Take Picture</span>
+                </button>
+                <label class="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 cursor-pointer shadow-xs transition flex items-center gap-2">
+                  <i data-lucide="upload" class="w-4 h-4 text-slate-500"></i>
+                  <span>Upload Image / PDF</span>
+                  <input type="file" id="file-uploader" accept="image/*,application/pdf" onchange="app.handleFileUpload(event)" class="hidden">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold uppercase text-slate-700 tracking-wider">Captured Pages (<span id="count-captured-pages">0</span>)</h3>
+              <button onclick="app.clearCapturedPages()" class="text-[11px] text-rose-600 hover:underline">Clear All</button>
+            </div>
+
+            <div id="captured-pages-list" class="min-h-[160px] max-h-[220px] overflow-y-auto space-y-2 p-2 bg-slate-50 rounded-xl border border-slate-100"></div>
+
+            <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-[11px] text-amber-900 space-y-1">
+              <div class="flex items-center gap-1.5 font-bold">
+                <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                <span>Strict AI Safety Guard</span>
+              </div>
+              <p>The AI will never automatically mark ambiguous grammar or unclear handwriting. Any uncertainty is flagged as <strong>“⚠ Needs Teacher Review”</strong> so you have full control.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="app.setGradingStep(2)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-1">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Back</span>
+          </button>
+          <button id="btn-compare-ai" onclick="app.runAIComparison()" class="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Compare With Answer Key</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Correction View & Teacher Manual Override -->
+      <div id="cw-step-pane-4" class="cw-pane hidden space-y-6">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800" id="corr-header-class">Class 9/5</span>
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700" id="corr-header-title">Unit 4 Quiz</span>
+              </div>
+              <h2 class="text-2xl font-extrabold text-slate-900 mt-1" id="corr-header-student">Student: Alex Harrison</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Scanned on <span id="corr-header-date">Today</span> • Corrected with Teacher Review Guard</p>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="text-right">
+                <p class="text-xs font-bold text-slate-400 uppercase">Calculated Grade</p>
+                <div class="text-3xl font-extrabold text-indigo-700 tracking-tight" id="corr-score-pct">80%</div>
+                <p class="text-xs font-semibold text-slate-600" id="corr-score-points">8 / 10 Marks</p>
+              </div>
+              <div class="w-16 h-16 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+                <i data-lucide="award" class="w-8 h-8"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-100">
+              <p class="text-xs text-slate-500 font-medium">Total Questions</p>
+              <p class="text-xl font-bold text-slate-800 mt-0.5" id="corr-cnt-total">4</p>
+            </div>
+            <div class="p-3 bg-emerald-50 border border-emerald-100 rounded-xl">
+              <p class="text-xs text-emerald-700 font-bold">✓ Correct</p>
+              <p class="text-xl font-bold text-emerald-800 mt-0.5" id="corr-cnt-correct">2</p>
+            </div>
+            <div class="p-3 bg-rose-50 border border-rose-100 rounded-xl">
+              <p class="text-xs text-rose-700 font-bold">✗ Incorrect</p>
+              <p class="text-xl font-bold text-rose-800 mt-0.5" id="corr-cnt-incorrect">1</p>
+            </div>
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+              <p class="text-xs text-amber-800 font-bold">⚠ Needs Review</p>
+              <p class="text-xl font-bold text-amber-700 mt-0.5" id="corr-cnt-review">1</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="corr-review-alert" class="bg-amber-50 border border-amber-300 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-start gap-3">
+            <span class="w-8 h-8 rounded-xl bg-amber-200 text-amber-900 flex items-center justify-center shrink-0 mt-0.5">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+            </span>
+            <div>
+              <h4 class="text-xs font-bold text-amber-900 uppercase tracking-wide">Teacher Review Required</h4>
+              <p class="text-xs text-amber-800 mt-0.5">Questions with unclear handwriting or open-ended sentence phrasing are marked for your decision below.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="corr-questions-container" class="space-y-4"></div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider">Teacher Approval & Recording</h4>
+            <p class="text-xs text-slate-500">Approving will record the grade in Class Reports and update student records.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="app.setGradingStep(3)" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Retake Photo</span>
+            </button>
+            <button onclick="app.approveFinalCorrection()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+              <i data-lucide="check-check" class="w-4 h-4"></i>
+              <span>Approve & Save Grade</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: LESSON PLANNER -->
+    <section id="tab-content-planner" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-violet-100 text-violet-800">Middle School English AI</span>
+              <h1 class="text-xl font-bold text-slate-900">Grade 9 Lesson Plan Generator</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Generate complete lesson plans incorporating grammar, vocabulary, reading comprehension, writing, and speaking.</p>
+          </div>
+          <button onclick="app.fillSampleLessonPlan()" class="px-3 py-1.5 text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Load Sample (Flashbacks & Past Perfect)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Target Class</label>
+            <select id="lp-class-picker" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option value="Class 9/5">Class 9/5</option>
+              <option value="Class 9/6">Class 9/6</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Lesson Title</label>
+            <input type="text" id="lp-title-in" value="Flashbacks & Narrative Tension: Using Past Perfect" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Period Duration</label>
+            <select id="lp-duration-in" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option value="45 minutes (Single Period)">45 Minutes (Single Period)</option>
+              <option value="90 minutes (Block / Double Period)">90 Minutes (Block / Double)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Core Topic</label>
+            <input type="text" id="lp-topic-in" value="Narrative Structure & Chronological Flow" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Grammar Focus</label>
+            <input type="text" id="lp-grammar-in" value="Past Perfect (had + past participle) vs Past Simple" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Vocabulary (comma separated)</label>
+            <input type="text" id="lp-vocab-in" value="chronological, reminiscence, flashback, prior to, foreshadowing" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+
+          <div class="md:col-span-3">
+            <label class="block text-xs font-bold text-slate-700 mb-1">Learning Objectives</label>
+            <input type="text" id="lp-objectives-in" value="Students will be able to differentiate the earlier of two past events using past perfect in a 4-sentence flashback story." class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button onclick="app.generateLessonPlan()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Generate Lesson Plan</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="lp-output-card" class="hidden bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <span class="text-[10px] font-bold uppercase px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded">Editable Lesson Plan</span>
+            <h2 class="text-lg font-bold text-slate-900 mt-1" id="lp-card-heading">Generated Plan</h2>
+            <p class="text-xs text-slate-500" id="lp-card-meta">Class 9/5 • 45 Minutes</p>
+          </div>
+          <div class="flex items-center gap-2 no-print">
+            <button onclick="app.copyLessonPlan()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy</span>
+            </button>
+            <button onclick="window.print()" class="px-3 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 text-xs font-bold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+              <span>Print Plan</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="lp-card-body" class="space-y-4 text-xs text-slate-700 leading-relaxed" contenteditable="true"></div>
+      </div>
+    </section>
+
+    <!-- TAB 6: POWERPOINT GENERATOR -->
+    <section id="tab-content-powerpoints" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800">Slide Deck Engine</span>
+              <h1 class="text-xl font-bold text-slate-900">English PowerPoint Generator</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Generates an 8-slide classroom slide presentation ready for classroom display or .pptx export.</p>
+          </div>
+          <button onclick="app.generateSlideDeck()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Generate Slides</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Target Class</label>
+            <select id="ppt-class-select" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option>Class 9/5</option>
+              <option>Class 9/6</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold text-slate-700 mb-1">Topic & Grammar Target</label>
+            <input type="text" id="ppt-topic-input" value="Modals of Deduction: must, might, can't in Mystery Solvers" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-slate-800" id="ppt-slide-counter">Slide 1 of 8</span>
+          <div class="flex items-center gap-2">
+            <button onclick="app.prevSlide()" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="app.nextSlide()" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="app.exportDeck()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Export Presentation (.pptx)</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="ppt-slide-canvas" class="w-full aspect-[16/9] bg-gradient-to-br from-indigo-950 via-slate-900 to-indigo-900 rounded-2xl p-8 text-white shadow-xl flex flex-col justify-between relative overflow-hidden"></div>
+        <div id="ppt-thumbnails" class="grid grid-cols-4 sm:grid-cols-8 gap-2 pt-2"></div>
+      </div>
+    </section>
+
+    <!-- TAB 7: WORKSHEET GENERATOR -->
+    <section id="tab-content-worksheets" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-100 text-teal-800">Printable Materials</span>
+              <h1 class="text-xl font-bold text-slate-900">Worksheet & Quiz Generator</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Create worksheets with toggleable teacher answer keys for fast camera grading.</p>
+          </div>
+          <button onclick="app.generateWorksheet()" class="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Generate Worksheet</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 my-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Class</label>
+            <select id="ws-class-picker" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option>Class 9/5</option>
+              <option>Class 9/6</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Activity Type</label>
+            <select id="ws-type-picker" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option value="grammar">Grammar & Sentence Syntax</option>
+              <option value="vocab">Vocabulary Context Matching</option>
+              <option value="reading">Reading Comprehension</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Question Count</label>
+            <select id="ws-count-picker" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option value="5">5 Questions</option>
+              <option value="8">8 Questions</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Difficulty</label>
+            <select id="ws-diff-picker" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+              <option>Standard (Grade 9 Core)</option>
+              <option>Challenging (Extended)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="printable-section" class="bg-white rounded-2xl border border-slate-200 p-8 shadow-xs space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b-2 border-slate-900">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight" id="ws-heading">Grade 9 English Practice Sheet</h2>
+            <p class="text-xs text-slate-600 mt-0.5">Focus: Past Perfect & Reading Fluency</p>
+          </div>
+          <div class="text-right space-y-1 text-xs text-slate-700">
+            <p>Student Name: _______________________</p>
+            <p>Class: <strong id="ws-target-lbl">Class 9/5</strong> • Date: ____________</p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between no-print py-2 bg-slate-50 px-4 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" id="chk-toggle-answers" onchange="app.toggleWorksheetAnswers()" class="rounded text-indigo-600">
+            <label for="chk-toggle-answers" class="text-xs font-bold text-slate-700 cursor-pointer">Overlay Teacher Answer Key</label>
+          </div>
+          <button onclick="window.print()" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print Worksheet</span>
+          </button>
+        </div>
+
+        <div id="ws-questions-box" class="space-y-5 text-sm"></div>
+      </div>
+    </section>
+
+    <!-- TAB 8: REPORTS & ANALYTICS -->
+    <section id="tab-content-reports" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-100 text-cyan-800">Analytics</span>
+              <h1 class="text-xl font-bold text-slate-900">Academic & Attendance Reports</h1>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Diagnostic trends, frequently missed questions, and support rosters for Classes 9/5 & 9/6.</p>
+          </div>
+          <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200">
+            <button onclick="app.setReportClass('c95')" id="rep-btn-95" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-700 shadow-xs">Class 9/5</button>
+            <button onclick="app.setReportClass('c96')" id="rep-btn-96" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600">Class 9/6</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-medium text-slate-500">Attendance Rate</span>
+            <p class="text-2xl font-bold text-slate-900 mt-1" id="rep-att-rate">96.0%</p>
+            <p class="text-[11px] text-emerald-600 font-bold mt-1">↑ Steady across term</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-medium text-slate-500">Quiz Average</span>
+            <p class="text-2xl font-bold text-indigo-700 mt-1" id="rep-quiz-avg">85.4%</p>
+            <p class="text-[11px] text-slate-400 mt-1">Combined mastery metric</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-medium text-slate-500">Weekly Teaching Load</span>
+            <p class="text-2xl font-bold text-blue-700 mt-1" id="rep-periods-count">10 Periods</p>
+            <p class="text-[11px] text-slate-400 mt-1">Sun, Mon, Tue, Wed, Thu</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <span class="text-xs font-medium text-slate-500">Active AI Flags</span>
+            <p class="text-2xl font-bold text-amber-600 mt-1" id="rep-flags-count">2 Students</p>
+            <p class="text-[11px] text-amber-700 font-semibold mt-1">Needing intervention</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
+          <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-5">
+            <h3 class="text-sm font-bold text-slate-900 mb-1">Questions Frequently Missed</h3>
+            <p class="text-xs text-slate-500 mb-4">Focus warm-up and starter exercises on these topics.</p>
+            <div id="rep-tricky-list" class="space-y-3"></div>
+          </div>
+          <div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 p-5">
+            <h3 class="text-sm font-bold text-slate-900 mb-1">Students Flagged for Support</h3>
+            <p class="text-xs text-slate-500 mb-4">Targeted for guided revision or reading pairs.</p>
+            <div id="rep-support-list" class="space-y-2.5"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Edit Student Skills & AI Flags Modal -->
+  <div id="student-edit-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 z-50 hidden">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-2xl max-w-lg w-full p-5 sm:p-6 space-y-4 animate-in fade-in zoom-in duration-150">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full" id="modal-class-tag">Class 9/5</span>
+          <h3 class="text-base font-bold text-slate-900 mt-1" id="modal-student-name">Edit Student Skills & Flags</h3>
+        </div>
+        <button onclick="app.closeEditStudentModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Skill Scores Sliders / Inputs -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold uppercase text-slate-500 tracking-wider">Section Mastery Scores (0 - 100%)</h4>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+              <span>Grammar</span>
+              <span id="lbl-val-grammar" class="text-indigo-600 font-extrabold">85%</span>
+            </label>
+            <input type="range" id="input-edit-grammar" min="40" max="100" oninput="document.getElementById('lbl-val-grammar').innerText = this.value + '%'" class="w-full accent-indigo-600">
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+              <span>Spelling</span>
+              <span id="lbl-val-spelling" class="text-blue-600 font-extrabold">80%</span>
+            </label>
+            <input type="range" id="input-edit-spelling" min="40" max="100" oninput="document.getElementById('lbl-val-spelling').innerText = this.value + '%'" class="w-full accent-blue-600">
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+              <span>Reading</span>
+              <span id="lbl-val-reading" class="text-emerald-600 font-extrabold">90%</span>
+            </label>
+            <input type="range" id="input-edit-reading" min="40" max="100" oninput="document.getElementById('lbl-val-reading').innerText = this.value + '%'" class="w-full accent-emerald-600">
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+              <span>Writing</span>
+              <span id="lbl-val-writing" class="text-violet-600 font-extrabold">88%</span>
+            </label>
+            <input type="range" id="input-edit-writing" min="40" max="100" oninput="document.getElementById('lbl-val-writing').innerText = this.value + '%'" class="w-full accent-violet-600">
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Flag Selection -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-bold text-slate-700">AI Diagnostic Flag Type</label>
+        <select id="select-edit-flag" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-semibold">
+          <option value="none">🟢 On Track / High Potential</option>
+          <option value="grammar">🟡 Grammar Slip Flag (Tense Inversion / Agreement)</option>
+          <option value="spelling">🔵 Spelling Pattern Alert (Irregular participles / Silent letters)</option>
+          <option value="reading">🟠 Reading Comprehension Focus (Inference & Detail)</option>
+          <option value="critical">🔴 High Attention Needed (Combined Support Required)</option>
+        </select>
+      </div>
+
+      <!-- Actionable Advice & Note -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-bold text-slate-700">AI Recommended Strategy / Teacher Note</label>
+        <textarea id="input-edit-note" rows="2" class="w-full text-xs p-2.5 rounded-xl border border-slate-200 bg-slate-50 font-medium focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20" placeholder="Custom note or teaching intervention..."></textarea>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button onclick="app.closeEditStudentModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition">Cancel</button>
+        <button onclick="app.saveStudentEdits()" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl shadow-xs transition flex items-center gap-1.5">
+          <i data-lucide="save" class="w-3.5 h-3.5"></i>
+          <span>Save Student Skills</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * School Bell Schedule Specification
+     */
+    const BELL_SCHEDULE = [
+      { id: 'MM', name: 'Morning Meeting', start: '07:30', end: '07:40', isBreak: false },
+      { id: 'P1', name: 'Period 1', start: '07:40', end: '08:25', isBreak: false },
+      { id: 'P2', name: 'Period 2', start: '08:30', end: '09:15', isBreak: false },
+      { id: 'B1', name: 'First Break', start: '09:15', end: '09:30', isBreak: true },
+      { id: 'P3', name: 'Period 3', start: '09:30', end: '10:15', isBreak: false },
+      { id: 'P4', name: 'Period 4', start: '10:20', end: '11:05', isBreak: false },
+      { id: 'P5', name: 'Period 5', start: '11:10', end: '11:55', isBreak: false },
+      { id: 'B2', name: 'Second Break', start: '11:55', end: '12:05', isBreak: true },
+      { id: 'P6', name: 'Period 6', start: '12:05', end: '12:50', isBreak: false },
+      { id: 'P7', name: 'Period 7', start: '12:55', end: '13:40', isBreak: false }
+    ];
+
+    /**
+     * Complete Weekly Schedule Mapping for Teacher:
+     * Class 9/5:
+     * - Sunday: P2, P3, P7
+     * - Monday: P2
+     * - Tuesday: P3, P4
+     * - Wednesday: P6, P7
+     * - Thursday: P5, P6
+     *
+     * Class 9/6:
+     * - Sunday: P5, P6
+     * - Monday: P3, P7
+     * - Tuesday: P1, P2
+     * - Wednesday: P2, P3
+     * - Thursday: P1, P2
+     */
+    const WEEKLY_TIMETABLE = {
+      'Sunday': {
+        'P2': 'c95',
+        'P3': 'c95',
+        'P5': 'c96',
+        'P6': 'c96',
+        'P7': 'c95'
+      },
+      'Monday': {
+        'P2': 'c95',
+        'P3': 'c96',
+        'P7': 'c96'
+      },
+      'Tuesday': {
+        'P1': 'c96',
+        'P2': 'c96',
+        'P3': 'c95',
+        'P4': 'c95'
+      },
+      'Wednesday': {
+        'P2': 'c96',
+        'P3': 'c96',
+        'P6': 'c95',
+        'P7': 'c95'
+      },
+      'Thursday': {
+        'P1': 'c96',
+        'P2': 'c96',
+        'P5': 'c95',
+        'P6': 'c95'
+      }
+    };
+
+    /**
+     * Heartfelt Quotes for Wife / Teacher / Mother from Husband
+     */
+    const HUSBAND_QUOTES = [
+      "Your patience with your students, your boundless love for our children, and the warmth you bring to our home makes you my hero every single day.",
+      "Teaching young minds by day, nurturing our little family by night. There is truly nothing you cannot do with your beautiful heart.",
+      "You make teaching look effortless and motherhood look sacred. Remember to breathe today—I am always cheering for you.",
+      "To the world you are an incredible English teacher, but to our family, you are our whole world. Keep shining, my love!",
+      "I see how hard you work, the care you put into every lesson, and the love you pour into our family. You inspire me endlessly.",
+      "Your students are blessed to learn from you, our children are blessed to be held by you, and I am the most blessed man alive to love you.",
+      "No grade, rubric, or test score can measure the huge impact your kindness makes on everyone around you. Have a gentle, wonderful day!"
+    ];
+
+    /**
+     * Initial Data with Detailed Skills Breakdown (Grammar, Spelling, Reading, Writing)
+     */
+    const initialDatabase = {
+      classes: {
+        'c95': {
+          id: 'c95',
+          name: 'Class 9/5',
+          shortName: '9/5',
+          scheduleDesc: 'Sun P2,3,7 • Mon P2 • Tue P3,4 • Wed P6,7 • Thu P5,6 (10 Periods/Week)',
+          totalPeriods: 10,
+          color: 'blue',
+          students: [
+            { id: '9501', name: 'Alex Harrison', grammar: 90, spelling: 88, reading: 92, writing: 86, flagType: 'none', advice: 'Excelling in descriptive clauses; ready for advanced extension questions.' },
+            { id: '9502', name: 'David Miller', grammar: 68, spelling: 62, reading: 74, writing: 70, flagType: 'spelling', advice: 'Frequently confuses past participle vowels (written vs writted). Recommend targeted 5-minute flashcards.' },
+            { id: '9503', name: 'Emma Watson', grammar: 96, spelling: 98, reading: 94, writing: 95, flagType: 'none', advice: 'Exceptional vocabulary and syntax fluency.' },
+            { id: '9504', name: 'George Clark', grammar: 64, spelling: 66, reading: 65, writing: 62, flagType: 'critical', advice: 'Requires multi-skill guided intervention. Paired reading and guided sentence starters recommended.' },
+            { id: '9505', name: 'Hannah Abbott', grammar: 82, spelling: 84, reading: 88, writing: 80, flagType: 'none', advice: 'Solid core mastery; encourage using complex transitions.' },
+            { id: '9506', name: 'James Evans', grammar: 88, spelling: 90, reading: 92, writing: 85, flagType: 'none', advice: 'Strong reader with consistent accuracy.' },
+            { id: '9507', name: 'Liam Foster', grammar: 74, spelling: 80, reading: 85, writing: 78, flagType: 'grammar', advice: 'Struggles with inverted question order in past perfect (had they vs they had).' },
+            { id: '9508', name: 'Mia Patel', grammar: 90, spelling: 86, reading: 91, writing: 89, flagType: 'none', advice: 'High creative writing output and strong vocabulary.' },
+            { id: '9509', name: 'Noah Richardson', grammar: 72, spelling: 70, reading: 76, writing: 72, flagType: 'reading', advice: 'Needs support distinguishing author inference from literal textual details.' },
+            { id: '9510', name: 'Sophia Turner', grammar: 95, spelling: 94, reading: 98, writing: 96, flagType: 'none', advice: 'Mastered all Grade 9 benchmarks ahead of schedule.' }
+          ],
+          troubleQuestions: [
+            { q: "Past Perfect auxiliary inverted questions (e.g. 'Had they finished?')", failRate: "42% error rate" },
+            { q: "Confusing 'must have' vs 'should have' in deduction contexts", failRate: "36% error rate" }
+          ]
+        },
+        'c96': {
+          id: 'c96',
+          name: 'Class 9/6',
+          shortName: '9/6',
+          scheduleDesc: 'Sun P5,6 • Mon P3,7 • Tue P1,2 • Wed P2,3 • Thu P1,2 (11 Periods/Week)',
+          totalPeriods: 11,
+          color: 'emerald',
+          students: [
+            { id: '9601', name: 'Adam Bennett', grammar: 84, spelling: 82, reading: 86, writing: 80, flagType: 'none', advice: 'Consistent progress across weekly grammar checks.' },
+            { id: '9602', name: 'Chloe Brooks', grammar: 92, spelling: 94, reading: 90, writing: 91, flagType: 'none', advice: 'Excellent reading pace and sentence variety.' },
+            { id: '9603', name: 'Daniel Gray', grammar: 62, spelling: 64, reading: 70, writing: 66, flagType: 'grammar', advice: 'Subject-verb agreement slips with collective nouns.' },
+            { id: '9604', name: 'Emily Hayes', grammar: 86, spelling: 88, reading: 90, writing: 85, flagType: 'none', advice: 'Good comprehension; ready for peer editing roles.' },
+            { id: '9605', name: 'Henry Jenkins', grammar: 76, spelling: 74, reading: 82, writing: 78, flagType: 'spelling', advice: 'Double consonant spelling patterns need reinforcement.' },
+            { id: '9606', name: 'Isabella Lewis', grammar: 94, spelling: 96, reading: 95, writing: 92, flagType: 'none', advice: 'Consistently scores top marks in comprehension.' },
+            { id: '9607', name: 'Lucas Morris', grammar: 70, spelling: 68, reading: 72, writing: 70, flagType: 'critical', advice: 'Flagged for after-class check-in on sentence syntax.' },
+            { id: '9608', name: 'Olivia Scott', grammar: 85, spelling: 84, reading: 88, writing: 86, flagType: 'none', advice: 'Strong analytical skills in literary excerpts.' },
+            { id: '9609', name: 'Samuel Taylor', grammar: 87, spelling: 89, reading: 90, writing: 85, flagType: 'none', advice: 'Accurate and neat; encourage spoken sharing.' },
+            { id: '9610', name: 'Zoe Young', grammar: 94, spelling: 92, reading: 96, writing: 92, flagType: 'none', advice: 'Demonstrates sophisticated vocabulary choice.' }
+          ],
+          troubleQuestions: [
+            { q: "Passive voice tense shifts with modal verbs (e.g. 'can be solved')", failRate: "45% error rate" },
+            { q: "Quotation punctuation placement inside closing dialogue marks", failRate: "33% error rate" }
+          ]
+        }
+      },
+      answerKey: {
+        title: "Unit 4: Past Perfect & Deductive Modals",
+        questions: [
+          { id: 1, prompt: "Fill in the blank: By the time the teacher entered, all students _____ (finish) the warm-up.", correct: "had finished", alternatives: ["had completed", "had already finished"], marks: 2, type: "Fill-in-the-blank" },
+          { id: 2, prompt: "Choose the correct deduction modal: The road is completely wet. It _____ have rained heavily.", correct: "must", alternatives: ["must have", "Must"], marks: 2, type: "Multiple Choice" },
+          { id: 3, prompt: "Sentence correction: 'He hadn't went to the cinema prior to that day.'", correct: "He hadn't gone to the cinema prior to that day.", alternatives: ["He had not gone to the cinema prior to that day.", "He hadn't gone to the cinema"], marks: 3, type: "Grammar Correction" },
+          { id: 4, prompt: "Short Answer: Why did the detective conclude the suspect could not have committed the burglary?", correct: "Because the suspect had a verifiable alibi in another town at 8:00 PM.", alternatives: ["He was in another town at 8pm", "He had an alibi in a different city", "He was not in the city at the time"], marks: 3, type: "Reading Comprehension" }
+        ]
+      }
+    };
+
+    /**
+     * Primary Application Class
+     */
+    class TeacherAssistantApp {
+      constructor() {
+        this.data = this.loadState();
+        this.activeClassId = 'c95';
+        this.attendanceClassId = 'c95';
+        this.reportClassId = 'c95';
+        this.currentTab = 'roster';
+        this.timetableFilter = 'all';
+
+        // Timetable simulation state
+        this.simulatedMode = 'auto';
+        this.currentLiveTeachingClass = null; // 'c95', 'c96', or null
+
+        // Grading Flow
+        this.activeGradingStep = 1;
+        this.capturedPages = [];
+        this.webcamStream = null;
+        this.activeCorrection = null;
+
+        // Presentation
+        this.currentSlideIndex = 0;
+        this.slides = [];
+
+        // Quotes index
+        this.quoteIndex = 0;
+
+        // Editing student modal state
+        this.editingStudentId = null;
+
+        // Lang
+        this.lang = 'en';
+      }
+
+      loadState() {
+        try {
+          const saved = localStorage.getItem('eta_classes_store_v3');
+          if (saved) return JSON.parse(saved);
+        } catch (e) {
+          console.warn('Storage unavailable');
+        }
+        return initialDatabase;
+      }
+
+      saveState() {
+        try {
+          localStorage.setItem('eta_classes_store_v3', JSON.stringify(this.data));
+        } catch (e) {
+          console.warn('Could not save state');
+        }
+      }
+
+      init() {
+        const today = new Date().toISOString().split('T')[0];
+        const dateInput = document.getElementById('att-date-picker');
+        const cwDate = document.getElementById('cw-input-date');
+        if (dateInput) dateInput.value = today;
+        if (cwDate) cwDate.value = today;
+
+        this.renderAll();
+        this.startLiveScheduleTicker();
+        this.cycleMotivationalQuote(0);
+        lucide.createIcons();
+      }
+
+      renderAll() {
+        this.renderHeaderButtons();
+        this.renderTimetableMatrix();
+        this.renderRosterView();
+        this.renderAttendanceTable();
+        this.renderAnswerKeyRows();
+        this.generateSlideDeckContent();
+        this.generateWorksheet();
+        this.renderReports();
+      }
+
+      cycleMotivationalQuote(forcedIdx = null) {
+        if (forcedIdx !== null) {
+          this.quoteIndex = forcedIdx;
+        } else {
+          this.quoteIndex = (this.quoteIndex + 1) % HUSBAND_QUOTES.length;
+        }
+        const el = document.getElementById('husband-quote-text');
+        if (el) {
+          el.style.opacity = 0;
+          setTimeout(() => {
+            el.innerText = `"${HUSBAND_QUOTES[this.quoteIndex]}"`;
+            el.style.opacity = 1;
+          }, 150);
+        }
+      }
+
+      showToast(msg, type = 'info') {
+        const c = document.getElementById('toast-container');
+        if (!c) return;
+
+        const colors = {
+          success: 'bg-emerald-700 text-white',
+          warning: 'bg-amber-600 text-white',
+          error: 'bg-rose-600 text-white',
+          info: 'bg-slate-900 text-white'
+        };
+
+        const t = document.createElement('div');
+        t.className = `px-4 py-2.5 rounded-xl text-xs font-bold shadow-lg border border-white/20 transition-all transform duration-200 pointer-events-auto ${colors[type] || colors.info}`;
+        t.innerText = msg;
+        c.appendChild(t);
+
+        setTimeout(() => {
+          t.style.opacity = '0';
+          t.style.transform = 'translateY(4px)';
+          setTimeout(() => t.remove(), 300);
+        }, 3000);
+      }
+
+      switchTab(tabId) {
+        this.currentTab = tabId;
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          const isTarget = btn.getAttribute('data-tab') === tabId;
+          btn.className = isTarget
+            ? 'tab-btn px-3 py-2 rounded-lg text-indigo-700 bg-indigo-50 font-bold flex items-center gap-1.5 transition shadow-xs'
+            : 'tab-btn px-3 py-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 font-semibold flex items-center gap-1.5 transition';
+        });
+
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
+        const pane = document.getElementById(`tab-content-${tabId}`);
+        if (pane) pane.classList.remove('hidden');
+
+        if (tabId === 'roster') this.renderRosterView();
+        if (tabId === 'attendance') this.renderAttendanceTable();
+        if (tabId === 'reports') this.renderReports();
+
+        lucide.createIcons();
+      }
+
+      setActiveClass(clsId) {
+        this.activeClassId = clsId;
+        this.attendanceClassId = clsId;
+        this.reportClassId = clsId;
+        this.renderHeaderButtons();
+        this.renderRosterView();
+        this.renderAttendanceTable();
+        this.renderReports();
+        this.showToast(`Switched focus to ${this.data.classes[clsId].name}`, 'info');
+      }
+
+      renderHeaderButtons() {
+        const b95 = document.getElementById('btn-quick-95');
+        const b96 = document.getElementById('btn-quick-96');
+        const badge95 = document.getElementById('badge-live-95');
+        const badge96 = document.getElementById('badge-live-96');
+
+        const isLive95 = (this.currentLiveTeachingClass === 'c95');
+        const isLive96 = (this.currentLiveTeachingClass === 'c96');
+
+        if (badge95) badge95.classList.toggle('hidden', !isLive95);
+        if (badge96) badge96.classList.toggle('hidden', !isLive96);
+
+        if (this.activeClassId === 'c95') {
+          b95.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-xs bg-white text-blue-700 ${isLive95 ? 'ring-2 ring-blue-500 active-class-glow-blue' : ''}`;
+          b96.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900 ${isLive96 ? 'ring-2 ring-emerald-400' : ''}`;
+        } else {
+          b96.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 shadow-xs bg-white text-emerald-700 ${isLive96 ? 'ring-2 ring-emerald-500 active-class-glow-green' : ''}`;
+          b95.className = `px-3 py-1.5 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-slate-600 hover:text-slate-900 ${isLive95 ? 'ring-2 ring-blue-400' : ''}`;
+        }
+      }
+
+      toggleLanguage() {
+        if (this.lang === 'en') {
+          this.lang = 'ar';
+          document.body.classList.add('rtl');
+          document.getElementById('lang-indicator').innerText = 'العربية';
+          this.showToast('تم تحويل الواجهة لدعم اللغة العربية وتنسيق RTL', 'info');
+        } else {
+          this.lang = 'en';
+          document.body.classList.remove('rtl');
+          document.getElementById('lang-indicator').innerText = 'EN';
+          this.showToast('Interface switched to English', 'info');
+        }
+      }
+
+      setTimetableFilter(filter) {
+        this.timetableFilter = filter;
+        document.getElementById('filter-tt-all').className = filter === 'all'
+          ? 'px-3 py-1 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-xs'
+          : 'px-3 py-1 text-xs font-semibold rounded-lg text-slate-600';
+        document.getElementById('filter-tt-95').className = filter === 'c95'
+          ? 'px-3 py-1 text-xs font-bold rounded-lg bg-white text-blue-700 shadow-xs'
+          : 'px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 hover:text-blue-700';
+        document.getElementById('filter-tt-96').className = filter === 'c96'
+          ? 'px-3 py-1 text-xs font-bold rounded-lg bg-white text-emerald-700 shadow-xs'
+          : 'px-3 py-1 text-xs font-semibold rounded-lg text-slate-600 hover:text-emerald-700';
+        this.renderTimetableMatrix();
+      }
+
+      renderTimetableMatrix() {
+        const tbody = document.getElementById('timetable-matrix-body');
+        if (!tbody) return;
+
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+
+        tbody.innerHTML = BELL_SCHEDULE.map(slot => {
+          if (slot.isBreak || slot.id === 'MM') {
+            return `
+              <tr class="bg-slate-50/90 text-slate-500 font-semibold border-y border-slate-200">
+                <td class="py-2.5 px-3 whitespace-nowrap">
+                  <span class="font-bold text-slate-700">${slot.name}</span>
+                  <span class="block text-[10px] text-slate-400 font-mono">${slot.start} - ${slot.end}</span>
+                </td>
+                <td colspan="5" class="py-2.5 px-3 text-center text-[11px] uppercase tracking-wider text-slate-400 font-bold">
+                  ${slot.name} (${slot.start} - ${slot.end})
+                </td>
+              </tr>
+            `;
+          }
+
+          return `
+            <tr class="hover:bg-slate-50/60 transition">
+              <td class="py-3 px-3 whitespace-nowrap">
+                <span class="font-bold text-slate-900">${slot.name}</span>
+                <span class="block text-[10px] text-slate-500 font-mono">${slot.start} - ${slot.end}</span>
+              </td>
+              ${days.map(day => {
+                const assignedClassId = WEEKLY_TIMETABLE[day]?.[slot.id];
+                return this.renderTimetableSlotCell(day, slot.id, assignedClassId);
+              }).join('')}
+            </tr>
+          `;
+        }).join('');
+
+        lucide.createIcons();
+      }
+
+      renderTimetableSlotCell(day, periodId, classId) {
+        if (!classId) {
+          return `
+            <td class="py-2.5 px-2 text-center">
+              <span class="text-[11px] text-slate-400 font-medium italic">Planning / Free</span>
+            </td>
+          `;
+        }
+
+        if (this.timetableFilter !== 'all' && this.timetableFilter !== classId) {
+          return `
+            <td class="py-2.5 px-2 text-center opacity-25">
+              <span class="text-[10px] text-slate-400">—</span>
+            </td>
+          `;
+        }
+
+        const is95 = classId === 'c95';
+        const isCurrentlyLive = (this.currentLiveTeachingClass === classId);
+
+        const colorClasses = is95
+          ? (isCurrentlyLive ? 'bg-blue-100 border-blue-400 active-class-glow-blue' : 'bg-blue-50 border-blue-200 text-blue-950')
+          : (isCurrentlyLive ? 'bg-emerald-100 border-emerald-400 active-class-glow-green' : 'bg-emerald-50 border-emerald-200 text-emerald-950');
+
+        const badgeClass = is95 ? 'bg-blue-600 text-white' : 'bg-emerald-600 text-white';
+
+        return `
+          <td class="py-2.5 px-2">
+            <div class="p-2 rounded-xl border ${colorClasses} transition shadow-xs flex flex-col justify-between relative">
+              ${isCurrentlyLive ? `<span class="absolute -top-1.5 -right-1 px-1.5 py-0.2 bg-amber-400 text-slate-900 text-[8px] font-extrabold rounded-full animate-bounce">LIVE</span>` : ''}
+              <div class="flex items-center justify-between gap-1 mb-1">
+                <span class="text-[10px] font-extrabold px-1.5 py-0.5 rounded ${badgeClass}">
+                  Class ${is95 ? '9/5' : '9/6'}
+                </span>
+                <span class="text-[10px] font-semibold text-slate-500">${periodId}</span>
+              </div>
+              <div class="flex items-center gap-1 pt-1 text-[10px]">
+                <button onclick="app.launchPeriodAttendance('${classId}')" title="Take Attendance for this period" class="px-1.5 py-0.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold transition">
+                  Att
+                </button>
+                <button onclick="app.launchPeriodPlanner('${classId}', '${periodId}')" title="Plan lesson for this period" class="px-1.5 py-0.5 rounded bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold transition">
+                  Plan
+                </button>
+              </div>
+            </div>
+          </td>
+        `;
+      }
+
+      launchPeriodAttendance(classId) {
+        this.setAttendanceClass(classId);
+        this.switchTab('attendance');
+        this.showToast(`Loaded attendance sheet for ${this.data.classes[classId].name}`, 'info');
+      }
+
+      launchPeriodPlanner(classId, periodId) {
+        const picker = document.getElementById('lp-class-picker');
+        if (picker) picker.value = this.data.classes[classId].name;
+        this.switchTab('planner');
+        this.showToast(`Ready to generate lesson plan for ${this.data.classes[classId].name} (${periodId})`, 'info');
+      }
+
+      simulateScheduleChange() {
+        const val = document.getElementById('sim-day-select').value;
+        this.simulatedMode = val;
+        this.updateLiveBanner();
+      }
+
+      startLiveScheduleTicker() {
+        this.updateLiveBanner();
+        setInterval(() => this.updateLiveBanner(), 25000);
+      }
+
+      updateLiveBanner() {
+        const dayTag = document.getElementById('txt-live-day');
+        const periodTag = document.getElementById('txt-live-period');
+        const timeTag = document.getElementById('txt-live-time');
+        const classChip = document.getElementById('live-class-chip');
+        const btnAction = document.getElementById('btn-live-action');
+
+        let dayName = 'Sunday';
+        let currentTimeStr = '11:30';
+        let currentPeriod = null;
+        let assignedClass = null;
+
+        if (this.simulatedMode === 'auto') {
+          const now = new Date();
+          const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          dayName = daysOfWeek[now.getDay()] || 'Sunday';
+          const hh = String(now.getHours()).padStart(2, '0');
+          const mm = String(now.getMinutes()).padStart(2, '0');
+          currentTimeStr = `${hh}:${mm}`;
+
+          currentPeriod = BELL_SCHEDULE.find(s => currentTimeStr >= s.start && currentTimeStr <= s.end);
+        } else {
+          const map = {
+            'Sun-P2': { day: 'Sunday', time: '08:45', p: 'P2', cls: 'c95' },
+            'Sun-P5': { day: 'Sunday', time: '11:30', p: 'P5', cls: 'c96' },
+            'Mon-P2': { day: 'Monday', time: '08:45', p: 'P2', cls: 'c95' },
+            'Mon-P3': { day: 'Monday', time: '09:40', p: 'P3', cls: 'c96' },
+            'Tue-P1': { day: 'Tuesday', time: '08:00', p: 'P1', cls: 'c96' },
+            'Tue-P3': { day: 'Tuesday', time: '09:40', p: 'P3', cls: 'c95' },
+            'Wed-P2': { day: 'Wednesday', time: '08:45', p: 'P2', cls: 'c96' },
+            'Wed-P6': { day: 'Wednesday', time: '12:20', p: 'P6', cls: 'c95' },
+            'Thu-P1': { day: 'Thursday', time: '08:00', p: 'P1', cls: 'c96' },
+            'Thu-P5': { day: 'Thursday', time: '11:30', p: 'P5', cls: 'c95' },
+            'Break-1': { day: 'Sunday', time: '09:20', p: 'B1', cls: null }
+          };
+          const sim = map[this.simulatedMode];
+          if (sim) {
+            dayName = sim.day;
+            currentTimeStr = sim.time;
+            currentPeriod = BELL_SCHEDULE.find(s => s.id === sim.p);
+            assignedClass = sim.cls;
+          }
+        }
+
+        if (dayTag) dayTag.innerText = dayName;
+        if (timeTag) timeTag.innerText = `${currentTimeStr} • School Bell`;
+
+        if (!assignedClass && currentPeriod && WEEKLY_TIMETABLE[dayName]) {
+          assignedClass = WEEKLY_TIMETABLE[dayName][currentPeriod.id] || null;
+        }
+
+        this.currentLiveTeachingClass = assignedClass;
+        this.renderHeaderButtons();
+
+        if (!currentPeriod) {
+          periodTag.innerText = 'Outside School Hours';
+          classChip.innerHTML = `<span class="text-slate-400">Next: Tomorrow 07:30 AM</span>`;
+          btnAction.style.display = 'none';
+          return;
+        }
+
+        periodTag.innerText = `${currentPeriod.name} (${currentPeriod.start} - ${currentPeriod.end})`;
+
+        if (currentPeriod.isBreak) {
+          classChip.innerHTML = `
+            <span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold border border-slate-700">
+              ☕ Recess / Break
+            </span>
+          `;
+          btnAction.style.display = 'none';
+        } else if (assignedClass) {
+          const is95 = assignedClass === 'c95';
+          classChip.innerHTML = `
+            <span class="px-2.5 py-0.5 rounded-full ${is95 ? 'bg-blue-600' : 'bg-emerald-600'} text-white font-extrabold flex items-center gap-1 shadow-xs animate-pulse">
+              <span>● IN SESSION: Class ${is95 ? '9/5' : '9/6'}</span>
+            </span>
+          `;
+          btnAction.style.display = 'flex';
+          btnAction.innerHTML = `<i data-lucide="arrow-up-right" class="w-3 h-3"></i><span>Jump to Class ${is95 ? '9/5' : '9/6'}</span>`;
+          btnAction.onclick = () => {
+            this.setActiveClass(assignedClass);
+            this.switchTab('roster');
+          };
+        } else {
+          classChip.innerHTML = `
+            <span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-semibold border border-slate-700">
+              Teacher Planning / Free Period
+            </span>
+          `;
+          btnAction.style.display = 'flex';
+          btnAction.innerHTML = `<i data-lucide="sparkles" class="w-3 h-3"></i><span>Plan Next Lesson</span>`;
+          btnAction.onclick = () => this.switchTab('planner');
+        }
+
+        lucide.createIcons();
+      }
+
+      triggerCurrentPeriodAction() {
+        this.updateLiveBanner();
+      }
+
+      renderRosterView() {
+        const current = this.data.classes[this.activeClassId];
+        if (!current) return;
+
+        const is95 = this.activeClassId === 'c95';
+        const isLiveNow = (this.currentLiveTeachingClass === this.activeClassId);
+
+        const banner = document.getElementById('roster-banner');
+        if (is95) {
+          banner.className = `rounded-2xl p-6 text-white shadow-md relative overflow-hidden transition-all bg-gradient-to-r from-blue-700 via-indigo-700 to-indigo-800 ${isLiveNow ? 'ring-4 ring-blue-400 active-class-glow-blue' : ''}`;
+        } else {
+          banner.className = `rounded-2xl p-6 text-white shadow-md relative overflow-hidden transition-all bg-gradient-to-r from-emerald-700 via-teal-700 to-teal-800 ${isLiveNow ? 'ring-4 ring-emerald-400 active-class-glow-green' : ''}`;
+        }
+
+        document.getElementById('roster-class-pill').innerText = current.name;
+        document.getElementById('roster-class-heading').innerText = `${current.name} Student AI Diagnostics & Skills`;
+        document.getElementById('roster-schedule-desc').innerText = current.scheduleDesc;
+        document.getElementById('roster-live-now-tag').classList.toggle('hidden', !isLiveNow);
+
+        document.getElementById('stat-student-count').innerText = current.students.length;
+
+        // Skill averages
+        const avgG = Math.round(current.students.reduce((a, s) => a + (s.grammar || 80), 0) / current.students.length);
+        const avgS = Math.round(current.students.reduce((a, s) => a + (s.spelling || 80), 0) / current.students.length);
+        const avgR = Math.round(current.students.reduce((a, s) => a + (s.reading || 80), 0) / current.students.length);
+        const flagsCount = current.students.filter(s => s.flagType && s.flagType !== 'none').length;
+
+        document.getElementById('stat-avg-grammar').innerText = `${avgG}%`;
+        document.getElementById('stat-avg-spelling').innerText = `${avgS}%`;
+        document.getElementById('stat-avg-reading').innerText = `${avgR}%`;
+        document.getElementById('stat-class-flags').innerText = `${flagsCount} Active`;
+
+        this.filterRosterTable();
+      }
+
+      getBadgeForScore(score) {
+        if (score >= 90) return 'text-emerald-700 bg-emerald-50 border-emerald-200';
+        if (score >= 75) return 'text-indigo-700 bg-indigo-50 border-indigo-200';
+        if (score >= 65) return 'text-amber-700 bg-amber-50 border-amber-200';
+        return 'text-rose-700 bg-rose-50 border-rose-200';
+      }
+
+      getFlagBadge(flagType) {
+        switch (flagType) {
+          case 'grammar':
+            return `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300">🟡 Grammar Slip</span>`;
+          case 'spelling':
+            return `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-900 border border-blue-300">🔵 Spelling Alert</span>`;
+          case 'reading':
+            return `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-orange-100 text-orange-900 border border-orange-300">🟠 Reading Focus</span>`;
+          case 'critical':
+            return `<span class="inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-900 border border-rose-300 animate-pulse">🔴 High Attention</span>`;
+          default:
+            return `<span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">🟢 High Potential</span>`;
+        }
+      }
+
+      filterRosterTable() {
+        const current = this.data.classes[this.activeClassId];
+        const q = (document.getElementById('roster-search')?.value || '').toLowerCase();
+        const tbody = document.getElementById('roster-table-body');
+        if (!tbody || !current) return;
+
+        const filtered = current.students.filter(s =>
+          s.name.toLowerCase().includes(q) || s.id.includes(q)
+        );
+
+        tbody.innerHTML = filtered.map(s => `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="py-3 px-3 font-semibold text-slate-900">
+              <div class="flex items-center gap-2">
+                <span class="w-7 h-7 rounded-full ${this.activeClassId === 'c95' ? 'bg-blue-100 text-blue-700' : 'bg-emerald-100 text-emerald-700'} flex items-center justify-center font-bold text-xs">
+                  ${s.name.charAt(0)}
+                </span>
+                <div>
+                  <p class="font-bold text-slate-900">${s.name}</p>
+                  <p class="font-mono text-[10px] text-slate-400">#${s.id}</p>
+                </div>
+              </div>
+            </td>
+            
+            <!-- Grammar -->
+            <td class="py-3 px-3 text-center">
+              <button onclick="app.openEditStudentModal('${s.id}')" title="Click to adjust grammar score" class="px-2 py-1 rounded-lg border font-bold text-xs hover:scale-105 transition ${this.getBadgeForScore(s.grammar || 80)}">
+                ${s.grammar || 80}%
+              </button>
+            </td>
+
+            <!-- Spelling -->
+            <td class="py-3 px-3 text-center">
+              <button onclick="app.openEditStudentModal('${s.id}')" title="Click to adjust spelling score" class="px-2 py-1 rounded-lg border font-bold text-xs hover:scale-105 transition ${this.getBadgeForScore(s.spelling || 80)}">
+                ${s.spelling || 80}%
+              </button>
+            </td>
+
+            <!-- Reading -->
+            <td class="py-3 px-3 text-center">
+              <button onclick="app.openEditStudentModal('${s.id}')" title="Click to adjust reading score" class="px-2 py-1 rounded-lg border font-bold text-xs hover:scale-105 transition ${this.getBadgeForScore(s.reading || 80)}">
+                ${s.reading || 80}%
+              </button>
+            </td>
+
+            <!-- Writing -->
+            <td class="py-3 px-3 text-center">
+              <button onclick="app.openEditStudentModal('${s.id}')" title="Click to adjust writing score" class="px-2 py-1 rounded-lg border font-bold text-xs hover:scale-105 transition ${this.getBadgeForScore(s.writing || 80)}">
+                ${s.writing || 80}%
+              </button>
+            </td>
+
+            <!-- AI Flag & Advice -->
+            <td class="py-3 px-3 max-w-xs">
+              <div class="space-y-1">
+                ${this.getFlagBadge(s.flagType)}
+                <p class="text-[11px] text-slate-600 italic line-clamp-1" title="${s.advice || 'On track'}">
+                  ${s.advice || 'Standard instructional path.'}
+                </p>
+              </div>
+            </td>
+
+            <!-- Quick Edit Action -->
+            <td class="py-3 px-3 text-right">
+              <button onclick="app.openEditStudentModal('${s.id}')" class="px-2.5 py-1 text-[11px] font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg transition inline-flex items-center gap-1">
+                <i data-lucide="sliders-horizontal" class="w-3 h-3 text-slate-500"></i>
+                <span>Edit Skills</span>
+              </button>
+            </td>
+          </tr>
+        `).join('');
+
+        lucide.createIcons();
+      }
+
+      openEditStudentModal(studentId) {
+        this.editingStudentId = studentId;
+        const cls = this.data.classes[this.activeClassId];
+        const student = cls.students.find(s => s.id === studentId);
+        if (!student) return;
+
+        document.getElementById('modal-class-tag').innerText = cls.name;
+        document.getElementById('modal-student-name').innerText = `Skills & AI Flags: ${student.name} (#${student.id})`;
+
+        document.getElementById('input-edit-grammar').value = student.grammar || 80;
+        document.getElementById('lbl-val-grammar').innerText = `${student.grammar || 80}%`;
+
+        document.getElementById('input-edit-spelling').value = student.spelling || 80;
+        document.getElementById('lbl-val-spelling').innerText = `${student.spelling || 80}%`;
+
+        document.getElementById('input-edit-reading').value = student.reading || 80;
+        document.getElementById('lbl-val-reading').innerText = `${student.reading || 80}%`;
+
+        document.getElementById('input-edit-writing').value = student.writing || 80;
+        document.getElementById('lbl-val-writing').innerText = `${student.writing || 80}%`;
+
+        document.getElementById('select-edit-flag').value = student.flagType || 'none';
+        document.getElementById('input-edit-note').value = student.advice || '';
+
+        document.getElementById('student-edit-modal').classList.remove('hidden');
+        lucide.createIcons();
+      }
+
+      closeEditStudentModal() {
+        document.getElementById('student-edit-modal').classList.add('hidden');
+        this.editingStudentId = null;
+      }
+
+      saveStudentEdits() {
+        if (!this.editingStudentId) return;
+        const cls = this.data.classes[this.activeClassId];
+        const student = cls.students.find(s => s.id === this.editingStudentId);
+        if (!student) return;
+
+        student.grammar = parseInt(document.getElementById('input-edit-grammar').value);
+        student.spelling = parseInt(document.getElementById('input-edit-spelling').value);
+        student.reading = parseInt(document.getElementById('input-edit-reading').value);
+        student.writing = parseInt(document.getElementById('input-edit-writing').value);
+        student.flagType = document.getElementById('select-edit-flag').value;
+        student.advice = document.getElementById('input-edit-note').value.trim();
+
+        this.saveState();
+        this.closeEditStudentModal();
+        this.renderRosterView();
+        this.renderReports();
+        this.showToast(`Updated skills & AI flag for ${student.name}`, 'success');
+      }
+
+      addNewDummyStudent() {
+        const cur = this.data.classes[this.activeClassId];
+        const num = cur.students.length + 1;
+        const prefix = this.activeClassId === 'c95' ? '95' : '96';
+        const newStu = {
+          id: `${prefix}${num < 10 ? '0' + num : num}`,
+          name: `Student ${num}`,
+          grammar: 85,
+          spelling: 82,
+          reading: 88,
+          writing: 84,
+          flagType: 'none',
+          advice: 'Newly enrolled student profile ready for diagnostics.'
+        };
+        cur.students.push(newStu);
+        this.saveState();
+        this.renderRosterView();
+        this.showToast(`Added ${newStu.name} to ${cur.name}`, 'success');
+      }
+
+      setAttendanceClass(clsId) {
+        this.attendanceClassId = clsId;
+        const b95 = document.getElementById('att-tab-95');
+        const b96 = document.getElementById('att-tab-96');
+        if (clsId === 'c95') {
+          b95.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-700 shadow-xs';
+          b96.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600';
+        } else {
+          b96.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-xs';
+          b95.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600';
+        }
+        this.renderAttendanceTable();
+      }
+
+      renderAttendanceTable() {
+        const cls = this.data.classes[this.attendanceClassId];
+        const tbody = document.getElementById('attendance-table-body');
+        const dateInput = document.getElementById('att-date-picker');
+        const date = dateInput ? dateInput.value : 'today';
+        if (!tbody || !cls) return;
+
+        if (!this.attendanceRecords) this.attendanceRecords = {};
+        const key = `${this.attendanceClassId}_${date}`;
+        if (!this.attendanceRecords[key]) {
+          this.attendanceRecords[key] = {};
+          cls.students.forEach(s => {
+            this.attendanceRecords[key][s.id] = { status: 'Present', note: '' };
+          });
+        }
+
+        const dataDay = this.attendanceRecords[key];
+        let p = 0, a = 0, l = 0, e = 0;
+
+        tbody.innerHTML = cls.students.map(s => {
+          const rec = dataDay[s.id] || { status: 'Present', note: '' };
+          if (rec.status === 'Present') p++;
+          else if (rec.status === 'Absent') a++;
+          else if (rec.status === 'Late') l++;
+          else if (rec.status === 'Excused') e++;
+
+          return `
+            <tr class="hover:bg-slate-50 transition">
+              <td class="py-3 px-4 font-semibold text-slate-900 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-[10px]">${s.name.charAt(0)}</span>
+                <span>${s.name}</span>
+                <span class="text-slate-400 font-mono text-[10px]">#${s.id}</span>
+              </td>
+              <td class="py-3 px-4">
+                <div class="inline-flex rounded-xl p-0.5 bg-slate-100 border border-slate-200">
+                  <button onclick="app.setStudentAtt('${s.id}', 'Present')" class="px-2.5 py-1 text-xs rounded-lg font-bold transition ${rec.status === 'Present' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">P</button>
+                  <button onclick="app.setStudentAtt('${s.id}', 'Absent')" class="px-2.5 py-1 text-xs rounded-lg font-bold transition ${rec.status === 'Absent' ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">A</button>
+                  <button onclick="app.setStudentAtt('${s.id}', 'Late')" class="px-2.5 py-1 text-xs rounded-lg font-bold transition ${rec.status === 'Late' ? 'bg-amber-500 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">L</button>
+                  <button onclick="app.setStudentAtt('${s.id}', 'Excused')" class="px-2.5 py-1 text-xs rounded-lg font-bold transition ${rec.status === 'Excused' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'}">E</button>
+                </div>
+              </td>
+              <td class="py-3 px-4">
+                <input type="text" value="${rec.note || ''}" placeholder="Note..." onchange="app.setStudentAttNote('${s.id}', this.value)" class="text-xs px-2.5 py-1 rounded-lg border border-slate-200 bg-white w-full max-w-xs focus:ring-1 focus:ring-indigo-500">
+              </td>
+              <td class="py-3 px-4 text-right">
+                <span class="font-bold text-xs ${rec.status === 'Present' ? 'text-emerald-700' : rec.status === 'Absent' ? 'text-rose-700' : rec.status === 'Late' ? 'text-amber-700' : 'text-blue-700'}">${rec.status}</span>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        document.getElementById('att-count-p').innerText = p;
+        document.getElementById('att-count-a').innerText = a;
+        document.getElementById('att-count-l').innerText = l;
+        document.getElementById('att-count-e').innerText = e;
+      }
+
+      setStudentAtt(sid, st) {
+        const date = document.getElementById('att-date-picker').value;
+        const key = `${this.attendanceClassId}_${date}`;
+        if (!this.attendanceRecords[key]) this.attendanceRecords[key] = {};
+        if (!this.attendanceRecords[key][sid]) this.attendanceRecords[key][sid] = { status: 'Present', note: '' };
+        this.attendanceRecords[key][sid].status = st;
+        this.renderAttendanceTable();
+      }
+
+      setStudentAttNote(sid, note) {
+        const date = document.getElementById('att-date-picker').value;
+        const key = `${this.attendanceClassId}_${date}`;
+        if (this.attendanceRecords?.[key]?.[sid]) {
+          this.attendanceRecords[key][sid].note = note;
+        }
+      }
+
+      markAllAttendance(st) {
+        const cls = this.data.classes[this.attendanceClassId];
+        const date = document.getElementById('att-date-picker').value;
+        const key = `${this.attendanceClassId}_${date}`;
+        if (!this.attendanceRecords[key]) this.attendanceRecords[key] = {};
+        cls.students.forEach(s => {
+          this.attendanceRecords[key][s.id] = { status: st, note: '' };
+        });
+        this.renderAttendanceTable();
+        this.showToast(`Marked all students as ${st}`, 'success');
+      }
+
+      saveAttendance() {
+        const cls = this.data.classes[this.attendanceClassId];
+        this.showToast(`Attendance saved for ${cls.name}!`, 'success');
+      }
+
+      openGradingDirect() {
+        this.switchTab('classwork');
+        this.setGradingStep(1);
+      }
+
+      openGradingForClass(clsId) {
+        this.switchTab('classwork');
+        const sel = document.getElementById('cw-select-class');
+        if (sel) sel.value = clsId;
+        this.onGradingClassChanged();
+        this.setGradingStep(1);
+      }
+
+      setGradingStep(step) {
+        this.activeGradingStep = step;
+        for (let i = 1; i <= 4; i++) {
+          const pill = document.getElementById(`cw-pill-${i}`);
+          if (!pill) continue;
+          if (i === step) {
+            pill.className = 'py-2 rounded-xl bg-indigo-600 text-white flex items-center justify-center gap-1.5 font-bold shadow-xs';
+          } else if (i < step) {
+            pill.className = 'py-2 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center gap-1.5 font-semibold';
+          } else {
+            pill.className = 'py-2 rounded-xl bg-slate-100 text-slate-500 flex items-center justify-center gap-1.5 font-semibold';
+          }
+        }
+
+        document.querySelectorAll('.cw-pane').forEach(p => p.classList.add('hidden'));
+        const activePane = document.getElementById(`cw-step-pane-${step}`);
+        if (activePane) activePane.classList.remove('hidden');
+
+        if (step === 1) this.onGradingClassChanged();
+        if (step === 2) this.renderAnswerKeyRows();
+        if (step === 3) this.renderCapturedGallery();
+
+        lucide.createIcons();
+      }
+
+      resetGradingFlow() {
+        this.closeCamera();
+        this.capturedPages = [];
+        this.activeCorrection = null;
+        this.renderCapturedGallery();
+        this.setGradingStep(1);
+        this.showToast('Ready for next student paper', 'info');
+      }
+
+      onGradingClassChanged() {
+        const clsVal = document.getElementById('cw-select-class').value;
+        const stuSel = document.getElementById('cw-select-student');
+        const target = this.data.classes[clsVal];
+        if (!stuSel || !target) return;
+
+        stuSel.innerHTML = target.students.map(s => `
+          <option value="${s.id}">#${s.id} - ${s.name}</option>
+        `).join('');
+      }
+
+      renderAnswerKeyRows() {
+        const c = document.getElementById('answer-key-rows');
+        if (!c) return;
+
+        c.innerHTML = this.data.answerKey.questions.map((q, idx) => `
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="w-6 h-6 rounded-md bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">Q${q.id}</span>
+              <div class="flex items-center gap-2">
+                <span class="text-xs text-slate-500">Marks:</span>
+                <input type="number" min="1" max="10" value="${q.marks}" onchange="app.updateKeyMarks(${idx}, this.value)" class="w-14 text-xs p-1 rounded-lg border border-slate-200 bg-white font-bold text-center">
+                <button onclick="app.removeKeyQuestion(${idx})" class="text-slate-400 hover:text-rose-600 p-1">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-500 mb-0.5">Prompt</label>
+              <input type="text" value="${q.prompt}" onchange="app.updateKeyPrompt(${idx}, this.value)" class="w-full text-xs p-2 rounded-lg border border-slate-200 bg-white font-medium">
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-[11px] font-bold text-emerald-700 mb-0.5">Expected Correct Answer</label>
+                <input type="text" value="${q.correct}" onchange="app.updateKeyCorrect(${idx}, this.value)" class="w-full text-xs p-2 rounded-lg border border-emerald-300 bg-emerald-50/50 font-bold text-emerald-950">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-indigo-700 mb-0.5">Acceptable Alternatives (comma separated)</label>
+                <input type="text" value="${q.alternatives.join(', ')}" onchange="app.updateKeyAlts(${idx}, this.value)" class="w-full text-xs p-2 rounded-lg border border-indigo-200 bg-indigo-50/50 text-indigo-950 font-medium">
+              </div>
+            </div>
+          </div>
+        `).join('');
+
+        lucide.createIcons();
+      }
+
+      updateKeyMarks(i, v) { this.data.answerKey.questions[i].marks = parseFloat(v) || 1; }
+      updateKeyPrompt(i, v) { this.data.answerKey.questions[i].prompt = v; }
+      updateKeyCorrect(i, v) { this.data.answerKey.questions[i].correct = v; }
+      updateKeyAlts(i, v) { this.data.answerKey.questions[i].alternatives = v.split(',').map(s => s.trim()).filter(Boolean); }
+      
+      addAnswerKeyQuestion() {
+        const next = this.data.answerKey.questions.length + 1;
+        this.data.answerKey.questions.push({
+          id: next,
+          prompt: `Question ${next} prompt...`,
+          correct: "Expected answer",
+          alternatives: [],
+          marks: 2,
+          type: "Short Answer"
+        });
+        this.renderAnswerKeyRows();
+      }
+
+      removeKeyQuestion(idx) {
+        this.data.answerKey.questions.splice(idx, 1);
+        this.data.answerKey.questions.forEach((q, i) => q.id = i + 1);
+        this.renderAnswerKeyRows();
+      }
+
+      async openLiveCamera() {
+        const video = document.getElementById('webcam-video');
+        const activeBox = document.getElementById('cam-active-box');
+        const idleBox = document.getElementById('cam-idle-box');
+
+        try {
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            this.webcamStream = await navigator.mediaDevices.getUserMedia({
+              video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 } },
+              audio: false
+            });
+            video.srcObject = this.webcamStream;
+            idleBox.classList.add('hidden');
+            activeBox.classList.remove('hidden');
+            lucide.createIcons();
+          } else {
+            this.showToast('Camera API unavailable. Use upload or demo.', 'warning');
+          }
+        } catch (e) {
+          this.showToast('Camera permission denied. Use upload or sample paper.', 'warning');
+        }
+      }
+
+      closeCamera() {
+        if (this.webcamStream) {
+          this.webcamStream.getTracks().forEach(t => t.stop());
+          this.webcamStream = null;
+        }
+        document.getElementById('cam-active-box')?.classList.add('hidden');
+        document.getElementById('cam-idle-box')?.classList.remove('hidden');
+      }
+
+      captureSnapshot() {
+        const video = document.getElementById('webcam-video');
+        if (!video) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+        this.capturedPages.push({
+          id: Date.now(),
+          src: dataUrl,
+          name: `Photo_Page_${this.capturedPages.length + 1}.jpg`
+        });
+
+        this.closeCamera();
+        this.renderCapturedGallery();
+        this.showToast('Paper photo snapped!', 'success');
+      }
+
+      handleFileUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = ev => {
+          this.capturedPages.push({
+            id: Date.now(),
+            src: ev.target.result,
+            name: file.name
+          });
+          this.renderCapturedGallery();
+          this.showToast(`Loaded ${file.name}`, 'success');
+        };
+        reader.readAsDataURL(file);
+      }
+
+      loadDemoPaper() {
+        const c = document.createElement('canvas');
+        c.width = 400;
+        c.height = 300;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 400, 300);
+        ctx.fillStyle = '#f8fafc';
+        ctx.fillRect(8, 8, 384, 284);
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.strokeRect(8, 8, 384, 284);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillText('Class 9/5 English Quiz: Unit 4', 20, 30);
+
+        ctx.fillStyle = '#334155';
+        ctx.font = '11px sans-serif';
+        ctx.fillText('1. had finished', 20, 65);
+        ctx.fillText('2. must', 20, 105);
+        ctx.fillText("3. He hadn't went [crossed] gone to cinema", 20, 145);
+        ctx.fillText('4. He was in another town at that hour.', 20, 185);
+
+        this.capturedPages = [{
+          id: Date.now(),
+          src: c.toDataURL('image/jpeg'),
+          name: 'Demo_StudentPaper_AlexHarrison.jpg'
+        }];
+        this.renderCapturedGallery();
+        this.showToast('Sample student test sheet loaded!', 'success');
+      }
+
+      clearCapturedPages() {
+        this.capturedPages = [];
+        this.renderCapturedGallery();
+      }
+
+      renderCapturedGallery() {
+        const list = document.getElementById('captured-pages-list');
+        const count = document.getElementById('count-captured-pages');
+        const btnCompare = document.getElementById('btn-compare-ai');
+
+        if (count) count.innerText = this.capturedPages.length;
+
+        if (this.capturedPages.length === 0) {
+          list.innerHTML = `
+            <div id="placeholder-no-pages" class="h-32 flex flex-col items-center justify-center text-slate-400 text-xs text-center">
+              <i data-lucide="image" class="w-6 h-6 mb-1 opacity-50"></i>
+              <span>No paper photographed yet</span>
+              <span class="text-[10px] text-slate-400">Click "Take Picture" or "Instant Demo"</span>
+            </div>
+          `;
+          if (btnCompare) btnCompare.disabled = true;
+        } else {
+          list.innerHTML = this.capturedPages.map((p, idx) => `
+            <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200">
+              <div class="flex items-center gap-2">
+                <img src="${p.src}" class="w-10 h-10 object-cover rounded border border-slate-100">
+                <div>
+                  <p class="text-xs font-bold text-slate-800">${p.name}</p>
+                  <p class="text-[10px] text-slate-400">Ready for AI comparison</p>
+                </div>
+              </div>
+              <button onclick="app.removePage(${idx})" class="text-slate-400 hover:text-rose-600 p-1">
+                <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `).join('');
+          if (btnCompare) btnCompare.disabled = false;
+        }
+        lucide.createIcons();
+      }
+
+      removePage(i) {
+        this.capturedPages.splice(i, 1);
+        this.renderCapturedGallery();
+      }
+
+      runAIComparison() {
+        if (this.capturedPages.length === 0) {
+          this.showToast('Please capture or upload paper first!', 'warning');
+          return;
+        }
+
+        const clsVal = document.getElementById('cw-select-class').value;
+        const stuVal = document.getElementById('cw-select-student').value;
+        const titleVal = document.getElementById('cw-input-title').value;
+        const dateVal = document.getElementById('cw-input-date').value;
+        const currentCls = this.data.classes[clsVal];
+        const student = currentCls?.students.find(s => s.id === stuVal) || { name: 'Alex Harrison', id: stuVal };
+
+        this.showToast('Vision AI comparing work against master key...', 'info');
+
+        const simulatedDetected = [
+          { qId: 1, text: "had finished", status: "Correct", note: "Exact match with master key." },
+          { qId: 2, text: "must", status: "Correct", note: "Deductive modal correctly chosen." },
+          { qId: 3, text: "He hadn't gone", status: "Review", note: "Handwriting partially crossed out; irregular participle 'gone' is written above 'went'. Needs teacher review." },
+          { qId: 4, text: "He had an alibi in a different city", status: "Correct", note: "Semantic paraphrase of acceptable alternative." }
+        ];
+
+        const questionsResult = this.data.answerKey.questions.map((q, i) => {
+          const sim = simulatedDetected[i] || { text: "had finished", status: "Correct", note: "Match" };
+          return {
+            id: q.id,
+            prompt: q.prompt,
+            type: q.type,
+            marks: q.marks,
+            correctAnswer: q.correct,
+            alternatives: q.alternatives,
+            studentAnswer: sim.text,
+            status: sim.status,
+            aiNote: sim.note,
+            awardedMarks: sim.status === 'Correct' ? q.marks : 0,
+            teacherFeedback: ''
+          };
+        });
+
+        this.activeCorrection = {
+          classId: clsVal,
+          className: currentCls.name,
+          studentId: stuVal,
+          studentName: student.name,
+          title: titleVal,
+          date: dateVal,
+          questions: questionsResult
+        };
+
+        this.recalculateScore();
+        this.renderCorrectionScreen();
+        this.setGradingStep(4);
+      }
+
+      recalculateScore() {
+        if (!this.activeCorrection) return;
+
+        let totalPts = 0;
+        let earnedPts = 0;
+        let corr = 0, incorr = 0, rev = 0;
+
+        this.activeCorrection.questions.forEach(q => {
+          totalPts += q.marks;
+          earnedPts += q.awardedMarks;
+          if (q.status === 'Correct') corr++;
+          else if (q.status === 'Incorrect') incorr++;
+          else if (q.status === 'Review') rev++;
+        });
+
+        this.activeCorrection.totalPts = totalPts;
+        this.activeCorrection.earnedPts = earnedPts;
+        this.activeCorrection.pct = totalPts > 0 ? Math.round((earnedPts / totalPts) * 100) : 0;
+        this.activeCorrection.cntCorrect = corr;
+        this.activeCorrection.cntIncorrect = incorr;
+        this.activeCorrection.cntReview = rev;
+      }
+
+      renderCorrectionScreen() {
+        const c = this.activeCorrection;
+        if (!c) return;
+
+        document.getElementById('corr-header-class').innerText = c.className;
+        document.getElementById('corr-header-title').innerText = c.title;
+        document.getElementById('corr-header-student').innerText = `Student: ${c.studentName} (#${c.studentId})`;
+        document.getElementById('corr-header-date').innerText = c.date;
+
+        document.getElementById('corr-score-pct').innerText = `${c.pct}%`;
+        document.getElementById('corr-score-points').innerText = `${c.earnedPts} / ${c.totalPts} Marks`;
+
+        document.getElementById('corr-cnt-total').innerText = c.questions.length;
+        document.getElementById('corr-cnt-correct').innerText = c.cntCorrect;
+        document.getElementById('corr-cnt-incorrect').innerText = c.cntIncorrect;
+        document.getElementById('corr-cnt-review').innerText = c.cntReview;
+
+        const alertBox = document.getElementById('corr-review-alert');
+        if (c.cntReview > 0) alertBox.classList.remove('hidden');
+        else alertBox.classList.add('hidden');
+
+        const container = document.getElementById('corr-questions-container');
+        container.innerHTML = c.questions.map((q, idx) => {
+          const borderClass = q.status === 'Correct'
+            ? 'border-emerald-200 bg-white'
+            : q.status === 'Incorrect'
+            ? 'border-rose-200 bg-white'
+            : 'border-amber-300 bg-amber-50/30 ring-1 ring-amber-300';
+
+          const badgeClass = q.status === 'Correct'
+            ? 'bg-emerald-100 text-emerald-800'
+            : q.status === 'Incorrect'
+            ? 'bg-rose-100 text-rose-800'
+            : 'bg-amber-100 text-amber-900 font-bold animate-pulse';
+
+          const badgeLabel = q.status === 'Correct'
+            ? '✓ Correct'
+            : q.status === 'Incorrect'
+            ? '✗ Incorrect'
+            : '⚠ Needs Teacher Review';
+
+          return `
+            <div class="p-5 rounded-2xl border ${borderClass} shadow-xs space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-7 h-7 rounded-lg bg-slate-900 text-white font-bold text-xs flex items-center justify-center">Q${q.id}</span>
+                  <span class="text-xs font-bold text-slate-800">${q.prompt}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="px-2.5 py-1 rounded-full text-xs font-bold ${badgeClass}">
+                    ${badgeLabel}
+                  </span>
+                  <span class="text-xs font-bold text-slate-700">(${q.awardedMarks} / ${q.marks} pts)</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                  <span class="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Detected Student Answer</span>
+                  <p class="font-mono text-sm font-bold text-slate-900 mt-1">“${q.studentAnswer}”</p>
+                  <p class="text-[11px] text-slate-500 italic mt-1">${q.aiNote}</p>
+                </div>
+                <div class="p-3 rounded-xl bg-indigo-50/50 border border-indigo-100">
+                  <span class="text-[10px] font-bold uppercase text-indigo-500 tracking-wider">Master Correct Answer</span>
+                  <p class="font-mono text-sm font-bold text-indigo-950 mt-1">“${q.correctAnswer}”</p>
+                  ${q.alternatives.length > 0 ? `<p class="text-[11px] text-indigo-700 mt-1">Acceptable: ${q.alternatives.join(' • ')}</p>` : ''}
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-100">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs font-bold text-slate-600 mr-1">Teacher Override:</span>
+                  <button onclick="app.setVerdict(${idx}, 'Correct')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition ${q.status === 'Correct' ? 'bg-emerald-600 text-white shadow-xs' : 'bg-slate-100 hover:bg-emerald-50 text-slate-700'}">✓ Correct</button>
+                  <button onclick="app.setVerdict(${idx}, 'Incorrect')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition ${q.status === 'Incorrect' ? 'bg-rose-600 text-white shadow-xs' : 'bg-slate-100 hover:bg-rose-50 text-slate-700'}">✗ Incorrect</button>
+                  <button onclick="app.setVerdict(${idx}, 'Review')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition ${q.status === 'Review' ? 'bg-amber-500 text-white shadow-xs' : 'bg-slate-100 hover:bg-amber-50 text-slate-700'}">⚠ Review</button>
+                </div>
+                <input type="text" placeholder="Teacher feedback note..." value="${q.teacherFeedback || ''}" onchange="app.setFeedback(${idx}, this.value)" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 focus:bg-white w-52">
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        lucide.createIcons();
+      }
+
+      setVerdict(idx, status) {
+        if (!this.activeCorrection) return;
+        const q = this.activeCorrection.questions[idx];
+        q.status = status;
+        q.awardedMarks = status === 'Correct' ? q.marks : 0;
+        this.recalculateScore();
+        this.renderCorrectionScreen();
+      }
+
+      setFeedback(idx, val) {
+        if (this.activeCorrection) this.activeCorrection.questions[idx].teacherFeedback = val;
+      }
+
+      approveFinalCorrection() {
+        if (!this.activeCorrection) return;
+        if (this.activeCorrection.cntReview > 0) {
+          this.showToast('Please resolve all flagged "Needs Teacher Review" questions first.', 'warning');
+          return;
+        }
+
+        const c = this.activeCorrection;
+        const targetCls = this.data.classes[c.classId];
+        const stu = targetCls?.students.find(s => s.id === c.studentId);
+        if (stu) {
+          // Adjust writing/grammar skills based on grade
+          stu.grammar = Math.min(100, Math.round((stu.grammar + c.pct) / 2));
+        }
+
+        this.saveState();
+        this.renderRosterView();
+        this.renderReports();
+        this.showToast(`Grade (${c.pct}%) saved for ${c.studentName} in ${c.className}!`, 'success');
+
+        setTimeout(() => this.resetGradingFlow(), 1200);
+      }
+
+      fillSampleLessonPlan() {
+        document.getElementById('lp-title-in').value = "Past Perfect vs Past Simple: Narrative Flashbacks";
+        document.getElementById('lp-topic-in').value = "Chronology and Flashbacks in Creative Writing";
+        document.getElementById('lp-grammar-in').value = "Past Perfect (had + past participle) to show earlier actions";
+        document.getElementById('lp-vocab-in').value = "flashback, chronologically, prior to, reminisce, consequence";
+        document.getElementById('lp-objectives-in').value = "Students will compose a 5-sentence mystery paragraph containing at least two correct past perfect constructions.";
+        this.showToast('Sample topic filled', 'info');
+      }
+
+      generateLessonPlan() {
+        const cls = document.getElementById('lp-class-picker').value;
+        const title = document.getElementById('lp-title-in').value;
+        const duration = document.getElementById('lp-duration-in').value;
+        const topic = document.getElementById('lp-topic-in').value;
+        const grammar = document.getElementById('lp-grammar-in').value;
+        const vocab = document.getElementById('lp-vocab-in').value;
+        const objectives = document.getElementById('lp-objectives-in').value;
+
+        document.getElementById('lp-card-heading').innerText = title;
+        document.getElementById('lp-card-meta').innerText = `${cls} • ${duration} • ${topic}`;
+
+        const body = document.getElementById('lp-card-body');
+        body.innerHTML = `
+          <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+            <p class="font-bold text-slate-900 text-xs uppercase tracking-wider mb-1">Learning Objectives</p>
+            <p class="font-medium text-slate-800">${objectives}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="p-3 bg-blue-50/50 rounded-xl border border-blue-100">
+              <span class="text-[10px] font-bold text-blue-700 uppercase tracking-wider">Grammar Focus</span>
+              <p class="font-bold text-slate-900 mt-0.5">${grammar}</p>
+            </div>
+            <div class="p-3 bg-indigo-50/50 rounded-xl border border-indigo-100">
+              <span class="text-[10px] font-bold text-indigo-700 uppercase tracking-wider">Key Vocabulary</span>
+              <p class="font-bold text-slate-900 mt-0.5">${vocab}</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <p class="font-bold text-slate-900 text-xs uppercase tracking-wider">Period Procedure & Timing</p>
+            
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <div class="flex items-center justify-between text-xs font-bold text-indigo-700 mb-1">
+                <span>1. Bellringer & Hook (7 Mins)</span>
+                <span>Speaking / Diagnostic</span>
+              </div>
+              <p class="text-slate-600">Display two pictures: an empty cookie jar and a smiling child with crumbs. Ask: 'What had happened before mom entered the kitchen?' Students answer in pairs.</p>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <div class="flex items-center justify-between text-xs font-bold text-indigo-700 mb-1">
+                <span>2. Explicit Teaching & Timeline Modeling (13 Mins)</span>
+                <span>Grammar & Syntax</span>
+              </div>
+              <p class="text-slate-600">Draw a chronological timeline on the board. Contrast 'Past Simple' (Action 2) with 'Past Perfect' (Action 1). Elicit irregular participles (seen, eaten, written, gone).</p>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <div class="flex items-center justify-between text-xs font-bold text-indigo-700 mb-1">
+                <span>3. Paired Guided Task (15 Mins)</span>
+                <span>Writing & Peer Check</span>
+              </div>
+              <p class="text-slate-600">Students receive the detective story prompt. In pairs, rewrite 3 sentences adding flashback clauses starting with 'Because he had...' or 'By the time she arrived...'.</p>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-slate-200">
+              <div class="flex items-center justify-between text-xs font-bold text-indigo-700 mb-1">
+                <span>4. Assessment & Exit Slip (10 Mins)</span>
+                <span>Camera AI Grading Ready</span>
+              </div>
+              <p class="text-slate-600">Distribute short 2-question exit slip. Collect or photograph using English Teacher Assistant camera for immediate AI comparison.</p>
+            </div>
+          </div>
+        `;
+
+        document.getElementById('lp-output-card').classList.remove('hidden');
+        this.showToast('Lesson plan generated!', 'success');
+      }
+
+      copyLessonPlan() {
+        const text = document.getElementById('lp-card-body').innerText;
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        this.showToast('Plan copied to clipboard!', 'success');
+      }
+
+      generateSlideDeckContent() {
+        const topic = document.getElementById('ppt-topic-input')?.value || "Modals of Deduction";
+        const cls = document.getElementById('ppt-class-select')?.value || "Class 9/5";
+
+        this.slides = [
+          { badge: "English Grade 9", title: topic, content: `<div class="text-center my-auto"><h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">${topic}</h1><p class="text-indigo-200 mt-2 text-xs">${cls} • English Teacher Assistant</p></div>` },
+          { badge: "Objectives", title: "Today's Learning Goals", content: `<div class="space-y-3 my-auto text-xs"><div class="flex items-center gap-3 p-3 bg-white/10 rounded-xl"><span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-900 font-bold flex items-center justify-center text-xs">1</span><span>Distinguish certainty (must) from possibility (might/could) and impossibility (can't).</span></div><div class="flex items-center gap-3 p-3 bg-white/10 rounded-xl"><span class="w-6 h-6 rounded-full bg-emerald-400 text-slate-900 font-bold flex items-center justify-center text-xs">2</span><span>Construct deductive sentences in response to mystery scenarios.</span></div></div>` },
+          { badge: "Grammar Rules", title: "The Deduction Triangle", content: `<div class="grid grid-cols-3 gap-3 my-auto text-xs"><div class="p-3 bg-emerald-500/20 border border-emerald-400/30 rounded-xl"><h4 class="font-bold text-emerald-300">100% Sure: MUST</h4><p class="mt-1 text-slate-200">"His lights are on. He <strong>must</strong> be awake."</p></div><div class="p-3 bg-amber-500/20 border border-amber-400/30 rounded-xl"><h4 class="font-bold text-amber-300">50% Maybe: MIGHT</h4><p class="mt-1 text-slate-200">"She isn't here. She <strong>might</strong> be in the library."</p></div><div class="p-3 bg-rose-500/20 border border-rose-400/30 rounded-xl"><h4 class="font-bold text-rose-300">0% Impossible: CAN'T</h4><p class="mt-1 text-slate-200">"It <strong>can't</strong> be Sunday because school is open!"</p></div></div>` },
+          { badge: "Examples", title: "Contextual Case Studies", content: `<div class="space-y-2.5 my-auto text-xs"><div class="p-2.5 bg-white/10 rounded-xl"><p class="text-emerald-300 font-bold">Case A: Footsteps in the snow</p><p class="text-slate-200">"Someone <strong>must</strong> have walked through the courtyard before 7:00 AM."</p></div><div class="p-2.5 bg-white/10 rounded-xl"><p class="text-rose-300 font-bold">Case B: Locked trophy case</p><p class="text-slate-200">"The thief <strong>can't</strong> have opened the case without the master key."</p></div></div>` },
+          { badge: "Student Activity", title: "Pair Work: The Mystery Clue", content: `<div class="my-auto text-center space-y-2 text-xs"><p class="text-sm font-bold text-amber-300">Turn to your elbow partner!</p><p class="text-slate-200 max-w-sm mx-auto">Situation: The classroom window is open and a paper airplane is on the teacher's desk.</p><div class="p-2.5 bg-white/10 rounded-xl inline-block font-mono text-indigo-200">Target response: "Someone must have / might have..."</div></div>` },
+          { badge: "Check Understanding", title: "Rapid Fire Mini-Quiz", content: `<div class="space-y-2 my-auto text-xs"><div class="p-2.5 bg-white/10 rounded-xl flex justify-between items-center"><span>1. 'He is in Spain, so that _____ be him across the hall.'</span><span class="font-bold text-rose-300">(can't)</span></div><div class="p-2.5 bg-white/10 rounded-xl flex justify-between items-center"><span>2. 'She ran three marathons today. She _____ be exhausted.'</span><span class="font-bold text-emerald-300">(must)</span></div></div>` },
+          { badge: "Recap", title: "Summary of Today's Lesson", content: `<div class="my-auto space-y-1.5 text-xs text-slate-200"><p class="font-bold text-white text-sm">Key Takeaways:</p><p>• Modal verbs are followed by base verb (must be, can't be).</p><p>• Never say 'mustn't' for impossibility &mdash; use <strong>can't</strong>.</p><p>• For past events, use: <em>modal + have + past participle</em>.</p></div>` },
+          { badge: "Exit Ticket", title: "Before You Pack Up", content: `<div class="my-auto text-center space-y-2 text-xs"><span class="px-2.5 py-1 bg-amber-400 text-slate-900 font-bold rounded-full uppercase">30-Second Exit Ticket</span><p class="text-slate-200 text-sm">Write 1 sentence in your notebook using <strong>must have</strong>.</p><p class="text-indigo-300">Teacher will scan notebooks at the door!</p></div>` }
+        ];
+
+        this.renderSlide();
+        this.renderThumbnails();
+      }
+
+      generateSlideDeck() {
+        this.generateSlideDeckContent();
+        this.currentSlideIndex = 0;
+        this.renderSlide();
+        this.showToast('Generated 8-slide presentation!', 'success');
+      }
+
+      renderSlide() {
+        const s = this.slides[this.currentSlideIndex];
+        const canvas = document.getElementById('ppt-slide-canvas');
+        const counter = document.getElementById('ppt-slide-counter');
+        if (!s || !canvas) return;
+
+        counter.innerText = `Slide ${this.currentSlideIndex + 1} of ${this.slides.length}`;
+
+        canvas.innerHTML = `
+          <div class="flex items-center justify-between z-10">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20 text-white">${s.badge}</span>
+            <span class="text-xs text-white/60 font-mono">Slide ${this.currentSlideIndex + 1} / ${this.slides.length}</span>
+          </div>
+
+          <div class="flex-1 flex flex-col justify-center my-3 z-10" contenteditable="true" spellcheck="false" title="Click to edit slide text">
+            <h3 class="text-lg font-bold text-white mb-2">${s.title}</h3>
+            ${s.content}
+          </div>
+
+          <div class="flex items-center justify-between text-[10px] text-white/50 border-t border-white/10 pt-2 z-10">
+            <span>English Teacher Assistant • Grade 9</span>
+            <span>Classes 9/5 & 9/6</span>
+          </div>
+        `;
+      }
+
+      renderThumbnails() {
+        const row = document.getElementById('ppt-thumbnails');
+        if (!row) return;
+
+        row.innerHTML = this.slides.map((s, i) => `
+          <button onclick="app.setSlide(${i})" class="p-1.5 rounded-xl text-left border transition text-[10px] ${this.currentSlideIndex === i ? 'border-indigo-500 bg-indigo-50 text-indigo-700 font-bold ring-2 ring-indigo-500/20' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'}">
+            <span class="block truncate">${i + 1}. ${s.badge}</span>
+          </button>
+        `).join('');
+      }
+
+      nextSlide() {
+        if (this.currentSlideIndex < this.slides.length - 1) {
+          this.currentSlideIndex++;
+          this.renderSlide();
+          this.renderThumbnails();
+        }
+      }
+
+      prevSlide() {
+        if (this.currentSlideIndex > 0) {
+          this.currentSlideIndex--;
+          this.renderSlide();
+          this.renderThumbnails();
+        }
+      }
+
+      setSlide(i) {
+        this.currentSlideIndex = i;
+        this.renderSlide();
+        this.renderThumbnails();
+      }
+
+      exportDeck() {
+        this.showToast('Prepared deck for .pptx export / Presentation mode', 'info');
+        window.print();
+      }
+
+      generateWorksheet() {
+        const cls = document.getElementById('ws-class-picker')?.value || "Class 9/5";
+        const count = parseInt(document.getElementById('ws-count-picker')?.value || 5);
+        const container = document.getElementById('ws-questions-box');
+        document.getElementById('ws-target-lbl').innerText = cls;
+
+        const questions = [
+          { q: "By the time the bell rang, the students _____ (complete) their assignment.", a: "had completed" },
+          { q: "The historic building _____ (build) more than three centuries ago.", a: "was built" },
+          { q: "Omar looks exhausted. He _____ (must / can't) have stayed up late studying.", a: "must" },
+          { q: "If we _____ (leave) ten minutes earlier, we wouldn't have missed the bus.", a: "had left" },
+          { q: "Rewrite in passive voice: 'The teacher praised the students yesterday.'", a: "The students were praised by the teacher yesterday." },
+          { q: "Identify the antonym for 'reluctant': (A) eager (B) hesitant (C) fearful", a: "(A) eager" },
+          { q: "Complete with past perfect: 'She didn't want to watch the movie because she _____ (already / see) it.'", a: "had already seen" },
+          { q: "Correct the grammar: 'They didn't ate any breakfast this morning.'", a: "They didn't eat any breakfast this morning." }
+        ];
+
+        const selected = questions.slice(0, count);
+
+        container.innerHTML = selected.map((item, i) => `
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2">
+            <div class="flex items-start justify-between">
+              <span class="font-bold text-slate-800">${i + 1}. ${item.q}</span>
+              <span class="text-xs font-mono text-slate-400">[2 pts]</span>
+            </div>
+            <div class="pt-1">
+              <span class="text-xs text-slate-400 font-mono">Answer: __________________________________________________</span>
+            </div>
+            <div class="ws-ans-key hidden text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg inline-block border border-emerald-200 mt-1">
+              Teacher Key: ${item.a}
+            </div>
+          </div>
+        `).join('');
+
+        this.showToast('Worksheet generated!', 'success');
+      }
+
+      toggleWorksheetAnswers() {
+        const chk = document.getElementById('chk-toggle-answers');
+        const show = chk ? chk.checked : false;
+        document.querySelectorAll('.ws-ans-key').forEach(el => {
+          if (show) el.classList.remove('hidden');
+          else el.classList.add('hidden');
+        });
+      }
+
+      setReportClass(clsId) {
+        this.reportClassId = clsId;
+        const b95 = document.getElementById('rep-btn-95');
+        const b96 = document.getElementById('rep-btn-96');
+        if (clsId === 'c95') {
+          b95.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-blue-700 shadow-xs';
+          b96.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600';
+        } else {
+          b96.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-white text-emerald-700 shadow-xs';
+          b95.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600';
+        }
+        this.renderReports();
+      }
+
+      renderReports() {
+        const cls = this.data.classes[this.reportClassId];
+        if (!cls) return;
+
+        const avg = Math.round(cls.students.reduce((a, b) => a + (b.grammar || 80), 0) / cls.students.length);
+        document.getElementById('rep-quiz-avg').innerText = `${avg}%`;
+        document.getElementById('rep-periods-count').innerText = `${cls.totalPeriods} Periods`;
+
+        const flagged = cls.students.filter(s => s.flagType && s.flagType !== 'none');
+        document.getElementById('rep-flags-count').innerText = `${flagged.length} Students`;
+
+        // Tricky questions
+        const trickyBox = document.getElementById('rep-tricky-list');
+        trickyBox.innerHTML = cls.troubleQuestions.map(t => `
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 space-y-1">
+            <div class="flex items-center justify-between text-xs font-semibold text-slate-800">
+              <span>${t.q}</span>
+              <span class="text-rose-600 font-bold">${t.failRate}</span>
+            </div>
+            <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-rose-500 h-full rounded-full w-2/5"></div>
+            </div>
+          </div>
+        `).join('');
+
+        // Support students
+        const supportBox = document.getElementById('rep-support-list');
+        if (flagged.length === 0) {
+          supportBox.innerHTML = `<p class="text-xs text-slate-400">All students currently on track.</p>`;
+        } else {
+          supportBox.innerHTML = flagged.map(s => `
+            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-between text-xs">
+              <div>
+                <p class="font-bold text-amber-900">${s.name} (#${s.id})</p>
+                <p class="text-[11px] text-amber-700">${s.advice || 'Diagnostic review recommended'}</p>
+              </div>
+              <span class="font-bold text-amber-800 bg-amber-200/60 px-2 py-0.5 rounded-lg">${s.grammar || 80}%</span>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    let app;
+    window.addEventListener('DOMContentLoaded', () => {
+      app = new TeacherAssistantApp();
+      app.init();
+    });
+  </script>
+</body>
+</html>
