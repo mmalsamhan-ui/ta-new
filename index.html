@@ -339,7 +339,6 @@
     .tt-slot.c2-slot { background: #ecfdf5; border-color: #6ee7b7; color: #065f46; font-weight: 600; }
     .tt-slot.break-slot { background: #fafaf9; border-color: #e7e5e4; color: var(--neutral-400); }
     
-    /* Precise Single-Cell Target Highlighting */
     .tt-slot.active-target-cell {
       border: 2.5px solid var(--danger) !important;
       background: #fee2e2 !important;
@@ -506,7 +505,7 @@
         <span>📝</span> Kuwait 9A Planner
       </button>
       <button class="tab-btn" data-tab="tab-textbook" onclick="showTab('tab-textbook')">
-        <span>📖</span> Student Book 9A (Reader & Notes)
+        <span>📖</span> Student Book 9A
       </button>
       <button class="tab-btn" data-tab="tab-attendance" onclick="showTab('tab-attendance')">
         <span>📅</span> Attendance
@@ -676,17 +675,18 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: TEXTBOOK READER                                     -->
+    <!-- TAB: TEXTBOOK READER (LINKED TO COMPRESSED PDF)          -->
     <!-- ======================================================== -->
     <div id="tab-textbook" class="tab-content">
       <div class="card">
         <div class="card-header">
           <div>
             <h2 class="card-title">English Pearls of Kuwait – Grade 9A Textbook Reader</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">View core reading pages, highlight passages, and save teacher notes[cite: 3].</p>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">View core reading pages, highlight passages, save teacher notes, or open the full PDF[cite: 3].</p>
           </div>
           <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <a href="983529533-Pearls-of-Kuwait-grade-nine-first-term.pdf" target="_blank" class="btn btn-primary btn-sm">📖 Open Full Textbook PDF (All 82 Pages)[cite: 3]</a>
+            <!-- Matches your uploaded compressed PDF filename -->
+            <a href="983529533-Pearls-of-Kuwait-grade-nine-first-term.pdf" target="_blank" class="btn btn-primary btn-sm">📖 Open Full Textbook PDF (All Pages)[cite: 3]</a>
             <select id="bookPageSelect" class="form-control" style="width:auto;" onchange="changeBookPage(this.value)">
               <option value="13">Table of Contents (p. 13-16)[cite: 3]</option>
               <option value="20">Unit 1: Kuwaiti Explorers (p. 20-21)[cite: 3]</option>
@@ -761,7 +761,7 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: TIMETABLE & BELL SCHEDULE WITH PRECISE CELL TARGET  -->
+    <!-- TAB: TIMETABLE & BELL SCHEDULE                           -->
     <!-- ======================================================== -->
     <div id="tab-timetable" class="tab-content">
       <div class="card">
@@ -1057,7 +1057,6 @@
             text = slot.label ? slot.label : '-';
           }
 
-          // Highlight ONLY the exact cell for the active time & day
           if (idx === activeRowIndex && dayKey === activeDayKey) {
             className += ' active-target-cell';
           }
@@ -1075,7 +1074,7 @@
       let hour = now.getHours();
       let min = now.getMinutes();
       let totalMin = hour * 60 + min;
-      let dayOfWeek = now.getDay(); // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
+      let dayOfWeek = now.getDay();
 
       let activeRowIdx = -1;
       let activeDayKey = 'sun';
@@ -1093,10 +1092,9 @@
       else if (sim === 'p6') { activeRowIdx = 8; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 6 (12:05 - 12:50)"; classLabel = "• In session"; }
       else if (sim === 'p7') { activeRowIdx = 9; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 7 (12:55 - 13:40)"; classLabel = "• Final period"; }
       else {
-        // Off-hours or Weekend (Fri/Sat) check
         if (dayOfWeek === 5 || dayOfWeek === 6 || totalMin > 820 || totalMin < 450) {
-          activeRowIdx = 0; // Morning Assembly
-          activeDayKey = 'mon'; // Next working day is Monday
+          activeRowIdx = 0;
+          activeDayKey = 'mon';
           statusText = "After Hours / Weekend — Next Working Day Queued";
           classLabel = "• Next working day: Monday Morning Assembly (07:30 AM)";
         } else {
@@ -1111,7 +1109,7 @@
             statusText = `${TIMETABLE_SLOTS[activeRowIdx].label || 'Period ' + TIMETABLE_SLOTS[activeRowIdx].p} (${TIMETABLE_SLOTS[activeRowIdx].time})`;
             classLabel = "• Active now";
           } else {
-            activeRowIdx = 1; // Default to Period 1
+            activeRowIdx = 1;
             statusText = "Between Sessions — Ready";
             classLabel = "• Next upcoming session highlighted";
           }
