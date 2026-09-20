@@ -520,6 +520,7 @@
       </div>
 
       <div style="display: flex; gap: 8px; align-items: center;">
+        <button class="btn btn-danger btn-sm" onclick="resetAppData()" title="Click this to fix missing students">🔄 Reset App</button>
         <button class="btn btn-secondary btn-sm" onclick="exportDataBackup()">💾 Backup Data</button>
         <button class="btn btn-secondary btn-sm" onclick="toggleLanguage()">🌐 EN / العربية</button>
       </div>
@@ -1811,22 +1812,30 @@
       localStorage.removeItem('kuwait_teacher_assistant_data_v2');
       localStorage.removeItem('kuwait_teacher_assistant_data_v3');
       localStorage.removeItem('kuwait_teacher_assistant_data_v4');
+      localStorage.removeItem('kuwait_teacher_assistant_data_v5');
 
-      const saved = localStorage.getItem('kuwait_teacher_assistant_data_v5');
+      const saved = localStorage.getItem('kuwait_teacher_assistant_data_v6');
       if (saved) {
         try { 
           const parsed = JSON.parse(saved); 
           // Safety Check: Only load the local storage if it actually contains students.
           // Otherwise, fall back to the default NAMES ONLY roster.
-          if (parsed.c1.students.length > 0 || parsed.c2.students.length > 0) {
+          if (parsed && parsed.c1 && parsed.c1.students.length > 0) {
             APP_STATE.classes = parsed; 
+            return;
           }
         } catch (e) {}
       }
+      
+      // If memory is empty or corrupted, force defaults:
+      APP_STATE.classes = {
+        c1: { name: 'Class 9/5', students: INITIAL_STUDENTS_C1 },
+        c2: { name: 'Class 9/6', students: INITIAL_STUDENTS_C2 }
+      };
     }
 
     function saveDataLocally() {
-      localStorage.setItem('kuwait_teacher_assistant_data_v5', JSON.stringify(APP_STATE.classes));
+      localStorage.setItem('kuwait_teacher_assistant_data_v6', JSON.stringify(APP_STATE.classes));
     }
 
     function exportDataBackup() {
@@ -1837,6 +1846,12 @@
       document.body.appendChild(a);
       a.click();
       a.remove();
+    }
+
+    function resetAppData() {
+      localStorage.clear();
+      alert("App memory cleared! Reloading page to show default students.");
+      window.location.reload(true);
     }
 
     function toggleLanguage() {
