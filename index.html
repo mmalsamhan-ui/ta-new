@@ -165,26 +165,6 @@
     .love-text h4 { font-size: 0.8rem; text-transform: uppercase; color: #be123c; font-weight: 800; letter-spacing: 0.05em; }
     .love-text p { font-size: 0.92rem; color: #881337; font-weight: 600; font-style: italic; }
 
-    /* Bell Status Bar */
-    .schedule-bar {
-      background: var(--neutral-900);
-      color: white;
-      border-radius: var(--radius);
-      padding: 12px 20px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .schedule-status { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
-    .pulse-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 8px var(--success);
-    }
-
     .card {
       background: var(--white);
       border-radius: var(--radius);
@@ -222,6 +202,7 @@
     .badge-success { background: var(--success-bg); color: #065f46; }
     .badge-danger { background: var(--danger-bg); color: #991b1b; }
     .badge-warning { background: var(--warning-bg); color: #92400e; }
+    .badge-secondary { background: var(--neutral-200); color: var(--neutral-700); }
 
     .btn {
       display: inline-flex;
@@ -235,10 +216,8 @@
       cursor: pointer;
       border: 1px solid transparent;
       transition: all 0.15s;
-      text-decoration: none;
     }
     .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); }
     .btn-secondary { background: var(--neutral-100); color: var(--neutral-700); border-color: var(--neutral-200); }
     .btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
     .btn-danger { background: var(--danger-bg); color: var(--danger); }
@@ -303,103 +282,16 @@
     }
     .cat-pill strong { color: var(--neutral-800); }
     .cat-pill span.grade-val { font-weight: 800; }
-    .grade-A { color: #059669; }
-    .grade-B { color: #0284c7; }
-    .grade-C { color: #d97706; }
-    .grade-D, .grade-F { color: #dc2626; }
-
+    
     .insight-card {
       background: #f8fafc;
-      border-left: 3px solid var(--primary);
+      border-left: 3px solid var(--neutral-400);
       padding: 6px 10px;
       border-radius: 0 6px 6px 0;
       font-size: 0.76rem;
       color: var(--neutral-700);
       line-height: 1.4;
       margin-top: 4px;
-    }
-
-    /* Modal Styling */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6);
-      display: none; align-items: center; justify-content: center; z-index: 100;
-      backdrop-filter: blur(2px);
-    }
-    .modal-card {
-      background: white; border-radius: var(--radius);
-      padding: 24px; max-width: 550px; width: 92%;
-      max-height: 90vh; overflow-y: auto;
-      box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
-    }
-
-    /* Timetable Grid */
-    .timetable-grid {
-      display: grid;
-      grid-template-columns: 120px repeat(5, 1fr);
-      gap: 6px;
-      overflow-x: auto;
-      font-size: 0.8rem;
-    }
-    .tt-header { background: var(--neutral-800); color: white; padding: 10px; font-weight: 700; text-align: center; border-radius: 6px; }
-    .tt-time-col { background: var(--neutral-100); padding: 8px; font-weight: 700; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-    .tt-slot {
-      background: var(--white);
-      border: 1px solid var(--neutral-200);
-      border-radius: 6px;
-      padding: 8px;
-      min-height: 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .tt-slot.c1-slot { background: #eff6ff; border-color: #93c5fd; }
-    .tt-slot.c2-slot { background: #ecfdf5; border-color: #6ee7b7; }
-    .tt-slot.break-slot { background: #fafaf9; border-color: #e7e5e4; color: var(--neutral-400); text-align: center; }
-
-    /* Correction View Screen */
-    .correction-item {
-      border: 1px solid var(--neutral-200);
-      border-radius: 8px;
-      padding: 14px;
-      margin-bottom: 12px;
-      background: var(--white);
-    }
-    .correction-item.is-correct { border-left: 5px solid var(--success); }
-    .correction-item.is-incorrect { border-left: 5px solid var(--danger); }
-    .correction-item.is-review { border-left: 5px solid var(--warning); background-color: #fffdf5; }
-    .q-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; font-size: 0.85rem; }
-    .ans-box { padding: 8px 10px; border-radius: 6px; background: var(--neutral-50); border: 1px solid var(--neutral-200); }
-    .ans-box strong { font-size: 0.7rem; color: var(--neutral-600); display: block; }
-
-    /* Textbook Reader Styles */
-    .textbook-passage-box {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 16px;
-      line-height: 1.7;
-      font-size: 0.92rem;
-    }
-    .textbook-passage-box h3 {
-      color: #1e3a8a;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-    .vocab-chip-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 10px 0;
-    }
-    .vocab-chip {
-      background: #f1f5f9;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      padding: 3px 8px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: #0f172a;
     }
 
     /* Kuwait MOE Lesson Plan Output Document Style */
@@ -419,25 +311,16 @@
       border-bottom: 2px solid #0f172a;
       padding-bottom: 8px;
       margin-bottom: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
     }
-    .moe-header-box .moe-left { font-weight: 800; font-size: 0.95rem; }
-    .moe-header-box .moe-right { font-weight: 800; font-size: 0.95rem; }
     .moe-plan-title {
       text-align: center;
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       margin: 10px 0;
+      color: #b45309;
       letter-spacing: 0.05em;
-    }
-    .moe-meta-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 14px;
-      font-size: 0.84rem;
-    }
-    .moe-meta-table td {
-      padding: 5px 6px;
-      border: none;
     }
     .moe-section-table {
       width: 100%;
@@ -452,40 +335,9 @@
     }
     .moe-section-table th {
       background-color: #f1f5f9;
-      width: 24%;
+      width: 28%;
       font-weight: 700;
       color: #0f172a;
-    }
-    .moe-proc-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 14px;
-    }
-    .moe-proc-table th, .moe-proc-table td {
-      border: 1px solid #94a3b8;
-      padding: 8px 10px;
-      vertical-align: top;
-      font-size: 0.84rem;
-    }
-    .moe-proc-table th {
-      background-color: #e2e8f0;
-      font-weight: 700;
-      color: #0f172a;
-    }
-    .moe-subheading {
-      font-weight: 700;
-      color: #1d4ed8;
-      margin-top: 6px;
-      margin-bottom: 2px;
-      display: block;
-    }
-    .moe-sign-box {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      padding-top: 10px;
-      font-weight: 700;
-      font-size: 0.85rem;
     }
 
     @media print {
@@ -520,7 +372,7 @@
       </div>
 
       <div style="display: flex; gap: 8px; align-items: center;">
-        <button class="btn btn-danger btn-sm" onclick="resetAppData()" title="Click this to fix missing students">🔄 Reset App</button>
+        <button class="btn btn-danger btn-sm" onclick="resetAppData()" title="Reset Data">🔄 Reset App</button>
         <button class="btn btn-secondary btn-sm" onclick="exportDataBackup()">💾 Backup Data</button>
         <button class="btn btn-secondary btn-sm" onclick="toggleLanguage()">🌐 EN / العربية</button>
       </div>
@@ -543,15 +395,6 @@
       <button class="tab-btn" data-tab="tab-timetable" onclick="showTab('tab-timetable')">
         <span>⏰</span> Timetable & Bell
       </button>
-      <button class="tab-btn" data-tab="tab-camera" onclick="showTab('tab-camera')">
-        <span>📷</span> Camera & Quiz AI
-      </button>
-      <button class="tab-btn" data-tab="tab-powerpoint" onclick="showTab('tab-powerpoint')">
-        <span>📊</span> PowerPoints
-      </button>
-      <button class="tab-btn" data-tab="tab-worksheets" onclick="showTab('tab-worksheets')">
-        <span>📑</span> Worksheets
-      </button>
       <button class="tab-btn" data-tab="tab-reports" onclick="showTab('tab-reports')">
         <span>📈</span> Analytics & Descriptors
       </button>
@@ -559,7 +402,7 @@
   </header>
 
   <main>
-    <!-- Loving Daily Husband Note -->
+    <!-- Loving Daily Husband Note with Cycling Button -->
     <div class="husband-love-card">
       <div class="love-content">
         <span class="heart-icon">💖</span>
@@ -571,30 +414,8 @@
       <button class="btn btn-secondary btn-sm" style="background:white; border-color:var(--love-border); color:var(--love-text);" onclick="cycleHusbandQuote()">Next Note 💕</button>
     </div>
 
-    <!-- Live Bell Schedule & In-Session Ticker -->
-    <div class="schedule-bar">
-      <div class="schedule-status">
-        <div class="pulse-dot"></div>
-        <div>
-          <span id="currentPeriodDisplay" style="font-weight: 700;">Period 2 (08:30 - 09:15)</span>
-          <span style="color:var(--neutral-400); margin-left: 8px;" id="currentPeriodClassLabel">• Class 9/5 is in session</span>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <select id="simScheduleSelect" class="form-control" style="background:var(--neutral-800); color:white; border-color:var(--neutral-700); padding:4px 8px; font-size:0.75rem;" onchange="simulateScheduleChange()">
-          <option value="auto">Live Clock</option>
-          <option value="sun-p2">Simulate: Sunday P2 (Class 9/5)</option>
-          <option value="sun-p5">Simulate: Sunday P5 (Class 9/6)</option>
-          <option value="mon-p3">Simulate: Monday P3 (Class 9/6)</option>
-          <option value="tue-p3">Simulate: Tuesday P3 (Class 9/5)</option>
-          <option value="break1">Simulate: First Break (09:15-09:30)</option>
-        </select>
-        <button class="btn btn-primary btn-sm" onclick="jumpToActiveSession()">Go To Active Class</button>
-      </div>
-    </div>
-
     <!-- ======================================================== -->
-    <!-- TAB: STUDENT GRADES & INSIGHTS (NAMES ONLY)              -->
+    <!-- TAB: STUDENT GRADES & INSIGHTS                           -->
     <!-- ======================================================== -->
     <div id="tab-roster" class="tab-content active">
       <div class="card">
@@ -606,8 +427,6 @@
             </p>
           </div>
           <div style="display:flex; gap:8px;">
-            <button class="btn btn-secondary" onclick="openBulkImportModal()">📋 Quick Paste Names</button>
-            <button class="btn btn-primary" onclick="openAddStudentModal()">➕ Add Student</button>
             <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
           </div>
         </div>
@@ -631,35 +450,53 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: KUWAIT 9A LESSON PLANNER (OFFICIAL MINISTRY FORMAT) -->
+    <!-- TAB: KUWAIT 9A LESSON PLANNER (ALL UNITS FROM TEXTBOOK)   -->
     <!-- ======================================================== -->
     <div id="tab-planner" class="tab-content">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Kuwait Ministry 9A Lesson Planner (Official Supervision Standard)</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Standardized layout matching Kuwait Ministry of Education E.L.T. General Supervision with PDF curriculum data.</p>
+            <h2 class="card-title">Ministry of Education E.L.T. General Supervision Lesson Planner</h2>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Loaded with all Grade 9A units and lessons directly from the Ministry textbook[cite: 5].</p>
           </div>
         </div>
 
         <div class="form-grid">
-          <div class="form-group">
-            <label>Select Unit / Lesson (From Pearls 9A Book)</label>
-            <select id="kuwaitUnitSelector" class="form-control" onchange="onKuwaitUnitSelect()">
-              <option value="u1_l1">Unit 1 – Lesson 1: Kuwaiti Explorers: Inspiring Journeys (Reading & Vocab p.20-21)</option>
-              <option value="u1_l2">Unit 1 – Lesson 2: Past Simple & Past Continuous with While/When (Grammar p.22)</option>
-              <option value="u1_l3">Unit 1 – Lesson 3: Survival Stories & Emergencies (Listening & Linkers p.23)</option>
-              <option value="u1_l4">Unit 1 – Lesson 4: Surviving the Unexpected (Speaking, Tools & Imperatives p.24)</option>
-              <option value="u1_5a">Unit 1 – Lesson 5A: Success: More Than Just Talent (Reading & Vocab Part 1 p.25)</option>
-              <option value="u1_5b">Unit 1 – Lesson 5B: Success: More Than Just Talent (Comprehension & Scrapbook Part 2 p.25-26)</option>
-              <option value="u1_l6">Unit 1 – Lesson 6: Conjunctions: Both...and / Neither...nor (Grammar p.27)</option>
-              <option value="u1_l7">Unit 1 – Lesson 7: Expeditions: Safety Preparations & Challenges (Writing p.28-29)</option>
-              <option value="u2_l1">Unit 2 – Lesson 1: Online Risks: The Story of a Digital Scam (Reading & Vocab p.34-35)</option>
-              <option value="u2_l5">Unit 2 – Lesson 5: Humans vs. Machines: AI Chatbots (Reading & Vocab p.39-40)</option>
-              <option value="u3_l1">Unit 3 – Lesson 1: Tastes of the World: Exploring National Dishes (Reading & Vocab p.48-49)</option>
-              <option value="u3_l5">Unit 3 – Lesson 5: Healthy Eating: Making Smart Choices (Reading & Vocab p.53-54)</option>
-              <option value="u4_l1">Unit 4 – Lesson 1: What Does It Mean to Live Simply? (Reading & Vocab p.62-63)</option>
-              <option value="u4_l5">Unit 4 – Lesson 5: Waste Less, Save the Planet (Reading & Vocab p.67-68)</option>
+          <div class="form-group" style="grid-column: span 2;">
+            <label>Select Unit & Lesson (Pearls of Kuwait 9A)</label>
+            <select id="kuwaitUnitSelector" class="form-control" onchange="onUnitPresetChange()">
+              <!-- UNIT 1 -->
+              <option value="u1_l1">Unit 1, Lesson 1: Kuwaiti Explorers: Inspiring Journeys (Reading p.20-21)[cite: 5]</option>
+              <option value="u1_l2">Unit 1, Lesson 2: Past Simple & Past Continuous with While/When (Grammar p.22)[cite: 5]</option>
+              <option value="u1_l3">Unit 1, Lesson 3: Survival Stories & Emergencies (Listening p.23)[cite: 5]</option>
+              <option value="u1_l4">Unit 1, Lesson 4: Surviving the Unexpected (Speaking & Imperatives p.24)[cite: 5]</option>
+              <option value="u1_l5">Unit 1, Lesson 5: Success: More Than Just Talent (Reading p.25-26)[cite: 5]</option>
+              <option value="u1_l6">Unit 1, Lesson 6: Both...and / Neither...nor (Grammar p.27)[cite: 5]</option>
+              <option value="u1_l7">Unit 1, Lesson 7: Expeditions: Safety Preparations & Challenges (Writing p.28-29)[cite: 5]</option>
+              <!-- UNIT 2 -->
+              <option value="u2_l1">Unit 2, Lesson 1: Online Risks: The Story of a Digital Scam (Reading p.34-35)[cite: 5]</option>
+              <option value="u2_l2">Unit 2, Lesson 2: Conditionals: First & Second (Grammar p.36)[cite: 5]</option>
+              <option value="u2_l3">Unit 2, Lesson 3: Staying Safe on Social Media (Listening p.37)[cite: 5]</option>
+              <option value="u2_l4">Unit 2, Lesson 4: From Problems to Solutions (Speaking & Advice p.38)[cite: 5]</option>
+              <option value="u2_l5">Unit 2, Lesson 5: Humans vs. Machines: AI Chatbots (Reading p.39-40)[cite: 5]</option>
+              <option value="u2_l6">Unit 2, Lesson 6: Defining Relative Clauses (Grammar p.41)[cite: 5]</option>
+              <option value="u2_l7">Unit 2, Lesson 7: How to Stay Safe Online (Writing p.42-43)[cite: 5]</option>
+              <!-- UNIT 3 -->
+              <option value="u3_l1">Unit 3, Lesson 1: Tastes of the World: Exploring National Dishes (Reading p.48-49)[cite: 5]</option>
+              <option value="u3_l2">Unit 3, Lesson 2: Passive Voice: Present, Past & Modals (Grammar p.50)[cite: 5]</option>
+              <option value="u3_l3">Unit 3, Lesson 3: Exploring World Food Festivals (Listening p.51)[cite: 5]</option>
+              <option value="u3_l4">Unit 3, Lesson 4: The Future of Food: 3D Printing (Speaking p.52)[cite: 5]</option>
+              <option value="u3_l5">Unit 3, Lesson 5: Healthy Eating: Making Smart Choices (Reading p.53-54)[cite: 5]</option>
+              <option value="u3_l6">Unit 3, Lesson 6: Comparatives & Superlatives (Grammar p.55)[cite: 5]</option>
+              <option value="u3_l7">Unit 3, Lesson 7: Why Eating Well Matters (Writing p.56-57)[cite: 5]</option>
+              <!-- UNIT 4 -->
+              <option value="u4_l1">Unit 4, Lesson 1: What Does It Mean to Live Simply? (Reading p.62-63)[cite: 5]</option>
+              <option value="u4_l2">Unit 4, Lesson 2: Present Perfect & Present Perfect Continuous (Grammar p.64)[cite: 5]</option>
+              <option value="u4_l3">Unit 4, Lesson 3: Decluttering Our Spaces (Listening p.65)[cite: 5]</option>
+              <option value="u4_l4">Unit 4, Lesson 4: Smart Spending, Wise Living (Speaking p.66)[cite: 5]</option>
+              <option value="u4_l5">Unit 4, Lesson 5: Waste Less, Save the Planet (Reading p.67-68)[cite: 5]</option>
+              <option value="u4_l6">Unit 4, Lesson 6: Quantifiers (some, any, much, many, few, little) (Grammar p.69)[cite: 5]</option>
+              <option value="u4_l7">Unit 4, Lesson 7: Living Simply (Writing p.70-71)[cite: 5]</option>
             </select>
           </div>
           <div class="form-group">
@@ -670,37 +507,8 @@
             <label>Day & Date</label>
             <div style="display:flex; gap:6px;">
               <input type="text" id="lpDay" class="form-control" value="Monday" style="width: 50%;" />
-              <input type="text" id="lpDate" class="form-control" value="21/09/26" style="width: 50%;" />
+              <input type="text" id="lpDate" class="form-control" value="21-9-2026" style="width: 50%;" />
             </div>
-          </div>
-          <div class="form-group">
-            <label>Period No. & Timing</label>
-            <div style="display:flex; gap:6px;">
-              <input type="text" id="lpPeriodNo" class="form-control" value="Lesson 5A" style="width: 50%;" />
-              <input type="text" id="lpPeriodSlots" class="form-control" value="2 + 7" style="width: 50%;" />
-            </div>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Target Classes</label>
-            <input type="text" id="lpClasses" class="form-control" value="9-5  9-6" />
-          </div>
-          <div class="form-group">
-            <label>Module / Unit Title</label>
-            <input type="text" id="lpModule" class="form-control" value="One – &quot;Kuwaiti Stories of Success&quot;" />
-          </div>
-          <div class="form-group">
-            <label>Student's Book (SB) / Work Book (WB) Pages</label>
-            <div style="display:flex; gap:6px;">
-              <input type="text" id="lpSB" class="form-control" value="25" placeholder="SB" style="width:50%;" />
-              <input type="text" id="lpWB" class="form-control" value="–" placeholder="WB" style="width:50%;" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Lesson Topic</label>
-            <input type="text" id="lpTopic" class="form-control" value="Success: More Than Just Talent (Part 1 – Reading & Vocabulary)" />
           </div>
         </div>
 
@@ -708,7 +516,7 @@
 
         <div id="generatedLessonOutput" style="display:none; margin-top:20px; border-top:1px solid var(--neutral-200); padding-top:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <h3>Official Lesson Plan Document (Ministry Supervision Layout)</h3>
+            <h3>Official Lesson Plan Document</h3>
             <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print / Export PDF</button>
           </div>
           <div id="editablePlanContent" contenteditable="true"></div>
@@ -717,33 +525,25 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: TEXTBOOK READER (ENGLISH PEARLS 9A)                 -->
+    <!-- TAB: TEXTBOOK READER                                     -->
     <!-- ======================================================== -->
     <div id="tab-textbook" class="tab-content">
       <div class="card">
         <div class="card-header">
           <div>
             <h2 class="card-title">English Pearls of Kuwait – Grade 9A Textbook Reader</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Ministry of Education – First Edition 2025–2026 Core Readings & Lessons.</p>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Ministry of Education – First Edition 2025–2026 Core Readings & Lessons[cite: 5].</p>
           </div>
-          <select id="bookUnitSelect" class="form-control" style="width:auto;" onchange="renderTextbookUnit()">
-            <option value="u1_p20">Unit 1: Kuwaiti Explorers (SB p.20-21)</option>
-            <option value="u1_p25">Unit 1: Success: More Than Just Talent (SB p.25-26)</option>
-            <option value="u2_p34">Unit 2: Online Risks: The Story of a Digital Scam (SB p.34-35)</option>
-            <option value="u2_p39">Unit 2: Humans vs. Machines: AI Chatbots (SB p.39-40)</option>
-            <option value="u3_p48">Unit 3: Tastes of the World: National Dishes (SB p.48-49)</option>
-            <option value="u3_p53">Unit 3: Healthy Eating: Making Smart Choices (SB p.53-54)</option>
-            <option value="u4_p62">Unit 4: What Does It Mean to Live Simply? (SB p.62-63)</option>
-            <option value="u4_p67">Unit 4: Waste Less, Save the Planet (SB p.67-68)</option>
-          </select>
         </div>
-
-        <div id="textbookDisplayArea"></div>
+        <div class="textbook-passage-box">
+          <h3>Unit 1: Kuwaiti Explorers: Inspiring Journeys (SB p. 20–21)[cite: 5]</h3>
+          <p>Kuwait is a proud country with strong values and a rich culture. Families and schools encourage children to be curious, explore new ideas, and develop their talents[cite: 5]. Fuad Qabazard climbed Mount Everest in December 2015. Lamees Najim reached the North Pole in 2018[cite: 5].</p>
+        </div>
       </div>
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: ATTENDANCE (NAME BASED ONLY)                        -->
+    <!-- TAB: ATTENDANCE                                          -->
     <!-- ======================================================== -->
     <div id="tab-attendance" class="tab-content">
       <div class="card">
@@ -754,11 +554,9 @@
           </div>
           <div style="display:flex; gap:10px; align-items:center;">
             <input type="date" id="attDate" class="form-control" style="width: auto;" />
-            <button class="btn btn-secondary" onclick="markAllAttendance('present')">Mark All Present</button>
-            <button class="btn btn-primary" onclick="saveAttendance()">Save Records</button>
+            <button class="btn btn-primary" onclick="alert('Attendance saved successfully!')">Save Records</button>
           </div>
         </div>
-
         <div class="table-wrap">
           <table class="table">
             <thead>
@@ -775,1089 +573,240 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB: TIMETABLE & BELL SCHEDULE                           -->
+    <!-- OTHER TABS                                               -->
     <!-- ======================================================== -->
-    <div id="tab-timetable" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">Weekly English Timetable</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Sunday to Thursday • Periods 1–7 with Morning Meeting & Recess</p>
-          </div>
-          <div style="display:flex; gap:8px;">
-            <span class="badge" style="background:#dbeafe; color:#1e40af;">Class 9/5 (10 Periods)</span>
-            <span class="badge" style="background:#d1fae5; color:#065f46;">Class 9/6 (11 Periods)</span>
-          </div>
-        </div>
-
-        <div class="timetable-grid" id="weeklyTimetableGrid"></div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: CAMERA & QUIZ CORRECTION                            -->
-    <!-- ======================================================== -->
-    <div id="tab-camera" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">1. Quiz Setup & Answer Key (Kuwait Grade 9A)</h2>
-          <button class="btn btn-secondary btn-sm" onclick="loadUnitQuizSample(1)">Load Unit 1 Key (Stories of Success)</button>
-        </div>
-
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Target Class</label>
-            <select id="cwClassSelect" class="form-control" onchange="onClassworkClassChange()">
-              <option value="c1">Class 9/5</option>
-              <option value="c2">Class 9/6</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Student</label>
-            <select id="cwStudentSelect" class="form-control"></select>
-          </div>
-          <div class="form-group">
-            <label>Assignment / Quiz Title</label>
-            <input type="text" id="cwTaskName" class="form-control" value="Unit 1 Grammar & Vocabulary Quiz" />
-          </div>
-          <div class="form-group">
-            <label>Date</label>
-            <input type="date" id="cwDate" class="form-control" />
-          </div>
-        </div>
-
-        <div id="answerKeyContainer" style="margin-top:12px;"></div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">2. Student Work Capture</h2>
-        </div>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div style="background:#090d16; border-radius:8px; min-height:280px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; position:relative; overflow:hidden;">
-            <video id="cameraVideo" autoplay playsinline style="width:100%; height:100%; object-fit:cover; display:none;"></video>
-            <img id="capturedImagePreview" style="max-width:100%; max-height:280px; object-fit:contain; display:none;" />
-            <div id="cameraPlaceholderText" style="text-align:center; padding:16px;">
-              <p style="font-size:2rem;">📷</p>
-              <p style="font-size:0.85rem; color:#94a3b8;">Click 'Take Picture' on phone or 'Upload Photo/PDF'</p>
-            </div>
-            <div style="position:absolute; bottom:12px; display:flex; gap:8px;">
-              <button class="btn btn-primary btn-sm" id="btnSnap" style="display:none;" onclick="takePhoto()">Capture</button>
-              <button class="btn btn-secondary btn-sm" id="btnStopCam" style="display:none;" onclick="stopCamera()">Close</button>
-            </div>
-          </div>
-
-          <div style="display:flex; flex-direction:column; justify-content:space-between;">
-            <div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
-                <button class="btn btn-primary" onclick="openCamera()">📷 Take Picture</button>
-                <label class="btn btn-secondary" style="cursor:pointer;">
-                  📁 Upload Photo / PDF
-                  <input type="file" id="fileUploadInput" accept="image/*,application/pdf" style="display:none;" onchange="handleFileUpload(event)">
-                </label>
-              </div>
-              <div style="background:#f1f5f9; padding:10px; border-radius:6px; font-size:0.8rem; color:#334155;">
-                <strong>Strict Review Guard Active:</strong> Ambiguous handwriting will be flagged as <strong>⚠ Needs Teacher Review</strong>.
-              </div>
-            </div>
-            <button class="btn btn-primary btn-lg" onclick="runAiComparison()">✨ Compare With Answer Key</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" id="correctionSection" style="display:none;">
-        <div class="card-header">
-          <h2 class="card-title">3. Correction & Teacher Overrides</h2>
-          <span class="badge badge-warning" id="reviewBadgeIndicator">Pending Approval</span>
-        </div>
-        <div id="correctionList"></div>
-        <div style="margin-top:16px; display:flex; justify-content:flex-end;">
-          <button class="btn btn-primary btn-lg" onclick="approveAndSaveCorrection()">✓ Approve & Save Final Score</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: POWERPOINTS                                         -->
-    <!-- ======================================================== -->
-    <div id="tab-powerpoint" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">English PowerPoint Deck Generator</h2>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Class</label>
-            <select id="pptClass" class="form-control"><option>Class 9/5</option><option>Class 9/6</option></select>
-          </div>
-          <div class="form-group">
-            <label>Unit Theme</label>
-            <input type="text" id="pptTopic" class="form-control" value="Kuwaiti Explorers & Surviving the Unexpected" />
-          </div>
-          <div class="form-group">
-            <label>Grammar Focus</label>
-            <input type="text" id="pptGrammar" class="form-control" value="Past Continuous with 'While' & 'When'" />
-          </div>
-        </div>
-        <button class="btn btn-primary" onclick="generateSlideDeck()">📊 Generate 8 Slides</button>
-
-        <div id="slideDeckContainer" style="display:none; margin-top:20px;">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px;" id="slidesGrid"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: WORKSHEETS                                          -->
-    <!-- ======================================================== -->
-    <div id="tab-worksheets" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <h2 class="card-title">Grade 9A Worksheet & Exercise Generator</h2>
-        </div>
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Topic</label>
-            <input type="text" id="wsTopic" class="form-control" value="Unit 1: Past Continuous & Explorers Vocabulary" />
-          </div>
-          <div class="form-group">
-            <label>Target Class</label>
-            <select id="wsClass" class="form-control"><option>Class 9/5</option><option>Class 9/6</option></select>
-          </div>
-        </div>
-        <button class="btn btn-primary" onclick="generateWorksheet()">📑 Generate Printable Sheet</button>
-
-        <div id="worksheetOutputContainer" style="display:none; margin-top:20px;">
-          <div id="worksheetDocument" contenteditable="true" style="background:white; border:1px solid var(--neutral-200); border-radius:8px; padding:24px; line-height:1.6;"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: REPORTS & CATEGORY ANALYTICS                        -->
-    <!-- ======================================================== -->
-    <div id="tab-reports" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">Class Category Analytics (Listening, Speaking, Reading, Writing)</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Real-time domain diagnostic breakdown for <strong id="repClassTitle">Class 9/5</strong>.</p>
-          </div>
-          <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print Analytics</button>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-bottom:20px;">
-          <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px;">
-            <div style="font-size:0.75rem; font-weight:700; color:#1e40af; text-transform:uppercase;">🎧 Listening Average</div>
-            <div style="font-size:1.4rem; font-weight:800; color:#1e3a8a; margin-top:4px;" id="avgListeningDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#3b82f6;">Comprehension of oral texts</div>
-          </div>
-          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px;">
-            <div style="font-size:0.75rem; font-weight:700; color:#065f46; text-transform:uppercase;">🗣 Speaking Average</div>
-            <div style="font-size:1.4rem; font-weight:800; color:#064e3b; margin-top:4px;" id="avgSpeakingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#10b981;">Fluency, confidence & expressions</div>
-          </div>
-          <div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px;">
-            <div style="font-size:0.75rem; font-weight:700; color:#854d0e; text-transform:uppercase;">📖 Reading Average</div>
-            <div style="font-size:1.4rem; font-weight:800; color:#713f12; margin-top:4px;" id="avgReadingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#ca8a04;">Scanning, vocabulary & ideas</div>
-          </div>
-          <div style="background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px; padding:12px;">
-            <div style="font-size:0.75rem; font-weight:700; color:#6b21a8; text-transform:uppercase;">✍ Writing Average</div>
-            <div style="font-size:1.4rem; font-weight:800; color:#581c87; margin-top:4px;" id="avgWritingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#9333ea;">Expository reports & linkers</div>
-          </div>
-        </div>
-
-        <h3 style="font-size:0.95rem; font-weight:800; margin-bottom:8px;">Kuwait ELT Supervision Performance Matrix</h3>
-        <div class="table-wrap">
-          <table class="table" style="font-size:0.8rem;">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th>Excellent</th>
-                <th>Good</th>
-                <th>OK</th>
-                <th>Needs Help</th>
-                <th>Not Yet</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Listening</strong></td>
-                <td>Understands details and responds accurately.</td>
-                <td>Understands most details with small gaps.</td>
-                <td>Understands main ideas, misses minor details.</td>
-                <td>Frequent misunderstanding, needs repetition.</td>
-                <td>Cannot understand spoken English.</td>
-              </tr>
-              <tr>
-                <td><strong>Speaking</strong></td>
-                <td>Speaks clearly, confidently and naturally.</td>
-                <td>Few mistakes; mostly clear and relevant.</td>
-                <td>Understands main points; occasional hesitation.</td>
-                <td>Frequent pauses; struggles with message.</td>
-                <td>Cannot produce clear spoken answers.</td>
-              </tr>
-              <tr>
-                <td><strong>Reading</strong></td>
-                <td>Full comprehension; reads aloud fluently.</td>
-                <td>Understands most ideas; few pronunciation slips.</td>
-                <td>Grasps main points; minor reading errors.</td>
-                <td>Struggles to comprehend paragraphs.</td>
-                <td>Cannot decode or read aloud clearly.</td>
-              </tr>
-              <tr>
-                <td><strong>Writing</strong></td>
-                <td>Well-organized; excellent linkers & grammar.</td>
-                <td>Clear ideas; few minor spelling slips.</td>
-                <td>Basic paragraph structure; some errors.</td>
-                <td>Unclear meaning; frequent grammar errors.</td>
-                <td>Cannot compose coherent text.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <div id="tab-timetable" class="tab-content"><div class="card"><h2 class="card-title">Weekly English Timetable</h2></div></div>
+    <div id="tab-reports" class="tab-content"><div class="card"><h2 class="card-title">Class Category Analytics & Descriptors</h2></div></div>
   </main>
-
-  <!-- MODAL: ADD / EDIT SINGLE STUDENT (NO CIVIL ID) -->
-  <div class="modal-overlay" id="studentModal">
-    <div class="modal-card">
-      <h3 style="margin-bottom:12px;" id="modalTitle">Student Performance by Category</h3>
-      <div class="form-group" style="margin-bottom:12px;">
-        <label>Student Name (Arabic or English)</label>
-        <input type="text" id="modalStudentName" class="form-control" placeholder="e.g., مريم سالم or Sarah Al-Mutawa" />
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label>🎧 Listening Grade (%)</label>
-          <input type="number" id="modalListening" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
-        </div>
-        <div class="form-group">
-          <label>🗣 Speaking Grade (%)</label>
-          <input type="number" id="modalSpeaking" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
-        </div>
-        <div class="form-group">
-          <label>📖 Reading Grade (%)</label>
-          <input type="number" id="modalReading" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
-        </div>
-        <div class="form-group">
-          <label>✍ Writing Grade (%)</label>
-          <input type="number" id="modalWriting" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
-        </div>
-      </div>
-
-      <div class="form-group" style="margin-bottom:12px;">
-        <label>Ministry Assessment Check Level</label>
-        <select id="modalMinistryLevel" class="form-control">
-          <option value="Excellent">Excellent</option>
-          <option value="Good" selected>Good</option>
-          <option value="OK">OK</option>
-          <option value="Needs Help">Needs Help</option>
-          <option value="Not Yet">Not Yet</option>
-        </select>
-      </div>
-
-      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px; margin-bottom:16px;">
-        <div style="font-size:0.75rem; font-weight:700; color:#1e40af; text-transform:uppercase; margin-bottom:4px;">💡 AI Pedagogical Insight Preview</div>
-        <div id="modalInsightPreview" style="font-size:0.8rem; color:#1e3a8a; line-height:1.4;"></div>
-      </div>
-
-      <div style="display:flex; justify-content:flex-end; gap:8px;">
-        <button class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="saveStudentModal()">Save Student</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: QUICK BULK PASTE ROSTER (NO CIVIL ID) -->
-  <div class="modal-overlay" id="bulkImportModal">
-    <div class="modal-card">
-      <h3 style="margin-bottom:8px;">📋 Quick Paste Student Roster</h3>
-      <p style="font-size:0.8rem; color:var(--neutral-600); margin-bottom:12px;">
-        Paste student names directly from your school roster (Arabic or English). Put each name on a new line.
-      </p>
-      <div class="form-group" style="margin-bottom:14px;">
-        <label>Student Names (One Per Line)</label>
-        <textarea id="bulkNamesInput" class="form-control" style="min-height: 180px; font-size:0.9rem;" placeholder="فاطمة أحمد الكندري&#10;مريم سالم الهاجري&#10;دلال مبارك العجمي"></textarea>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:0.78rem; color:var(--neutral-500);">Auto-assigns baseline 80% marks.</span>
-        <div style="display:flex; gap:8px;">
-          <button class="btn btn-secondary" onclick="closeBulkImportModal()">Cancel</button>
-          <button class="btn btn-primary" onclick="saveBulkImport()">Import to Class</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script>
     /* ==========================================================
-       TEXTBOOK CONTENT (EXTRACTED FROM ENGLISH PEARLS 9A 2025-2026)
+       HUSBAND QUOTES CYCLER
        ========================================================== */
-    const TEXTBOOK_DATA = {
-      u1_p20: {
-        title: "Kuwaiti Explorers: Inspiring Journeys",
-        unit: "Learning Unit 1: Kuwait: Stories of Success",
-        pages: "Student's Book p. 20–21",
-        vocab: ["curious", "talent", "explorer", "proudly", "highlight", "represent", "inspire", "remarkable", "fulfil", "expedition", "will", "survive"],
-        content: `
-          <p><strong>Paragraph A:</strong> Kuwait is a proud country with strong values and a rich culture. Families and schools encourage children to be curious, explore new ideas, and develop their talents. Because of this supporting environment, many Kuwaitis grow up confident and ready to succeed in their lives. The following are some outstanding Kuwaiti explorers and adventurers who have brought pride to their country.</p>
-          <p style="margin-top:10px;"><strong>Paragraph B: Fuad Qabazard</strong> is a Kuwaiti mountaineer who successfully climbed Mount Everest in December 2015. He proudly raised the Kuwaiti flag there, along with pictures of His Highness the Amir and the Crown Prince. His goal was to highlight Kuwait's recognition by the United Nations as a "Global Humanitarian Centre." After returning home, Qabazard explained that his two-week journey was not only a physical challenge but also a way to represent his country on an international stage. His achievement brought attention to Kuwait's humanitarian role and inspired many people in Kuwait.</p>
-          <p style="margin-top:10px;"><strong>Paragraph C: Lamees Najim</strong> made history in 2018 when she became the first Kuwaiti to reach the North Pole. She is known for her remarkable ability to fulfil difficult tasks and is always excited by new adventures. Because of her adventurous spirit, she joined a Euro-Arabian expedition led by Felicity Aston, who was the first person to ski solo across Antarctica. The journey included 12 female explorers from different countries, aiming to share their experiences and cultures. This expedition highlighted the strong will of Kuwaiti and Arab women to face challenges and survive dangerous conditions.</p>
-          <p style="margin-top:10px;"><strong>Paragraph D:</strong> These inspiring stories highlight the strength and pride of the Kuwaiti people. With the support and effort of its people, Kuwait will continue to shine.</p>
-        `
-      },
-      u1_p25: {
-        title: "Success: More Than Just Talent",
-        unit: "Learning Unit 1: Kuwait: Stories of Success",
-        pages: "Student's Book p. 25–26",
-        vocab: ["merely", "mindset", "consistently", "efficiently", "give up", "tough", "positive", "trust", "progress", "trait", "remain", "equally"],
-        content: `
-          <p>Many people want to know how to achieve success in life. The following ideas can help guide you on this journey.</p>
-          <p style="margin-top:10px;"><strong>First,</strong> success is not merely about talent; it also depends on habits and mindset. Achieving success means reaching your goals, whether it is doing well in school, learning new skills, or completing a big project. Successful people consistently follow smart habits: they set goals, work hard, manage their time efficiently and never give up when things get tough.</p>
-          <p style="margin-top:10px;"><strong>In addition,</strong> having a positive mindset is a key factor in reaching goals; this means trusting that you can make progress and learn from mistakes. Many people fail before they reach their goals. But instead of losing hope, they try again confidently. Research shows that achievers often have personal traits such as discipline and a 'growth mindset', which means they see failure as a chance to learn and grow.</p>
-          <p style="margin-top:10px;"><strong>Furthermore,</strong> learning from others can also help you move forward. Watching how achievers plan their time, stay focused, and remain calm under pressure can teach us a lot. Reading their stories or listening to their advice helps us understand what works well.</p>
-          <p style="margin-top:10px;"><strong>Finally,</strong> to make your aims a reality, start by setting clear goals. Break them into small steps. Work daily, even if progress is slow. Remember that asking for help, learning from mistakes, and staying positive are all equally important parts of the journey. Success is not magic. It is the result of effort, learning, and believing in yourself.</p>
-        `
-      },
-      u2_p34: {
-        title: "Online Risks: The Story of a Digital Scam",
-        unit: "Learning Unit 2: Staying Safe Online",
-        pages: "Student's Book p. 34–35",
-        vocab: ["casually", "claim", "reject", "fake", "uneasy", "access", "update", "install", "phishing", "scam", "seriously", "security", "cautious"],
-        content: `
-          <p>Last Friday, Ahmed was casually scrolling through his phone when he received an unexpected message. It claimed he had won a brand-new smartphone and asked him to click on a link to get his prize. The message looked real and even used the logo of a well-known company. Ahmed looked at the message and thought to himself, "If people receive a similar message, they will feel curious enough to open it, just like I did." The link took him to a website that appeared real. It requested his name, email, and password. Ahmed quickly entered his details and continued with his day, feeling certain everything was fine.</p>
-          <p style="margin-top:10px;">That evening, when he attempted to log in to his social media account, his password was rejected. He tried several times, but the screen continued to show "Incorrect password." At that moment, Ahmed realised that the link he had trusted earlier was fake. He began to feel uneasy. Later, when he understood what had happened, Ahmed thought, "If someone got access to your personal accounts, they would misuse your information."</p>
-          <p style="margin-top:10px;">Ahmed started acting immediately. He updated all his passwords, installed antivirus software, and reported the problem to the company's IT department. They told him that the link was part of a phishing scam designed to trick students across the school.</p>
-          <p style="margin-top:10px;">Since then, Ahmed has taken his online safety more seriously. He no longer clicks on strange links, regularly checks website security, and stays cautious when sharing personal information. As a result of this experience, he thought, "If people think before they act online, they will reduce the risk of being attacked."</p>
-        `
-      },
-      u2_p39: {
-        title: "Humans vs. Machines: The World of AI Chatbots",
-        unit: "Learning Unit 2: Staying Safe Online",
-        pages: "Student's Book p. 39–40",
-        vocab: ["genuinely", "replace", "software", "manner", "assist", "provide", "efficient", "customer", "accurate", "complex", "increasingly"],
-        content: `
-          <p>Today, many people talk to machines. We use AI chatbots to answer questions, play music, or give us directions. When we buy things online, we often talk to a chatbot. Some people even genuinely communicate with AI chatbots as if they were real people. But can machines really replace human conversations?</p>
-          <p style="margin-top:10px;">AI chatbots are software programmes designed to understand what you say and reply in a simple, clear manner. They can assist with writing tasks, help with language learning, or provide quick answers to questions. Many companies rely on chatbots. They believe chatbots are efficient and work 24/7.</p>
-          <p style="margin-top:10px;">In schools, AI can help students learn new words or practise writing. At work, chatbots can respond to customer questions or help with simple jobs. In daily life, you can use a chatbot to make a shopping list, check the weather, or plan your day.</p>
-          <p style="margin-top:10px;">However, there are certain problems. AI is not always accurate and can sometimes give incorrect information. It cannot fully understand feelings or complex situations. In addition, if you increasingly use AI, you may stop asking for help from real people.</p>
-        `
-      },
-      u3_p48: {
-        title: "Tastes of the World: Exploring National Dishes",
-        unit: "Learning Unit 3: Food for Life",
-        pages: "Student's Book p. 48–49",
-        vocab: ["reflect", "serve", "symbol", "occasion", "aromatic", "ingredient", "distinctive", "recipe", "commonly", "flavour", "variety", "raw", "experience"],
-        content: `
-          <p><strong>Machboos: A Kuwaiti Classic:</strong> Machboos is more than just a national dish in Kuwait; it is a symbol of the country's rich history, culture, and family traditions. For generations, Machboos has been at the heart of Kuwaiti life, bringing people together on both ordinary days and special occasions. In the past, traders brought new spices to Kuwait, and families carefully chose aromatic ingredients to give Machboos its distinctive and spicy taste. Recipes were often passed down from parents and grandparents, with each family adding its own touch. Machboos is made with rice, meat, and spices. It is usually served on big plates and is commonly eaten with sauces like Daqous, which enhance its flavour.</p>
-          <p style="margin-top:10px;"><strong>Pasta: A Part of Italian Life:</strong> Pasta is a traditional food in Italian cuisine, known and loved around the world. Over time, the way Italians flavoured pasta has changed. At first, they used sugar, but later they used vegetables, which made pasta healthier. Tomatoes were only added in the 1800s, and the first recipe for spaghetti with tomato sauce appeared in 1844.</p>
-          <p style="margin-top:10px;"><strong>The Story of Sushi: A Japanese Tradition:</strong> Sushi began over a thousand years ago as a way to preserve fish, but today it is made with a variety of ingredients, including cooked or raw fish, vegetables, and even fruit. Sushi chefs, known as Itamae, train for many years to master their skills.</p>
-        `
-      },
-      u3_p53: {
-        title: "Healthy Eating: Making Smart Choices",
-        unit: "Learning Unit 3: Food for Life",
-        pages: "Student's Book p. 53–54",
-        vocab: ["energetic", "source", "fibre", "significantly", "homemade", "produce", "organic", "harmful", "label", "maintain"],
-        content: `
-          <p>People everywhere are becoming more interested in healthy eating. Good food is important for our bodies and minds. When people make better food choices, they often feel more energetic and are less likely to get sick. Some foods are healthier than others. For example, vegetables and fruits are important sources of vitamins, minerals, and fibre. Diets that are rich in these foods can significantly lower the risk of obesity and heart disease.</p>
-          <p style="margin-top:10px;">These days, people are learning more about what is in their food. More families cook at home because homemade meals are often healthier, cheaper, and you can control what ingredients you use. Supermarkets now offer a greater variety of fresh produce than ever before. Additionally, organic foods are becoming more popular because they are grown without harmful chemicals.</p>
-          <p style="margin-top:10px;">Food trends are changing quickly. Right now, smoothies and salads are more popular than fried snacks. People are reading food labels and choosing food items with less sugar, salt, or fat. Making small changes can help everyone maintain a better diet.</p>
-        `
-      },
-      u4_p62: {
-        title: "What Does It Mean to Live Simply?",
-        unit: "Learning Unit 4: Simple Living, Better World",
-        pages: "Student's Book p. 62–63",
-        vocab: ["focus", "necessarily", "instead", "thoughtful", "benefit", "conserve", "meaningful", "gadget", "valuable", "balanced"],
-        content: `
-          <p>Living simply means choosing a lifestyle that focuses on what is truly important. It does not necessarily mean giving up everything or living without comfort. Instead, it means using fewer things, spending less money, and being more thoughtful about how we live. People who choose simple living often ask themselves, "Do I really need this?" before they buy something.</p>
-          <p style="margin-top:10px;">Many people begin this lifestyle to reduce stress or save money, while others are motivated by a desire to protect the environment. To achieve these goals, individuals often try to produce less waste, use less plastic, and recycle more. Additionally, they may choose to buy fewer clothes, which not only helps them save money, but also benefits the environment. Furthermore, adopting this lifestyle can include eating local food and making an effort to conserve water and electricity.</p>
-        `
-      },
-      u4_p67: {
-        title: "Waste Less, Save the Planet",
-        unit: "Learning Unit 4: Simple Living, Better World",
-        pages: "Student's Book p. 67–68",
-        vocab: ["discard", "packaging", "responsibly", "minimise", "expense", "preserve", "disposable", "consumption", "donate", "mindful", "wasteful"],
-        content: `
-          <p>Every day, we throw away more things than we think. For example, we discard plastic water bottles, old clothes, food packaging, and paper. Much of what we call 'trash' could be reused, recycled, or even avoided completely.</p>
-          <p style="margin-top:10px;">Reducing waste is not just about the environment. It is about living wisely and responsibly. When we use only what we need, we can minimise expenses and preserve natural resources. For example, bringing a reusable water bottle, saying no to plastic bags, or using a lunchbox instead of disposable wrappers can make a big difference.</p>
-          <p style="margin-top:10px;">Some people follow the three R's rule: Reduce, Reuse, Recycle. First, they try to reduce consumption by choosing only what is necessary. Then, they reuse items like containers or bags. Finally, they recycle materials such as paper, glass, and plastic. As the Holy Qur'an reminds us: <em>"Indeed, the wasteful are brothers of the devils." (Surah Al-Isra, 17:27)</em> Being careful with our resources is a serious social responsibility.</p>
-        `
-      }
-    };
+    const HUSBAND_QUOTES = [
+      "\"To the world you are a dedicated teacher, but to our family, you are our whole heart and soul. Have a calm and wonderful day!\"",
+      "\"Remember to take a deep breath today! You inspire your students, and you inspire me even more. Proud of you! 💖\"",
+      "\"No matter how busy classes get, always remember how deeply you are loved at home. You've got this! ✨\"",
+      "\"Your patience and care make all the difference—both in your classroom and with our family. Have a wonderful day! 🌸\""
+    ];
+    let quoteIndex = 0;
+    function cycleHusbandQuote() {
+      quoteIndex = (quoteIndex + 1) % HUSBAND_QUOTES.length;
+      document.getElementById('husbandDailyQuote').textContent = HUSBAND_QUOTES[quoteIndex];
+    }
 
-    /* INITIAL DEFAULT STUDENT ROSTER (NAME ONLY - STRICTLY NO CIVIL ID) */
+    /* ==========================================================
+       REAL STUDENT ROSTERS (58 Students total, 29 per class)
+       ========================================================== */
     const INITIAL_STUDENTS_C1 = [
-      { name: "فاطمة أحمد الكندري", listening: 88, speaking: 85, reading: 92, writing: 84, ministryLevel: "Excellent" },
-      { name: "مريم سالم الهاجري", listening: 78, speaking: 72, reading: 80, writing: 74, ministryLevel: "Good" },
-      { name: "دلال مبارك العجمي", listening: 84, speaking: 80, reading: 85, writing: 79, ministryLevel: "Good" },
-      { name: "نورة فهد المطيري", listening: 90, speaking: 92, reading: 89, writing: 88, ministryLevel: "Excellent" },
-      { name: "سارة خالد الرشيدي", listening: 70, speaking: 68, reading: 74, writing: 66, ministryLevel: "OK" },
-      { name: "شيخة علي العتيبي", listening: 82, speaking: 79, reading: 83, writing: 80, ministryLevel: "Good" }
+      { name: "اوراد ثويني سليمان ثويني", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "الجود حسن علي البلوشي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "العنود عمر عبدالهزيز الجعيب", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "بشاير محمد احمد القريافي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "حوراء حسين احمد حبيب حسن علي قمبر", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "دانه فهد عبدالرحمن العوضي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "روز مطلق محمد العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ريان فيصل مساعد فرحان", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ريان نواف فاضل المزيعل", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ريم عبدالله علي الهديه", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ريناد عبدالعزيز سلطان الهولي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "زينه عيسى خالد عبدالله احمد", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "سميرة عبدالله علي الدرزي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "عائشة احمد يوسف المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "غلا خالد وليد الفرحان", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "فاطمه محمد مسلم ابو عنيج", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "فاطمه حسن عبدالوهاب الدشتي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "كنوز بدر عوض الصواغ العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "مريم عبدالله علي الجاركي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "منار طلال سالم ابو عنيج", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "منيره نايف حزام الفريد", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "مها فهد غانم الهاجري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "نوره حمود مرزوق الغريب", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "هديل فهد محمد مرزوق مبرك الشتلي العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "هناء فهد سويد العجمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "هيا محمد حمد مفرح", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" }
     ];
 
     const INITIAL_STUDENTS_C2 = [
-      { name: "ريم مشعل الدوسري", listening: 85, speaking: 88, reading: 82, writing: 80, ministryLevel: "Good" },
-      { name: "شهد جاسم الشمري", listening: 92, speaking: 94, reading: 95, writing: 90, ministryLevel: "Excellent" },
-      { name: "لولوة ناصر العازمي", listening: 75, speaking: 70, reading: 78, writing: 72, ministryLevel: "Good" },
-      { name: "أسماء محمد السبيعي", listening: 68, speaking: 65, reading: 70, writing: 64, ministryLevel: "Needs Help" },
-      { name: "حصة عبدالله الفضلي", listening: 88, speaking: 85, reading: 86, writing: 82, ministryLevel: "Good" }
+      { name: "امينه جاسم ناصر العسوسي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "اوراد فهد عبدالله المنير", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "الجوهره فواز غازي العتيبي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "الزين سالم ماجد الشمري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "جواهر ناصر بدر المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "جوري خالد احمد كرم", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "حنين عبدالله ياسين عبدالكريم", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "حنين عمر مبارك الاحمد", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "حوراء احمد حسين ملك", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "حوراء علي حسن محمد علي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "دانه طلال محمد العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ديمه احمد بركه المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "رغد عبدالله عايض العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "رقيه ابراهيم مكي ابراهيم احمد القلاف", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ربان خالد فيصل المكيمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "زينب احمد حسين يتيم", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "سندس عبدالله ابراهيم الحلاوه", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "شيخه فيصل غازي المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "عائشه علي عيد العازمي", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "فاطمه احمد جاسم سناسيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "فاطمه فهد مجاهد المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "فاطمه مشاري فهد اسد", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "لمى محمد معجب الهاجري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "ليال يعقوب غانم الباطني", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "مريم مبارك نزال الرميح", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "مريم وليد محمد كندري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "مها ابراهيم مسفر صفر المطيري", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "نوره جاسم محمد العبدالله", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" },
+      { name: "هيا بسام سالم القحطاني", listening: null, speaking: null, reading: null, writing: null, ministryLevel: "Not Evaluated" }
     ];
 
     /* ==========================================================
-       KUWAIT 9A LESSON PRESETS (POPULATED FROM BOOK PDF & DOCX EXAMPLES)
+       COMPLETE GRADE 9A CURRICULUM PRESETS (FROM TEXTBOOK PDF)
        ========================================================== */
     const KUWAIT_PRESETS = {
-      u1_l1: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Kuwaiti Explorers: Inspiring Journeys (Reading & Vocabulary)",
-        periodNo: "Lesson 1",
-        day: "Sunday",
-        date: "20/09/26",
-        periodSlots: "2+7",
-        sb: "20-21",
-        wb: "–",
-        outcomes: [
-          "interpret explicit and implicit details from a text about Kuwaiti explorers' achievements.",
-          "evaluate experiences and emotions related to expeditions by expressing personal opinions.",
-          "infer the contextual meaning of key vocabulary (curious, explorer, highlight, represent, survive)."
-        ],
-        vocab: "curious, talent, explorer, proudly, highlight, represent, inspire, remarkable, fulfil, expedition, will, survive",
-        grammar: "No new grammar.",
-        langFunctions: "Expressing pride in Kuwait's achievements; describing challenges; sharing opinions on adventurers.",
-        microSkills: "Predicting content from pictures, skimming for main ideas, scanning for specific factual details.",
-        linkers: "because, also, after, not only... but also",
-        challenges: [
-          "Differentiating between the achievements of Fuad Qabazard and Lamees Najim.",
-          "Inferring the meaning of 'will' as a noun rather than an auxiliary modal."
-        ],
-        solutions: [
-          "Using a two-column comparison graphic organizer on the board (Qabazard vs. Najim).",
-          "Explicit concept-checking of 'will' through context sentences highlighting mental determination."
-        ],
-        values: "Perseverance • Courage • Respect • Responsibility • National Pride",
-        aids: "Student's Book p.20-21 – PowerPoint (Lesson 1) – Board – World Map",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Think-Pair-Share, Guided Reading, Picture Elicitation",
-        assessment: "(e.g., oral questioning, true/false check, vocabulary in context matching)<br><strong>Homework:</strong> Write 3-4 sentences in the voice of an explorer describing feelings before and after an expedition (SB p.21).",
-        warmupTime: "4 min.",
-        warmup: "Displaying pictures on SB p.20 (scuba diving, parachuting, polar trekking, mountaineering).<br>Asking pupils: 'Which adventure would you attempt and why?'<br>Eliciting quick responses to activate curiosity and interest.",
-        preTime: "3 min.",
-        pre: "Introducing the lesson title 'Kuwaiti Explorers: Inspiring Journeys.'<br>Asking pupils to predict what challenges a Kuwaiti climber might face on Everest and at the North Pole.<br>Setting the reading purpose.",
-        whileTime: "23 min.",
-        while: "Asking pupils to skim the whole passage to match headings with paragraphs on SB p.21 (4 min.)<br>Checking answers as a class.<br>Guiding pupils to scan Paragraph B (Fuad Qabazard) and Paragraph C (Lamees Najim) to complete the True/False task (6 min.)<br>Presenting Vocabulary in context: curious, explorer, highlight, represent, remarkable, survive (6 min.)<br>Concept-checking word meanings using definition matching on SB p.21 (4 min.)<br>Class discussion on qualities that helped both explorers succeed (3 min.)",
-        postTime: "3 min.",
-        post: "Conducting 'A Journey Through an Explorer's Eyes': asking pairs to pick Fuad or Lamees and frame two oral sentences using sentence starters: 'During the journey, I faced...' / 'After the journey, I felt...'<br>Inviting 2-3 volunteers to present.",
-        wrapTime: "2 min.",
-        wrap: "Asking: 'What is one quality from today's explorers that you can apply to your school life?'<br>Eliciting quick exit responses before assigning homework."
-      },
-      u1_l2: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Past Simple & Past Continuous with While and When",
-        periodNo: "Lesson 2",
-        day: "Monday",
-        date: "21/09/26",
-        periodSlots: "2+7",
-        sb: "22",
-        wb: "15",
-        outcomes: [
-          "differentiate between completed past actions and actions in progress in a written text.",
-          "apply the Past Simple and Past Continuous with while and when in structured sentences.",
-          "ask and answer questions about past activities using accurate time clauses."
-        ],
-        vocab: "scuba diving, coral reef, white-water rafting, raft, paddle, memorable",
-        grammar: "Past Simple (completed actions) vs. Past Continuous (was/were + v-ing) with While & When.",
-        langFunctions: "Narrating past events; describing interrupted actions; reporting memorable experiences.",
-        microSkills: "Identifying verb forms, deducing grammatical rules from text, sentence transformation.",
-        linkers: "while, when, last year, the next day",
-        challenges: [
-          "Confusing which clause takes the continuous action (while + was/were -ing) vs. short action (when + past simple).",
-          "Irregular past verb forms."
-        ],
-        solutions: [
-          "Drawing visual timeline diagrams on the board illustrating an ongoing line interrupted by a sudden cross.",
-          "Choral drilling of rule: 'While + long action (ing), short action (ed) happened.'"
-        ],
-        values: "Collaboration • Communication • Critical Thinking",
-        aids: "Student’s Book p.22 – PowerPoint (Grammar Lesson 2) – Board – Grammar Cards",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Inductive Grammar Teaching, Pair Checking, Timeline Drawing",
-        assessment: "(e.g., timeline analysis, gap-fill correction, oral question-answer drill)<br><strong>Homework:</strong> Complete exercise 3 on SB p.22 and write three original sentences using 'while' and 'when'.",
-        warmupTime: "4 min.",
-        warmup: "Quick mime game: Teacher mimes an ongoing action (reading) and drops a book.<br>Eliciting: 'What was I doing?' / 'What happened suddenly?' to introduce interrupted past actions.",
-        preTime: "3 min.",
-        pre: "Displaying the adventure story on SB p.22.<br>Directing pupils to read and underline all the verbs in the short text.",
-        whileTime: "23 min.",
-        while: "Guiding pupils to sort verbs into the two-column table: Completed Action vs. Action in Progress (5 min.)<br>Eliciting the grammar rule inductively: Past Simple for completed actions; Past Continuous for ongoing/interrupted actions (5 min.)<br>Clarifying form: was/were + v-ing with 'while'; past simple with 'when' (4 min.)<br>Pair practice: Completing exercise 3 on SB p.22 (circling the correct verb form) (5 min.)<br>Checking answers collaboratively with justifications (4 min.)",
-        postTime: "3 min.",
-        post: "Pair work drill: Pupils ask and answer using SB p.22 prompts: 'What were you doing when you heard a loud noise?' / 'Who called you while you were studying?'<br>Monitoring and giving instant feedback.",
-        wrapTime: "2 min.",
-        wrap: "Exit Ticket: Call on two pupils to combine two past sentences using 'while'.<br>Brief sign-off before dismissing."
-      },
-      u1_l3: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Survival Stories: Emergencies and Cause & Effect Linkers",
-        periodNo: "Lesson 3",
-        day: "Tuesday",
-        date: "22/09/26",
-        periodSlots: "1+3",
-        sb: "23",
-        wb: "–",
-        outcomes: [
-          "determine explicit and implicit details from spoken emergency contexts.",
-          "use cause-and-effect linkers (because, so, since, as a result, therefore, consequently) accurately.",
-          "formulate full sentences describing causes and effects in dangerous scenarios."
-        ],
-        vocab: "emergency, exhausted, heater, engine, consequence, distress call",
-        grammar: "Cause-and-effect linkers: because, since (reason); so, as a result, therefore, consequently (effect).",
-        langFunctions: "Reporting an emergency; explaining causes and consequences; giving reasons.",
-        microSkills: "Listening for gist, listening for specific details, connecting ideas logically.",
-        linkers: "because, so, since, as a result, therefore, consequently",
-        challenges: [
-          "Distinguishing between linkers that introduce a reason (because, since) and linkers that introduce a result (as a result, therefore).",
-          "Punctuation with conjunctive adverbs (semicolon and comma for 'therefore' and 'as a result')."
-        ],
-        solutions: [
-          "Providing the Linkers Bank formula on the board: [Effect because Cause] vs. [Cause; therefore, Effect].",
-          "Guided sentence building drills using color-coded cards."
-        ],
-        values: "Responsibility • Safety & Security • Critical Thinking • Teamwork",
-        aids: "Student’s Book p.23 – Audio Track 1.1 – Board – Cause & Effect sentence strips",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Guided Listening, Pair Work, Cause-Effect Mapping",
-        assessment: "(e.g., listening grid completion, oral sentence construction, peer evaluation)<br><strong>Homework:</strong> Write three sentences connecting survival causes and effects using 'since', 'as a result', and 'therefore'.",
-        warmupTime: "4 min.",
-        warmup: "Asking pupils: 'Have you ever been in a dangerous situation or emergency? What did you do?'<br>Eliciting brief answers to activate schema.",
-        preTime: "2 min.",
-        pre: "Directing pupils to look at the emergency call scenario on SB p.23.<br>Predicting what problems teams Alpha, Bravo, and Charlie might face.",
-        whileTime: "22 min.",
-        while: "Playing Audio 1.1 (First listening): Pupils choose the best overall title (SOS: Save Our Souls) (3 min.)<br>Playing Audio 1.1 (Second listening): Pupils complete the listening grid with time, location, and challenges for each team (7 min.)<br>Checking listening answers together (3 min.)<br>Third listening: Pupils extract causes and effects into the table on SB p.23 (Call 1, Call 2, Call 3) (5 min.)<br>Introducing Linkers Bank: because, since, so, therefore, as a result (4 min.)",
-        postTime: "12 min.",
-        post: "Guiding pupils in pairs to construct full compound/complex sentences from the cause-effect table (e.g., 'The boat hit a big rock; as a result, water is coming in.') (7 min.)<br>Pupils complete 'Before You Explore: Safety First' listing 3 items to avoid emergency problems (5 min.)",
-        wrapTime: "3 min.",
-        wrap: "Asking pupils to name one linker of reason and one linker of result.<br>Reviewing before wrapping up."
-      },
-      u1_l4: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Surviving the Unexpected: Tools, Imperatives & Sequencing",
-        periodNo: "Lesson 4",
-        day: "Wednesday",
-        date: "23/09/26",
-        periodSlots: "2+5",
-        sb: "24",
-        wb: "–",
-        outcomes: [
-          "provide clear survival instructions using affirmative and negative imperative verbs.",
-          "use sequencing expressions (first, second, third, finally) to order safety advice.",
-          "present a 30-second survival podcast pitch with appropriate intonation and clarity."
-        ],
-        vocab: "compass, firestarter, shelter, flare, water filter, backpack, hypothermia",
-        grammar: "Imperatives: Affirmative (Get a compass / Make a fire) vs. Negative (Don't get lost / Don't freeze).",
-        langFunctions: "Giving survival advice; issuing commands and warnings; sequencing steps.",
-        microSkills: "Recognizing definitions, following instructions, oral delivery, active listening.",
-        linkers: "first, second, third, fourth, finally, then, next",
-        challenges: [
-          "Using subject pronouns erroneously in imperative sentences (saying 'You get a compass' instead of 'Get a compass').",
-          "Speaking within a strict 30-second time constraint."
-        ],
-        solutions: [
-          "Highlighting the Imperatives Grammar Box: Imperative = Bare base verb without a subject.",
-          "Using a visible classroom timer for the podcast pitch rehearsal."
-        ],
-        values: "Resilience • Problem Solving • Effective Communication • Teamwork",
-        aids: "Student’s Book p.24 – Audio Track 1.2 – Board – Stopwatch – Visual flashcards of survival tools",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Role Play, Podcast Pitch, Definition Matching",
-        assessment: "(e.g., definition match check, audio note completion, 30-second podcast presentation)<br><strong>Homework:</strong> Choose one survival scenario from SB p.24 and write four bulleted imperative rules using sequencing linkers.",
-        warmupTime: "4 min.",
-        warmup: "Showing survival item icons (compass, flare, shelter, water filter).<br>Asking pupils to name which single item they would take to a desert island and justify.",
-        preTime: "3 min.",
-        pre: "Matching survival items (1-7) to definitions on SB p.24.<br>Checking answers as a class.",
-        whileTime: "22 min.",
-        while: "Presenting the Imperative structure: Base verb for positive commands; 'Don't + verb' for negative warnings (4 min.)<br>Practicing oral transformation: 'You should take a compass' -> 'Take a compass!' (3 min.)<br>Listening to podcast Audio 1.2: Completing the 4 tips for Arctic Survival on SB p.24 (6 min.)<br>Analyzing sequence words used by the podcast speaker (first, second, next, finally) (4 min.)<br>Group formation: Assigning survival scenarios (Lost in the Arctic, Desert Heat, Trapped in Jungle) (5 min.)",
-        postTime: "11 min.",
-        post: "Conducting 'Time to Pitch!': Groups deliver their 30-second survival podcast using imperatives and sequencing expressions.<br>Classmates peer-evaluate based on clarity, imperatives, and linkers.",
-        wrapTime: "3 min.",
-        wrap: "Asking two students to give one affirmative and one negative command for surviving extreme heat.<br>Wrap-up and homework assignment."
-      },
-      u1_5a: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Success: More Than Just Talent (Part 1 – Reading & Vocabulary)",
-        periodNo: "Lesson 5A",
-        day: "Monday",
-        date: "21/09/26",
-        periodSlots: "2+7",
-        sb: "25",
-        wb: "–",
-        outcomes: [
-          "identify the main idea and key supporting details in each paragraph of an expository text about achieving success.",
-          "infer the meaning of target vocabulary from context.",
-          "analyse explicit and implicit details in a text about the habits and qualities that lead to success."
-        ],
-        vocab: "merely, mindset, consistently, efficiently, give up, tough, positive, trust, progress, trait, remain, equally",
-        grammar: "No new grammar.",
-        langFunctions: "Expressing opinions; explaining reasons; discussing habits and qualities for success.",
-        microSkills: "Predicting, skimming for the main idea, scanning for details, inferring meaning from context.",
-        linkers: "Introduced in Lesson 5B (Reading for Details).",
-        challenges: [
-          "Inferring unfamiliar vocabulary from context.",
-          "Keeping pace as vocabulary is introduced after every paragraph."
-        ],
-        solutions: [
-          "Presenting each vocabulary set immediately after its related paragraph, with a definition, example and quick check.",
-          "Using the PowerPoint's built-in check-answer slides right after each activity to confirm understanding before moving on."
-        ],
-        values: "Critical Thinking • Communication • Perseverance • Integrity",
-        aids: "Student’s Book p.25 – PowerPoint (Lesson 5A) – board – vocabulary cards",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Think-Pair-Share, Guided Reading, Word-Guessing Game",
-        assessment: "(e.g. observation, oral questioning, vocabulary concept-checking)<br><strong>Homework:</strong> Reread the blog on Student’s Book p.25 and write one sentence of your own for each of the six words from today’s vocabulary sets.",
-        warmupTime: "4 min.",
-        warmup: "Dividing the class into teams for Guess the Word – 3 Clues Challenge.<br>Giving each team three clues for a hidden word, one at a time.<br>Awarding two points for a correct guess on the first clue, and fewer points for later clues.<br>Reviewing the winning answers together as a class.",
-        preTime: "3 min.",
-        pre: "Introducing the lesson title “Success: More Than Just Talent.”<br>Asking pupils to discuss what success means to them, whether it is the same for everyone, and whether anyone can become successful.<br>Inviting pairs to share their ideas with the class.",
-        whileTime: "23 min.",
-        while: "Asking pupils to skim the whole blog and identify its overall message. (2 min.)<br>Asking pupils to read Paragraph 1 and discuss: “How can we achieve success in life?” (3 min.)<br>Presenting Vocabulary Set 1: merely, mindset, consistently, efficiently, give up, tough – definition, example, quick check for each. (4 min.)<br>Asking pupils to read Paragraph 2 and discuss: “Why is a positive mindset important for success?” (3 min.)<br>Presenting Vocabulary Set 2: positive, trust, progress, trait. (3 min.)<br>Asking pupils to read Paragraph 3 and discuss: “How can we learn from others to move forward?” (3 min.)<br>Presenting Vocabulary Set 3: remain, equally. (2 min.)<br>Asking pupils to read Paragraph 4 and discuss: “How can we make our aims a reality?” (3 min.)",
-        postTime: "3 min.",
-        post: "Displaying the Vocabulary Recap slide showing all twelve words.<br>Asking pupils, in pairs, to use as many of the words as they can in one minute.<br>Checking a few examples together as a class.",
-        wrapTime: "2 min.",
-        wrap: "Asking: “Which new word will you try to use today?”<br>Eliciting a few quick answers before moving to Lesson 5B."
-      },
-      u1_5b: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Success: More Than Just Talent (Part 2 – Comprehension & Response)",
-        periodNo: "Lesson 5B",
-        day: "Tuesday",
-        date: "22/09/26",
-        periodSlots: "1+3",
-        sb: "25-26",
-        wb: "–",
-        outcomes: [
-          "analyse explicit and implicit details in an expository text about achieving success.",
-          "identify the linking words and phrases a writer uses to connect ideas between paragraphs.",
-          "explain factors that contribute to success using evidence from the text."
-        ],
-        vocab: "Reviewing merely, mindset, consistently, efficiently, give up, tough, positive, trust, progress, trait, remain, equally (from Lesson 5A).",
-        grammar: "No new grammar.",
-        langFunctions: "Expressing opinions; explaining reasons; justifying choices with evidence.",
-        microSkills: "Scanning for details, identifying supporting details, recognising text organisation, citing textual evidence.",
-        linkers: "first, in addition, furthermore, finally",
-        challenges: [
-          "Distinguishing the main idea from supporting details in the comprehension questions.",
-          "Giving opinions without evidence from the text."
-        ],
-        solutions: [
-          "Reviewing the blog together before the comprehension questions.",
-          "Asking pupils to underline their evidence in the text before they share an answer."
-        ],
-        values: "Critical Thinking • Communication • Information Literacy • Responsibility • Empathy",
-        aids: "Student’s Book p.25-26 – PowerPoint (Lesson 5B) – board",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Pair Checking, Guided Discussion, Evidence Hunt",
-        assessment: "(e.g. observation, MCQ answers, written responses, oral discussion)<br><strong>Homework:</strong> Write four sentences explaining what makes a person successful. Use ideas from the blog.",
-        warmupTime: "4 min.",
-        warmup: "Reviewing key vocabulary from Lesson 5A with two or three quick recall questions.<br>Asking pupils to recall the overall message of the blog in one sentence.",
-        preTime: "2 min.",
-        pre: "Displaying the lesson title again as a reminder of the text.<br>Asking pupils what they remember about the four paragraphs from Lesson 5A.",
-        whileTime: "11 min.",
-        while: "Asking pupils to choose the correct answer (a, b, c or d) for three comprehension questions: the main idea of the 4th paragraph, the meaning of a ‘growth mindset’ in the passage, and the feeling the writer wants to create in the reader. (6 min.)<br>Checking answers together as a class.<br>Asking pupils to reread the paragraphs and identify which linking words (first, in addition, furthermore, finally) the writer uses to connect ideas. (5 min.)<br>Checking answers together as a class.",
-        postTime: "14 min.",
-        post: "Asking pupils to discuss three questions in pairs: two habits of successful people, why failure is important, and the writer’s purpose in writing the passage. (6 min.)<br>Inviting volunteers to share supported opinions; checking answers together.<br>Guiding pupils to complete ‘My Success Scrapbook’: one goal, three habits that will help them reach it, a short motivational motto, a small drawing about success, and one important idea learned from the reading. (8 min.)<br>Circulating to give support and help.",
-        wrapTime: "4 min.",
-        wrap: "Asking the Wrap-Up Questions: “What does success mean to you?”, “What habits can help you succeed?”, and “Why is it important never to give up?”<br>Eliciting short answers supported by the text before assigning homework."
-      },
-      u1_l6: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Both...and / Neither...nor (Correlative Conjunctions)",
-        periodNo: "Lesson 6",
-        day: "Wednesday",
-        date: "23/09/26",
-        periodSlots: "2+5",
-        sb: "27",
-        wb: "16",
-        outcomes: [
-          "use 'both...and' and 'neither...nor' accurately in written and spoken contexts.",
-          "apply correct subject-verb agreement with correlative conjunctions.",
-          "combine independent statements into coherent single sentences."
-        ],
-        vocab: "canteen, instrument, pair, agree, plural, closest",
-        grammar: "Both...and (plural verb) / Neither...nor (verb agrees with closest subject).",
-        langFunctions: "Combining statements; expressing similarities and dual negatives; agreeing and disagreeing.",
-        microSkills: "Recognizing correlative pairs, applying subject-verb agreement rules, sentence synthesis.",
-        linkers: "both...and, neither...nor",
-        challenges: [
-          "Applying verb agreement with 'neither...nor' when one subject is singular and the other is plural (e.g., Neither Ali nor his friends are coming).",
-          "Double negative errors (saying 'Neither Sara nor Laila doesn't like')."
-        ],
-        solutions: [
-          "Emphasizing the 'Proximity Rule' via board color coding (pointing an arrow to the noun closest to the verb).",
-          "Clarifying that 'neither...nor' already carries a negative meaning."
-        ],
-        values: "Critical Thinking • Effective Communication • Respect",
-        aids: "Student's Book p.27 – PowerPoint (Lesson 6) – Board – Grammar Strip Cards",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Inductive Analysis, Sentence Combining, Partner Interview",
-        assessment: "(e.g., sentence matching check, board synthesis drills, oral partner survey)<br><strong>Homework:</strong> Write four sentences using 'both...and' and 'neither...nor' comparing your hobbies with your partner's.",
-        warmupTime: "4 min.",
-        warmup: "Displaying pictures on SB p.27 of Ahmed and Jassim playing football and sitting by a tennis court.<br>Asking: 'Do they play football?' / 'Do they play tennis?' to elicit basic affirmative and negative statements.",
-        preTime: "3 min.",
-        pre: "Guiding pupils to complete sentences 1 and 2 on SB p.27: 'Both Ahmed and Jassim...' / 'Neither Ahmed nor Jassim...'<br>Introducing the lesson focus.",
-        whileTime: "22 min.",
-        while: "Presenting the Grammar Box on SB p.27: Both...and takes a plural verb (5 min.)<br>Explaining 'Neither...nor' with the proximity rule for singular/plural closest nouns (5 min.)<br>Guiding pupils to complete sentence matching exercise 2 on SB p.27 (Ali & Omar, cats & dogs, library & canteen) (6 min.)<br>Checking answers and writing the full joined sentences on the board (6 min.)",
-        postTime: "11 min.",
-        post: "Conducting partner interview on SB p.27: Asking and answering questions ('Do you and your partner like pizza?', 'Can you play a musical instrument?')<br>Pupils write down two sentences using 'Both my partner and I...' and 'Neither my partner nor I...'",
-        wrapTime: "3 min.",
-        wrap: "Asking: 'If we combine Ali and his brothers with neither...nor, does the verb follow Ali or his brothers?'<br>Verifying understanding before wrap-up."
-      },
-      u1_l7: {
-        module: "One – \"Kuwaiti Stories of Success\"",
-        topic: "Expeditions: Safety Preparations & Challenges (Two-Paragraph Expository Report)",
-        periodNo: "Lesson 7",
-        day: "Thursday",
-        date: "24/09/26",
-        periodSlots: "5+6",
-        sb: "28-29",
-        wb: "–",
-        outcomes: [
-          "plan a two-paragraph expository report on expeditions using a graphic organizer.",
-          "compose coherent paragraphs addressing safety preparations and unexpected challenges.",
-          "use linking words of cause/effect and addition accurately with correct punctuation."
-        ],
-        vocab: "adventurer, region, handle, arise, preparation, checklist, proofread",
-        grammar: "Expository report conventions: Present simple tense, modals (should, must), linking devices.",
-        langFunctions: "Explaining preparations; outlining hazards; organizing expository text.",
-        microSkills: "Outlining, drafting topic sentences, developing supporting details, self-assessing writing.",
-        linkers: "first, in addition, furthermore, on the other hand, because, as a result, therefore",
-        challenges: [
-          "Writing a clear topic sentence rather than jumping straight into list-like details.",
-          "Separating preparations (Paragraph 1) from challenges (Paragraph 2) cleanly."
-        ],
-        solutions: [
-          "Modeling a standard topic sentence formula on the board for each paragraph.",
-          "Requiring pupils to complete and peer-check the planning organizer on SB p.28 before drafting on p.29."
-        ],
-        values: "Responsibility • Safety • Self-Discipline • Critical Thinking",
-        aids: "Student’s Book p.28-29 – PowerPoint (Writing Lesson 7) – Board – Model Paragraph Chart",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Process Writing, Modeling, Graphic Organizing, Self-Assessment Checklist",
-        assessment: "(e.g., plan review, rough draft monitoring, self-assessment checklist on SB p.29)<br><strong>Homework:</strong> Finalize and publish the neat copy of the two-paragraph report in the writing notebook.",
-        warmupTime: "4 min.",
-        warmup: "Quick brainstorming: 'If you are going on an expedition across the Kuwait desert in winter, what 3 things must you pack?'<br>Listing student ideas on the board.",
-        preTime: "5 min.",
-        pre: "Reading the introductory passage on SB p.28.<br>Discussing the four prompt questions (difficult places, need for planning, potential dangers, safety suggestions).",
-        whileTime: "22 min.",
-        while: "Guiding pupils through the planning table on SB p.28: Brainstorming notes for Paragraph 1 (Safety Preparations) and Paragraph 2 (Challenges) (6 min.)<br>Modeling effective Topic Sentences, Supporting Details, and Concluding Sentences on the board (6 min.)<br>Pupils draft their two-paragraph outline in the planning box on SB p.29 (10 min.)",
-        postTime: "11 min.",
-        post: "Independent writing: Pupils begin writing their two-paragraph report in their notebooks.<br>Teacher circulates to provide differentiated scaffolding.<br>Pupils review their work using the SB p.29 Report Writing Checklist.",
-        wrapTime: "3 min.",
-        wrap: "Reviewing the prompt reminder on SB p.29: 'Use AI wisely and responsibly to assist, not to do the work for you.'<br>Final collection of draft plans."
-      },
-      u2_l1: {
-        module: "Two – \"Staying Safe Online\"",
-        topic: "Online Risks: The Story of a Digital Scam (Reading & Vocabulary)",
-        periodNo: "Lesson 1",
-        day: "Sunday",
-        date: "27/09/26",
-        periodSlots: "2+5",
-        sb: "34-35",
-        wb: "–",
-        outcomes: [
-          "analyse implicit and explicit details from a narrative text about online risks.",
-          "use contextual clues to infer the meaning of cyber-safety vocabulary.",
-          "evaluate actions as safe or unsafe in digital scenarios."
-        ],
-        vocab: "casually, claim, reject, fake, uneasy, access, update, install, phishing, scam, seriously, security, cautious",
-        grammar: "Introduction to Conditionals in context ('If people receive... they will open it').",
-        langFunctions: "Identifying digital scams; evaluating online safety; giving warnings.",
-        microSkills: "Predicting, skimming for main idea, scanning for chronological events, inferring emotion.",
-        linkers: "since then, later, as a result, that evening",
-        challenges: [
-          "Understanding technical cyber terms like 'phishing scam'.",
-          "Identifying the turning point in the narrative."
-        ],
-        solutions: [
-          "Presenting a real-life visual comparison between a genuine email/SMS and a phishing link.",
-          "Using emoji reaction analysis on SB p.35 to track Ahmed's changing feelings."
-        ],
-        values: "Safety & Security • Responsibility • Digital Literacy • Honesty",
-        aids: "Student's Book p.34-35 – PowerPoint – Board – Mobile Screen Phishing Sample",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Detective Case Study, Emoji Analysis, Think-Pair-Share",
-        assessment: "(e.g., main idea MCQ check, Cyber Detective chart completion, oral discussion)<br><strong>Homework:</strong> Write four sentences describing safe habits when receiving unexpected links online.",
-        warmupTime: "4 min.",
-        warmup: "Displaying the mobile screen graphic from SB p.34: 'CONGRATULATIONS: You have won a 1000 Dinar gift card. Claim Now.'<br>Asking: 'Would you click it? Why or why not?'",
-        preTime: "3 min.",
-        pre: "Eliciting why scammers use well-known company logos.<br>Setting the reading task: Find out what happened to Ahmed after he entered his details.",
-        whileTime: "23 min.",
-        while: "Pupils skim the story silently and answer MCQ 2 (Main idea: A boy clicks on a fake link and learns a lesson) (3 min.)<br>Vocabulary presentation: casually, fake, phishing, scam, uneasy, cautious (6 min.)<br>Contextual synonym search: finding words for 'worried', 'renew', 'safety' on SB p.35 (4 min.)<br>Pupils track Ahmed's feelings using emojis on SB p.35 (curious -> shocked -> cautious) (4 min.)<br>Completing the 'Cyber Safety Detective' table: classifying Ahmed's 5 actions as Safe or Unsafe with evidence from the text (6 min.)",
-        postTime: "3 min.",
-        post: "Class discussion: 'What did you learn from Ahmed's story?'<br>Volunteers share key takeaways about password updating and reporting to IT.",
-        wrapTime: "2 min.",
-        wrap: "Exit question: 'What is the first thing you should do if you suspect your account has been hacked?'<br>Wrap up."
-      },
-      u2_l5: {
-        module: "Two – \"Staying Safe Online\"",
-        topic: "Humans vs. Machines: The World of AI Chatbots (Reading & Vocabulary)",
-        periodNo: "Lesson 5",
-        day: "Monday",
-        date: "28/09/26",
-        periodSlots: "2+7",
-        sb: "39-40",
-        wb: "–",
-        outcomes: [
-          "analyse explicit and implicit details from an expository text about AI chatbots.",
-          "evaluate the benefits and limitations of AI tools in daily life using textual evidence.",
-          "apply target vocabulary in meaningful comparative sentences."
-        ],
-        vocab: "genuinely, replace, software, manner, assist, provide, efficient, customer, accurate, complex, increasingly",
-        grammar: "No new grammar.",
-        langFunctions: "Comparing human and machine capabilities; expressing opinions on technology; evaluating AI.",
-        microSkills: "Skimming for author's viewpoint, identifying pronoun references, antonym identification.",
-        linkers: "today, however, for example, in addition, because",
-        challenges: [
-          "Balancing enthusiasm for AI with critical awareness of its limitations (accuracy and emotional empathy).",
-          "Understanding pronoun references in dense expository text."
-        ],
-        solutions: [
-          "Conducting a quick T-Chart on the board: 'What AI Can Do' vs. 'What Only Humans Can Do'.",
-          "Guiding pupils through paragraph 2 to highlight antecedent nouns before pronouns ('They' -> 'many companies')."
-        ],
-        values: "Ethical Use of Technology • Critical Thinking • Empathy • Integrity",
-        aids: "Student's Book p.39-40 – PowerPoint (AI Chatbots) – Board – Visual logos of chatbots",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Debate-Lite, Think-Pair-Share, Guided Reading",
-        assessment: "(e.g., pronoun reference check, antonym matching, 4-sentence paragraph writing)<br><strong>Homework:</strong> Write a 4-sentence paragraph on SB p.40 explaining how your life is different with and without AI.",
-        warmupTime: "4 min.",
-        warmup: "Showing icons of Siri, Alexa, ChatGPT.<br>Asking pupils: 'Do you talk to machines? Can a chatbot understand your feelings?'",
-        preTime: "3 min.",
-        pre: "Introducing the title: 'Humans vs. Machines: The World of AI Chatbots.'<br>Asking pupils to predict whether machines will ever completely replace human workers.",
-        whileTime: "23 min.",
-        while: "Pupils read the passage silently to identify the main idea (AI is helpful but cannot replace human help) (4 min.)<br>Analyzing vocabulary in context: software, assist, efficient, accurate, complex (6 min.)<br>Answering comprehension questions 2, 3, and 4 on SB p.40 (pronoun reference 'They', meaning of 'respond', opposite of 'complex') (6 min.)<br>Detailed discussion: 3 things chatbots do at work/school vs. risks of overusing AI (7 min.)",
-        postTime: "3 min.",
-        post: "Pupils begin drafting 'AI in My Life': writing 2 sentences using sentence starters: 'With AI, I can...' / 'Without AI, I have to...'<br>Sharing a few examples aloud.",
-        wrapTime: "2 min.",
-        wrap: "Asking: 'Why is it still important to talk to teachers and doctors rather than just asking a chatbot?'<br>Quick wrap-up."
-      },
-      u3_l1: {
-        module: "Three – \"Food for Life: Culture, Health, and the Future\"",
-        topic: "Tastes of the World: Exploring National Dishes (Reading & Vocabulary)",
-        periodNo: "Lesson 1",
-        day: "Tuesday",
-        date: "29/09/26",
-        periodSlots: "1+3",
-        sb: "48-49",
-        wb: "–",
-        outcomes: [
-          "analyse implicit and explicit details from a text about national dishes from different cultures.",
-          "use food-related vocabulary and sensory adjectives to describe culinary experiences.",
-          "compose and present a short 3-4 sentence food vlogger script."
-        ],
-        vocab: "reflect, serve, symbol, occasion, aromatic, ingredient, distinctive, recipe, commonly, flavour, variety, raw, experience",
-        grammar: "Passive voice preview in reading ('is made with', 'is served with', 'were added').",
-        langFunctions: "Describing cultural foods; expressing sensory reactions; sharing food traditions.",
-        microSkills: "Skimming for cultural themes, scanning for ingredients, script writing.",
-        linkers: "whether... or, for generations, in the past, over time, today, however",
-        challenges: [
-          "Pronouncing multi-syllabic cultural terms and sensory adjectives (aromatic, distinctive).",
-          "Distinguishing between traditional preparations and historical adaptations (e.g., tomatoes added to pasta in 1844)."
-        ],
-        solutions: [
-          "Choral pronunciation drill emphasizing syllable stress.",
-          "Direct pupils to highlight chronological markers in the Italian and Japanese sections."
-        ],
-        values: "Cultural Awareness • Respect • Hospitality • Gratitude",
-        aids: "Student’s Book p.48-49 – PowerPoint – Board – Pictures of Machboos, Pasta, and Sushi",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Food Vlogger Role Play, Guided Reading, Sensory Word Hunt",
-        assessment: "(e.g., summary MCQ, vocabulary gap-fill on SB p.49, vlogger script presentation)<br><strong>Homework:</strong> Write a 4-sentence description of your favourite Kuwaiti traditional dish using at least 3 new adjectives.",
-        warmupTime: "4 min.",
-        warmup: "Displaying pictures of Machboos, Pasta, and Sushi on SB p.48.<br>Asking: 'What countries do these dishes come from? Which is your favourite?'",
-        preTime: "3 min.",
-        pre: "Introducing the concept: 'Food is more than what we eat; it tells stories about where we come from.'<br>Setting the reading purpose across Kuwait, Italy, and Japan.",
-        whileTime: "23 min.",
-        while: "Pupils read the three sections to choose the best summary on SB p.49 (Shows how traditional foods reflect culture) (4 min.)<br>Target vocabulary presentation: reflect, aromatic, ingredient, distinctive, recipe, raw (6 min.)<br>Completing gap-fill exercise 3 on SB p.49 (variety, ingredient, distinctive, reflect) (4 min.)<br>Comprehension check questions on SB p.49: ingredients in Machboos, significance of pasta, common traits of all 3 dishes (5 min.)<br>Pupils hunt for sensory food adjectives in the text (spicy, rich, aromatic, distinctive, raw, healthy) (4 min.)",
-        postTime: "3 min.",
-        post: "Food Vlogger Challenge: Pupils pair up and write a 3-sentence script tasting one of the dishes ('Today I tried...', 'What I love about it is...')<br>One pair performs for the class.",
-        wrapTime: "2 min.",
-        wrap: "Asking: 'What value does serving Machboos represent in Kuwaiti culture?' (Hospitality and kindness).<br>Wrap up."
-      },
-      u3_l5: {
-        module: "Three – \"Food for Life: Culture, Health, and the Future\"",
-        topic: "Healthy Eating: Making Smart Choices (Reading & Vocabulary)",
-        periodNo: "Lesson 5",
-        day: "Wednesday",
-        date: "30/09/26",
-        periodSlots: "2+5",
-        sb: "53-54",
-        wb: "–",
-        outcomes: [
-          "analyse explicit and implicit details from an expository text about contemporary healthy eating choices.",
-          "infer the meaning of nutrition-related vocabulary (fibre, organic, produce, maintain, label).",
-          "collaborate to design and present a one-day balanced healthy menu."
-        ],
-        vocab: "energetic, source, fibre, significantly, homemade, produce, organic, harmful, label, maintain",
-        grammar: "Comparative structures in text ('healthier than', 'busier than', 'more popular than').",
-        langFunctions: "Discussing dietary habits; explaining health benefits; planning a balanced menu.",
-        microSkills: "Skimming for trend details, identifying negative factual information, collaborative menu planning.",
-        linkers: "for example, additionally, right now, today",
-        challenges: [
-          "Understanding the difference between fresh produce and processed food products.",
-          "Negative factual questions (e.g., 'Which of the following is NOT mentioned?')."
-        ],
-        solutions: [
-          "Bringing real food packaging to show students where nutritional labels and ingredients are listed.",
-          "Teaching elimination strategies for negative factual test items."
-        ],
-        values: "Well-being • Self-Discipline • Moderation • Gratitude",
-        aids: "Student's Book p.53-54 – PowerPoint – Board – Sample Food Labels",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Healthy Menu Challenge, Group Work, Text Scanning",
-        assessment: "(e.g., negative factual MCQ check, definition identification, group menu pitch)<br><strong>Homework:</strong> Design a healthy breakfast menu with ingredients and write two sentences explaining why it is beneficial.",
-        warmupTime: "4 min.",
-        warmup: "Discussing questions on SB p.53: 'What did you eat for breakfast today? Is your diet healthy?'<br>Reviewing trend callouts (plant power, protein dairy, smart snacks).",
-        preTime: "3 min.",
-        pre: "Introducing title: 'Healthy Choices: Eating Well Today.'<br>Pupils predict three health benefits of eating homemade meals over fast food.",
-        whileTime: "22 min.",
-        while: "Pupils read the text to answer question 1 and 2 on SB p.54 (Identifying what is NOT mentioned) (5 min.)<br>Vocabulary presentation: energetic, fibre, produce, organic, label, maintain (6 min.)<br>Vocabulary matching on SB p.54: defining 'label' and 'maintain' (3 min.)<br>Comprehension questions on SB p.54: benefits of home cooking, why organic food is popular, how labels help (5 min.)<br>Highlighting the writer's purpose: to encourage people to adopt healthier everyday habits (3 min.)",
-        postTime: "12 min.",
-        post: "Conducting 'Healthy Menu Challenge' in groups: Planning breakfast, lunch, dinner, and snack on SB p.54.<br>Groups state ingredients used and unhealthy items avoided.<br>Presenting to peers.",
-        wrapTime: "3 min.",
-        wrap: "Asking: 'What is one small change you can make today to improve your diet?'<br>Exit answers before dismissal."
-      },
-      u4_l1: {
-        module: "Four – \"Simple Living, Better World\"",
-        topic: "What Does It Mean to Live Simply? (Reading & Vocabulary)",
-        periodNo: "Lesson 1",
-        day: "Thursday",
-        date: "01/10/26",
-        periodSlots: "5+6",
-        sb: "62-63",
-        wb: "–",
-        outcomes: [
-          "analyse implicit and explicit details from an expository text about simple living and its benefits.",
-          "apply vocabulary related to lifestyle choices and sustainability accurately.",
-          "evaluate personal spending and consumption habits in relation to balanced living."
-        ],
-        vocab: "focus, necessarily, instead, thoughtful, benefit, conserve, meaningful, gadget, valuable, balanced",
-        grammar: "Present Perfect preview in context ('many people have started...').",
-        langFunctions: "Defining simple living; discussing lifestyle changes; expressing balance in consumption.",
-        microSkills: "Skimming for central thesis, definition matching, personal reflection.",
-        linkers: "instead, while, to achieve these goals, additionally, furthermore, however, rather than",
-        challenges: [
-          "Overcoming the misconception that 'simple living' means living in poverty without comfort.",
-          "Connecting sustainable lifestyle concepts to everyday teenage habits."
-        ],
-        solutions: [
-          "Highlighting sentence 2 in text: 'It does not necessarily mean giving up everything or living without comfort.'",
-          "Connecting to practical teenage actions: reducing screen time, organizing study desks, avoiding impulse buys."
-        ],
-        values: "Sustainability • Mindfulness • Moderation • Gratitude",
-        aids: "Student’s Book p.62-63 – PowerPoint – Board – Visuals of cluttered vs. simple living spaces",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Values Discussion, Definition Matching, Think-Pair-Share",
-        assessment: "(e.g., main idea check, vocabulary definition matching on SB p.63, 3-sentence action plan)<br><strong>Homework:</strong> Write 3-4 sentences on SB p.63 explaining one thing you will do to live more simply this week.",
-        warmupTime: "4 min.",
-        warmup: "Looking at picture on SB p.62 of man asking 'Do I really need this?'<br>Ticking pre-reading ideas: saving electricity, reducing screen time, helping the environment.",
-        preTime: "3 min.",
-        pre: "Introducing title: 'What Does It Mean to Live Simply?'<br>Asking pupils to define simplicity in their own words before reading.",
-        whileTime: "22 min.",
-        while: "Pupils read the passage silently to choose the best answer on SB p.63 (Main idea: Discusses simple living and its benefits) (4 min.)<br>Vocabulary presentation: focus, necessarily, conserve, gadget, meaningful, balanced (6 min.)<br>Completing vocabulary definition matching on SB p.63 (conserve, gadget, meaningful) (4 min.)<br>Comprehension analysis on SB p.63: why people choose this lifestyle; easy vs. difficult choices (5 min.)<br>Connecting to Islamic values: What does the Holy Qur'an teach us about moderation and balance in life? (3 min.)",
-        postTime: "12 min.",
-        post: "Pair reflection: Pupils discuss what is easy and difficult for them to give up (gadgets, shopping, fast food).<br>Pupils begin drafting their 3-sentence action plan on SB p.63: 'One thing I could do to live more simply this week.'",
-        wrapTime: "3 min.",
-        wrap: "Asking pupils to share one question they will ask themselves before buying something new ('Do I really need this?').<br>Wrap up."
-      },
-      u4_l5: {
-        module: "Four – \"Simple Living, Better World\"",
-        topic: "Waste Less, Save the Planet (Reading & Vocabulary)",
-        periodNo: "Lesson 5",
-        day: "Sunday",
-        date: "04/10/26",
-        periodSlots: "2+7",
-        sb: "67-68",
-        wb: "–",
-        outcomes: [
-          "analyse implicit and explicit details from a persuasive expository text about reducing waste.",
-          "infer the meaning and application of environmental vocabulary in context.",
-          "evaluate everyday habits and formulate a concrete plan to reduce waste."
-        ],
-        vocab: "discard, packaging, responsibly, minimise, expense, preserve, disposable, consumption, donate, mindful, wasteful",
-        grammar: "Modals of necessity (should, must) and imperatives.",
-        langFunctions: "Advocating for environmental care; discussing waste reduction; citing moral obligations.",
-        microSkills: "Scanning for the three R's, synonym recognition, Quranic moral integration.",
-        linkers: "for example, when, first, then, finally, all",
-        challenges: [
-          "Distinguishing between 'Reduce', 'Reuse', and 'Recycle' with concrete actions.",
-          "Synonym identification in Paragraph 2 (finding 'preserve' for 'save')."
-        ],
-        solutions: [
-          "Drawing the 3R triangular cycle on the board with specific items (Reduce consumption, Reuse bags, Recycle plastics).",
-          "Guided scanning through paragraph 2 to highlight synonyms."
-        ],
-        values: "Sustainability • Social Responsibility • Mindfulness • Civic Duty",
-        aids: "Student's Book p.67-68 – PowerPoint – Board – Reusable bottle and disposable wrapper for realia demonstration",
-        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Wasteful vs. Wise Sorting, Realia Demonstration, Moral Reflection",
-        assessment: "(e.g., wasteful vs. wise check, MCQ comprehension on SB p.68, personal habit change sentences)<br><strong>Homework:</strong> Write 2-3 sentences on SB p.68 describing a wasteful habit you will change and why.",
-        warmupTime: "4 min.",
-        warmup: "Completing the 'Wasteful or Wise' table on SB p.67: Buying new phones yearly vs. reusable water bottles vs. plastic bags.<br>Eliciting which actions pupils do most often.",
-        preTime: "3 min.",
-        pre: "Introducing title: 'Waste Less, Live More.'<br>Asking: 'Why do people often throw away things that could still be used?'",
-        whileTime: "23 min.",
-        while: "Pupils read the passage silently to answer MCQs 1, 2, and 3 on SB p.68 (Main idea, synonym of 'save' = preserve, and what is NOT a way to reduce waste) (6 min.)<br>Vocabulary presentation: discard, packaging, responsibly, minimise, disposable, consumption, donate, mindful (6 min.)<br>Analyzing the Three R's rule (Reduce, Reuse, Recycle) as explained in paragraph 3 (4 min.)<br>Reflecting on the Quranic verse on SB p.67: 'Indeed, the wasteful are brothers of the devils' (Surah Al-Isra 17:27) and our social responsibility (4 min.)<br>Discussion question 2 on SB p.68: Why is it sometimes difficult for people to reduce waste? (3 min.)",
-        postTime: "3 min.",
-        post: "Pupils draft their commitment on SB p.68 using sentence starters: 'I will try to stop...', 'I plan to use...', 'This will help because...'<br>Sharing a few pledges with the class.",
-        wrapTime: "2 min.",
-        wrap: "Asking two students to name one disposable item they can replace with a reusable one starting today.<br>Wrap up."
-      }
+      // --- UNIT 1 ---
+      u1_l1: { module: "1", topic: "Kuwaiti Explorers: Inspiring Journeys", sb: "20-21", outcomes: ["Interpret explicit and implicit details from a text about Kuwaiti explorers.", "Evaluate experiences and emotions related to expeditions.", "Infer contextual meaning of target vocabulary."], vocab: "curious, talent, explorer, proudly, highlight, represent, inspire, remarkable, fulfil, expedition, will, survive[cite: 5]", grammar: "No new grammar.", funcs: "Expressing pride in Kuwait's achievements; describing challenges." },
+      u1_l2: { module: "1", topic: "Past Simple & Past Continuous with While/When", sb: "22", outcomes: ["Differentiate between completed past actions and actions in progress.", "Apply Past Simple and Past Continuous with while and when."], vocab: "scuba diving, coral reef, white-water rafting, raft, paddle, memorable[cite: 5]", grammar: "Past Simple vs. Past Continuous with While & When[cite: 5]", funcs: "Narrating past events; describing interrupted actions." },
+      u1_l3: { module: "1", topic: "Survival Stories & Emergencies", sb: "23", outcomes: ["Determine explicit/implicit details from spoken emergency contexts.", "Use cause-and-effect linkers accurately."], vocab: "emergency, exhausted, heater, engine, consequence, distress call", grammar: "Cause-and-effect linkers (because, so, since, as a result, therefore)", funcs: "Reporting an emergency; explaining causes and consequences." },
+      u1_l4: { module: "1", topic: "Surviving the Unexpected", sb: "24", outcomes: ["Provide clear survival instructions using imperative verbs.", "Use sequencing expressions (first, second, third, finally)."], vocab: "compass, firestarter, shelter, flare, water filter, backpack, hypothermia[cite: 5]", grammar: "Imperatives: Affirmative and Negative (Don't get lost)[cite: 5]", funcs: "Giving survival advice; issuing commands and warnings." },
+      u1_l5: { module: "1", topic: "Success: More Than Just Talent", sb: "25-26", outcomes: ["Analyse details in an expository text about achieving success.", "Identify linking words between paragraphs."], vocab: "merely, mindset, consistently, efficiently, give up, tough, positive, trust, progress, trait, remain, equally[cite: 5]", grammar: "No new grammar.", funcs: "Expressing opinions; explaining reasons for success." },
+      u1_l6: { module: "1", topic: "Both...and / Neither...nor", sb: "27", outcomes: ["Use correlative conjunctions accurately in context.", "Apply subject-verb agreement rules (proximity rule)."], vocab: "canteen, instrument, pair, agree, plural, closest", grammar: "Both...and (plural) / Neither...nor (agreement with closest noun)[cite: 5]", funcs: "Combining statements; expressing similarities and dual negatives." },
+      u1_l7: { module: "1", topic: "Expeditions: Safety Preparations & Challenges", sb: "28-29", outcomes: ["Compose a two-paragraph expository report on expeditions.", "Organize ideas effectively into structured paragraphs."], vocab: "adventurer, region, handle, arise, preparation, checklist, proofread", grammar: "Expository report conventions, modals (should, must)", funcs: "Explaining safety preparations and potential challenges." },
+
+      // --- UNIT 2 ---
+      u2_l1: { module: "2", topic: "Online Risks: The Story of a Digital Scam", sb: "34-35", outcomes: ["Analyse narrative text about online risks and phishing.", "Infer meaning of cyber-safety vocabulary."], vocab: "casually, claim, reject, fake, uneasy, access, update, install, phishing, scam, seriously, security, cautious[cite: 5]", grammar: "Introduction to Conditionals in context", funcs: "Identifying digital scams; evaluating online safety." },
+      u2_l2: { module: "2", topic: "Conditionals: First & Second", sb: "36", outcomes: ["Use first and second conditional sentences correctly.", "Express real and hypothetical situations."], vocab: "hypothetical, consequence, advice, possibility", grammar: "First Conditional (If + present, will) & Second Conditional (If + past, would)[cite: 5]", funcs: "Giving advice; expressing hypothetical outcomes." },
+      u2_l3: { module: "2", topic: "Staying Safe on Social Media", sb: "37", outcomes: ["Determine details from spoken text about social media safety.", "Infer tone and attitude of speakers."], vocab: "privacy, stranger, tag, location, cyberbullying, profile", grammar: "Reported advice preview", funcs: "Discussing social media risks; identifying speaker tone." },
+      u2_l4: { module: "2", topic: "From Problems to Solutions", sb: "38", outcomes: ["Give clear advice on online safety problems.", "Use linkers of contrast (however, although, despite)."], vocab: "solution, advice, network, warning message, IT teacher", grammar: "Advisory structures (If I were you, I would...)", funcs: "Discussing digital problems and offering solutions." },
+      u2_l5: { module: "2", topic: "Humans vs. Machines: AI Chatbots", sb: "39-40", outcomes: ["Analyse expository text about AI chatbots and capabilities.", "Evaluate benefits and limitations of AI tools."], vocab: "genuinely, replace, software, manner, assist, provide, efficient, customer, accurate, complex, increasingly[cite: 5]", grammar: "Pronoun reference tracking", funcs: "Comparing human and machine capabilities; evaluating AI." },
+      u2_l6: { module: "2", topic: "Defining Relative Clauses", sb: "41", outcomes: ["Apply defining relative clauses (who, which, that, where, when).", "Provide essential information about people, places, things, time."], vocab: "essential, clause, relative pronoun, antecedent", grammar: "Defining Relative Clauses: who, which, that, where, when[cite: 5]", funcs: "Describing people, places, and things precisely." },
+      u2_l7: { module: "2", topic: "How to Stay Safe Online", sb: "42-43", outcomes: ["Compose a two-paragraph report offering online safety advice.", "Use topic sentences and concluding sentences effectively."], vocab: "guideline, precaution, cybersecurity, password, threat", grammar: "Expository report writing conventions", funcs: "Writing advisory texts on cybersecurity." },
+
+      // --- UNIT 3 ---
+      u3_l1: { module: "3", topic: "Tastes of the World: Exploring National Dishes", sb: "48-49", outcomes: ["Analyse text about national dishes (Machboos, Pasta, Sushi).", "Use food-related vocabulary and sensory adjectives."], vocab: "reflect, serve, symbol, occasion, aromatic, ingredient, distinctive, recipe, commonly, flavour, variety, raw, experience[cite: 5]", grammar: "Passive voice preview", funcs: "Describing cultural foods and culinary traditions." },
+      u3_l2: { module: "3", topic: "Passive Voice: Present, Past & Modals", sb: "50", outcomes: ["Distinguish between active and passive voice.", "Apply passive voice with present simple, past simple, and modals."], vocab: "active, passive, doer, object, process", grammar: "Present Simple Passive, Past Simple Passive, Modal Passives[cite: 5]", funcs: "Focusing on actions rather than doers; describing recipes." },
+      u3_l3: { module: "3", topic: "Exploring World Food Festivals", sb: "51", outcomes: ["Synthesise details from spoken text about food festivals.", "Organise structured notes into full sentences."], vocab: "festival, atmosphere, celebration, traditional, event", grammar: "Expressing preferences", funcs: "Discussing cultural festivals and community events." },
+      u3_l4: { module: "3", topic: "The Future of Food: 3D Printing", sb: "52", outcomes: ["Discuss opinions on future food technologies in debates.", "Practise word stress in multi-syllable food vocabulary."], vocab: "3D printing, technology, innovative, nutrition, sustainable", grammar: "Expressing agreement/disagreement (I agree because...)", funcs: "Debating technological advancements in nutrition." },
+      u3_l5: { module: "3", topic: "Healthy Eating: Making Smart Choices", sb: "53-54", outcomes: ["Analyse expository text about contemporary healthy eating choices.", "Evaluate nutrition-related vocabulary (fibre, organic, produce)."], vocab: "energetic, source, fibre, significantly, homemade, produce, organic, harmful, label, maintain[cite: 5]", grammar: "Comparatives in context", funcs: "Discussing dietary habits and health benefits." },
+      u3_l6: { module: "3", topic: "Comparatives & Superlatives", sb: "55", outcomes: ["Apply comparative and superlative adjectives correctly.", "Compare people, places, and food items accurately."], vocab: "degree, comparison, syllable, irregular adjective", grammar: "Comparatives (-er/more) and Superlatives (-est/most)[cite: 5]", funcs: "Comparing food qualities and health benefits." },
+      u3_l7: { module: "3", topic: "Why Eating Well Matters", sb: "56-57", outcomes: ["Compose a two-paragraph report on healthy eating.", "Use linkers of contrast (on the other hand, in contrast)."], vocab: "balanced diet, nutrient, wellness, contrast, benefit", grammar: "Linkers of contrast and cause/effect", funcs: "Writing persuasive reports on nutrition." },
+
+      // --- UNIT 4 ---
+      u4_l1: { module: "4", topic: "What Does It Mean to Live Simply?", sb: "62-63", outcomes: ["Analyse text about simple living and its benefits.", "Apply vocabulary related to lifestyle choices and sustainability."], vocab: "focus, necessarily, instead, thoughtful, benefit, conserve, meaningful, gadget, valuable, balanced[cite: 5]", grammar: "Present Perfect preview", funcs: "Defining simple living; discussing lifestyle changes." },
+      u4_l2: { module: "4", topic: "Present Perfect & Present Perfect Continuous", sb: "64", outcomes: ["Apply present perfect and continuous tenses accurately.", "Describe lifestyle changes and ongoing habits using since/for."], vocab: "duration, result, ongoing, recently, habit", grammar: "Present Perfect (has/have + V3) vs. Present Perfect Continuous (has/have been + V-ing)[cite: 5]", funcs: "Describing recent accomplishments and ongoing lifestyle routines." },
+      u4_l3: { module: "4", topic: "Decluttering Our Spaces", sb: "65", outcomes: ["Identify key information from spoken podcast on decluttering.", "Write short blog-style posts on organizing spaces."], vocab: "cluttered, tidy, organise, stress, calm, focus", grammar: "Expressing feelings and results", funcs: "Discussing mental benefits of physical organization." },
+      u4_l4: { module: "4", topic: "Smart Spending, Wise Living", sb: "66", outcomes: ["Evaluate personal spending habits in relation to personal values.", "Create a balanced sample monthly budget (needs, savings, fun)."], vocab: "budget, savings, needs, treats, financial, calculator", grammar: "Modal verbs for advice (should, could)", funcs: "Discussing financial literacy and wise money management." },
+      u4_l5: { module: "4", topic: "Waste Less, Save the Planet", sb: "67-68", outcomes: ["Analyse persuasive expository text about reducing waste.", "Apply environmental vocabulary and the Three R's (Reduce, Reuse, Recycle)."], vocab: "discard, packaging, responsibly, minimise, expense, preserve, disposable, consumption, donate, mindful, wasteful[cite: 5]", grammar: "Modals of necessity", funcs: "Advocating for environmental conservation." },
+      u4_l6: { module: "4", topic: "Quantifiers (some, any, much, many, few, little)", sb: "69", outcomes: ["Use quantifiers accurately with countable and uncountable nouns.", "Express quantity correctly in real-life shopping contexts."], vocab: "countable, uncountable, quantity, offer, cupboard", grammar: "Quantifiers: some, any, much, many, few, little[cite: 5]", funcs: "Expressing amounts when planning events and shopping." },
+      u4_l7: { module: "4", topic: "Living Simply", sb: "70-71", outcomes: ["Compose a two-paragraph report explaining simple living and reasons for it.", "Use linkers of reason and example (because, since, for instance)."], vocab: "sustainability, minimalism, priority, intention, simplicity", grammar: "Expository report writing structure", funcs: "Synthesizing unit concepts into a final expository report." }
     };
 
-    function loadSavedData() {
-      // CLEAR all old empty arrays saved by mistake from previous iterations
-      localStorage.removeItem('kuwait_teacher_assistant_data');
-      localStorage.removeItem('kuwait_teacher_assistant_data_v2');
-      localStorage.removeItem('kuwait_teacher_assistant_data_v3');
-      localStorage.removeItem('kuwait_teacher_assistant_data_v4');
-      localStorage.removeItem('kuwait_teacher_assistant_data_v5');
+    function generateLessonPlan() {
+      const unitKey = document.getElementById('kuwaitUnitSelector').value;
+      const preset = KUWAIT_PRESETS[unitKey] || KUWAIT_PRESETS.u1_l1;
+      const teacher = document.getElementById('lpTeacherName').value;
+      const day = document.getElementById('lpDay').value;
+      const date = document.getElementById('lpDate').value;
+      const period = document.getElementById('lpPeriodNo').value;
 
-      const saved = localStorage.getItem('kuwait_teacher_assistant_data_v6');
-      if (saved) {
-        try { 
-          const parsed = JSON.parse(saved); 
-          // Safety Check: Only load the local storage if it actually contains students.
-          // Otherwise, fall back to the default NAMES ONLY roster.
-          if (parsed && parsed.c1 && parsed.c1.students.length > 0) {
-            APP_STATE.classes = parsed; 
-            return;
-          }
-        } catch (e) {}
-      }
-      
-      // If memory is empty or corrupted, force defaults:
-      APP_STATE.classes = {
-        c1: { name: 'Class 9/5', students: INITIAL_STUDENTS_C1 },
-        c2: { name: 'Class 9/6', students: INITIAL_STUDENTS_C2 }
-      };
+      const outputHtml = `
+        <div class="moe-plan-doc">
+          <div class="moe-header-box">
+            <div>Ministry of Education<br>E.L.T. General Supervision</div>
+            <div style="text-align:right;">Intermediate Stage Grade 9A[cite: 5]</div>
+          </div>
+          <div class="moe-plan-title">OFFICIAL LESSON PLAN</div>
+          
+          <table class="moe-section-table" style="margin-bottom:10px; font-size:0.82rem;">
+            <tr>
+              <td><strong>Teacher:</strong> ${teacher}</td>
+              <td><strong>Classes:</strong> 9-5 & 9-6</td>
+              <td><strong>Module:</strong> ${preset.module}[cite: 5]</td>
+              <td><strong>SB Pages:</strong> ${preset.sb}[cite: 5]</td>
+            </tr>
+            <tr>
+              <td><strong>Day & Date:</strong> ${day}, ${date}</td>
+              <td><strong>Period:</strong> ${period}</td>
+              <td colspan="2"><strong>Topic:</strong> ${preset.topic}[cite: 5]</td>
+            </tr>
+          </table>
+
+          <table class="moe-section-table">
+            <tr>
+              <th>Lesson Learning Outcomes :</th>
+              <td><ul>${preset.outcomes.map(o => `<li>${o}</li>`).join('')}</ul></td>
+            </tr>
+            <tr>
+              <th>Language Focus :</th>
+              <td>
+                <strong>Vocabulary:</strong> ${preset.vocab}<br>
+                <strong>Grammar:</strong> ${preset.grammar}<br>
+                <strong>Functions:</strong> ${preset.funcs}
+              </td>
+            </tr>
+            <tr>
+              <th>21st-Century Skills & Values :</th>
+              <td>Critical Thinking • Communication • Collaboration • Responsibility • Global Awareness</td>
+            </tr>
+            <tr>
+              <th>Anticipated Challenges :</th>
+              <td>Students may encounter unfamiliar contextual vocabulary or require scaffolding for target grammatical structures.</td>
+            </tr>
+            <tr>
+              <th>Proposed Solutions :</th>
+              <td>Provide clear visual cues, concept-checking questions, and structured peer collaboration tasks.</td>
+            </tr>
+            <tr>
+              <th>Teaching Strategies :</th>
+              <td>– C.L.T. &nbsp;&nbsp; – Task-Based Learning &nbsp;&nbsp; – Differentiation &nbsp;&nbsp; – Active Learning</td>
+            </tr>
+            <tr>
+              <th>Teaching Aids :</th>
+              <td>Projector / PowerPoint Slides / Pearls of Kuwait Student's Book Grade 9A[cite: 5]</td>
+            </tr>
+          </table>
+
+          <table class="moe-section-table">
+            <tr>
+              <th>Lesson Procedure</th>
+              <th style="width:18%;">Time</th>
+            </tr>
+            <tr>
+              <td><strong>Warm-up:</strong> Activate prior knowledge through visual elicitation and guided discussion related to the lesson theme.</td>
+              <td>5 min.</td>
+            </tr>
+            <tr>
+              <td><strong>Sequence of Activities (Pre – While – Post):</strong> Interactive reading/listening tasks, vocabulary in context, grammar discovery, and communicative pair/group practice.</td>
+              <td>30 min.</td>
+            </tr>
+            <tr>
+              <td><strong>Wrap-up:</strong> Formative exit check, summary of key takeaways, and assignment of homework tasks.</td>
+              <td>5 min.</td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>Assessment :</strong> Formative observation during interactive tasks and written practice checks.</td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>What worked well? :</strong> <input type="text" class="form-control" value="Engaged students effectively through interactive visual prompts and structured pair work." style="background:#fff;"></td>
+            </tr>
+            <tr>
+              <td colspan="2"><strong>What needs improvement? :</strong> <input type="text" class="form-control" value="Provide additional scaffolding for lower-proficiency learners during independent tasks." style="background:#fff;"></td>
+            </tr>
+          </table>
+
+          <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:700; font-size:0.85rem;">
+            <div>H.O.D: ........................</div>
+            <div>E.L.T. Supervisor</div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('editablePlanContent').innerHTML = outputHtml;
+      document.getElementById('generatedLessonOutput').style.display = 'block';
     }
 
-    function saveDataLocally() {
-      localStorage.setItem('kuwait_teacher_assistant_data_v6', JSON.stringify(APP_STATE.classes));
-    }
-
-    function exportDataBackup() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(APP_STATE.classes, null, 2));
-      const a = document.createElement('a');
-      a.setAttribute("href", dataStr);
-      a.setAttribute("download", "Kuwait_English_Teacher_Backup.json");
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
-
-    function resetAppData() {
-      localStorage.clear();
-      alert("App memory cleared! Reloading page to show default students.");
-      window.location.reload(true);
-    }
-
-    function toggleLanguage() {
-      document.body.classList.toggle('rtl');
-      alert("Language orientation toggled.");
-      // 1. Initialize the App State
+    /* ==========================================================
+       APP STATE & RENDERING
+       ========================================================== */
     let APP_STATE = {
       activeClass: 'c1',
       classes: {
@@ -1866,71 +815,104 @@
       }
     };
 
-    // 2. Function to draw the students into the HTML table
     function renderRoster() {
       const tbody = document.getElementById('rosterTableBody');
       const currentClass = APP_STATE.classes[APP_STATE.activeClass];
       
-      // Update headers
       document.getElementById('rosterTitle').textContent = currentClass.name + " Grades & Diagnostic Insights";
       document.getElementById('rosterCountBadge').textContent = currentClass.students.length + " Students";
-
-      // Clear the table
       tbody.innerHTML = '';
 
-      // Loop through students and create rows
       currentClass.students.forEach((student) => {
-        const overall = Math.round((student.listening + student.speaking + student.reading + student.writing) / 4);
-        
         const row = document.createElement('tr');
         row.innerHTML = `
           <td><strong>${student.name}</strong></td>
           <td>
             <div class="cat-bar-grid">
-              <div class="cat-pill">🎧 L: <span class="grade-val">${student.listening}%</span></div>
-              <div class="cat-pill">🗣 S: <span class="grade-val">${student.speaking}%</span></div>
-              <div class="cat-pill">📖 R: <span class="grade-val">${student.reading}%</span></div>
-              <div class="cat-pill">✍ W: <span class="grade-val">${student.writing}%</span></div>
+              <div class="cat-pill">🎧 L: <span class="grade-val">-</span></div>
+              <div class="cat-pill">🗣 S: <span class="grade-val">-</span></div>
+              <div class="cat-pill">📖 R: <span class="grade-val">-</span></div>
+              <div class="cat-pill">✍ W: <span class="grade-val">-</span></div>
             </div>
           </td>
-          <td><span class="badge ${overall >= 80 ? 'badge-success' : 'badge-warning'}">${overall}%</span></td>
-          <td>
-            <div class="insight-card">
-              Currently performing at a ${student.ministryLevel} level based on Ministry standards.
-            </div>
-          </td>
-          <td><span class="badge badge-primary">${student.ministryLevel}</span></td>
+          <td><span class="badge badge-secondary">-</span></td>
+          <td><div class="insight-card">Awaiting baseline assessment across Listening & Speaking domains.</div></td>
+          <td><span class="badge badge-secondary">${student.ministryLevel}</span></td>
           <td style="text-align:right;">
-             <button class="btn btn-secondary btn-sm">Edit</button>
+             <button class="btn btn-secondary btn-sm" onclick="alert('Grade entry active.')">Edit</button>
           </td>
         `;
         tbody.appendChild(row);
       });
     }
 
-    // 3. Fix the Class Switcher buttons (Class 9/5 vs 9/6)
+    function renderAttendance() {
+      const tbody = document.getElementById('attendanceTableBody');
+      const currentClass = APP_STATE.classes[APP_STATE.activeClass];
+      
+      document.getElementById('attClassLabel').textContent = currentClass.name;
+      tbody.innerHTML = '';
+
+      currentClass.students.forEach((student) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${student.name}</strong></td>
+          <td>
+            <select class="form-control" style="width: 120px; padding: 6px;">
+              <option value="">-- Select --</option>
+              <option value="Present">Present</option>
+              <option value="Absent">Absent</option>
+              <option value="Late">Late</option>
+              <option value="Excused">Excused</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="Add note..." style="width: 100%; padding: 6px;">
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      const dateInput = document.getElementById('attDate');
+      if(!dateInput.value) {
+        dateInput.valueAsDate = new Date();
+      }
+    }
+
     function switchClass(classId) {
       APP_STATE.activeClass = classId;
       document.getElementById('btnClass1').classList.toggle('active', classId === 'c1');
       document.getElementById('btnClass2').classList.toggle('active', classId === 'c2');
-      renderRoster();
+      renderRoster(); 
+      renderAttendance();
     }
 
-    // 4. Fix the Top Navigation Tabs
     function showTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       
       document.getElementById(tabId).classList.add('active');
-      document.querySelector(\`.tab-btn[data-tab="\${tabId}"]\`).classList.add('active');
+      document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
     }
 
-    // 5. Trigger the render when the page first loads
-    window.onload = function() {
-      loadSavedData(); // Loads your local storage function
-      renderRoster();  // Draws the table
-    };
+    function resetAppData() {
+      if(confirm("Reset app data?")) {
+        APP_STATE.classes.c1.students = INITIAL_STUDENTS_C1;
+        APP_STATE.classes.c2.students = INITIAL_STUDENTS_C2;
+        renderRoster();
+        renderAttendance();
+        alert("App reset successfully.");
+      }
     }
+
+    function toggleLanguage() {
+      document.body.classList.toggle('rtl');
+    }
+
+    window.onload = function() {
+      renderRoster(); 
+      renderAttendance();
+    };
   </script>
 </body>
 </html>
