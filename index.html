@@ -1857,6 +1857,79 @@
     function toggleLanguage() {
       document.body.classList.toggle('rtl');
       alert("Language orientation toggled.");
+      // 1. Initialize the App State
+    let APP_STATE = {
+      activeClass: 'c1',
+      classes: {
+        c1: { name: 'Class 9/5', students: INITIAL_STUDENTS_C1 },
+        c2: { name: 'Class 9/6', students: INITIAL_STUDENTS_C2 }
+      }
+    };
+
+    // 2. Function to draw the students into the HTML table
+    function renderRoster() {
+      const tbody = document.getElementById('rosterTableBody');
+      const currentClass = APP_STATE.classes[APP_STATE.activeClass];
+      
+      // Update headers
+      document.getElementById('rosterTitle').textContent = currentClass.name + " Grades & Diagnostic Insights";
+      document.getElementById('rosterCountBadge').textContent = currentClass.students.length + " Students";
+
+      // Clear the table
+      tbody.innerHTML = '';
+
+      // Loop through students and create rows
+      currentClass.students.forEach((student) => {
+        const overall = Math.round((student.listening + student.speaking + student.reading + student.writing) / 4);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${student.name}</strong></td>
+          <td>
+            <div class="cat-bar-grid">
+              <div class="cat-pill">🎧 L: <span class="grade-val">${student.listening}%</span></div>
+              <div class="cat-pill">🗣 S: <span class="grade-val">${student.speaking}%</span></div>
+              <div class="cat-pill">📖 R: <span class="grade-val">${student.reading}%</span></div>
+              <div class="cat-pill">✍ W: <span class="grade-val">${student.writing}%</span></div>
+            </div>
+          </td>
+          <td><span class="badge ${overall >= 80 ? 'badge-success' : 'badge-warning'}">${overall}%</span></td>
+          <td>
+            <div class="insight-card">
+              Currently performing at a ${student.ministryLevel} level based on Ministry standards.
+            </div>
+          </td>
+          <td><span class="badge badge-primary">${student.ministryLevel}</span></td>
+          <td style="text-align:right;">
+             <button class="btn btn-secondary btn-sm">Edit</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // 3. Fix the Class Switcher buttons (Class 9/5 vs 9/6)
+    function switchClass(classId) {
+      APP_STATE.activeClass = classId;
+      document.getElementById('btnClass1').classList.toggle('active', classId === 'c1');
+      document.getElementById('btnClass2').classList.toggle('active', classId === 'c2');
+      renderRoster();
+    }
+
+    // 4. Fix the Top Navigation Tabs
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(\`.tab-btn[data-tab="\${tabId}"]\`).classList.add('active');
+    }
+
+    // 5. Trigger the render when the page first loads
+    window.onload = function() {
+      loadSavedData(); // Loads your local storage function
+      renderRoster();  // Draws the table
+    };
     }
   </script>
 </body>
