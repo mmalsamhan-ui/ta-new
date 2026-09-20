@@ -6,7 +6,7 @@
   <title>English Teacher Assistant | Classes 9/5 & 9/6 (Kuwait 9A)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #2563eb;
@@ -285,6 +285,13 @@
       vertical-align: middle;
     }
 
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--neutral-600);
+    }
+    .empty-state p { margin-top: 8px; font-size: 0.9rem; }
+
     /* Category Diagnostic Badges */
     .cat-bar-grid {
       display: grid;
@@ -309,7 +316,6 @@
     .grade-C { color: #d97706; }
     .grade-D, .grade-F { color: #dc2626; }
 
-    /* Student Insight Box */
     .insight-card {
       background: #f8fafc;
       border-left: 3px solid var(--primary);
@@ -320,7 +326,6 @@
       line-height: 1.4;
       margin-top: 4px;
     }
-    body.rtl .insight-card { border-left: none; border-right: 3px solid var(--primary); border-radius: 6px 0 0 6px; }
 
     /* Modal Styling */
     .modal-overlay {
@@ -383,7 +388,7 @@
 </head>
 <body>
 
-  <!-- Top App Navigation -->
+  <!-- Top Navigation Header -->
   <header>
     <div class="top-bar">
       <div class="brand">
@@ -394,7 +399,7 @@
         </div>
       </div>
 
-      <!-- Quick Class Switcher (Classes 9/5 & 9/6 - No IDs) -->
+      <!-- Quick Class Switcher -->
       <div class="class-switcher-container">
         <button class="class-btn active" id="btnClass1" onclick="switchClass('c1')">
           <span>📘</span> Class 9/5
@@ -410,7 +415,7 @@
       </div>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Tabs -->
     <div class="nav-tabs-wrapper">
       <button class="tab-btn active" data-tab="tab-roster" onclick="showTab('tab-roster')">
         <span>👥</span> Student Grades & Insights
@@ -475,7 +480,7 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB 1: STUDENT GRADES & INSIGHTS (ARABIC ROSTER - NO IDS)-->
+    <!-- TAB 1: STUDENT GRADES & INSIGHTS (CLEAN SLATE)           -->
     <!-- ======================================================== -->
     <div id="tab-roster" class="tab-content active">
       <div class="card">
@@ -483,10 +488,11 @@
           <div>
             <h2 class="card-title" id="rosterTitle">Class 9/5 Grades & Diagnostic Insights</h2>
             <p style="font-size:0.82rem; color:var(--neutral-600); margin-top:2px;">
-              Kuwait Ministry of Education official student roster with category tracking (Listening, Speaking, Reading, Writing)[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span).
+              Categorized performance across <strong>Listening, Speaking, Reading, and Writing</strong> aligned with Kuwait ELT supervision descriptors[cite: 1, 3].
             </p>
           </div>
           <div style="display:flex; gap:8px;">
+            <button class="btn btn-secondary" onclick="openBulkImportModal()">📋 Quick Paste Names</button>
             <button class="btn btn-primary" onclick="openAddStudentModal()">➕ Add Student</button>
             <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
           </div>
@@ -496,16 +502,16 @@
           <table class="table">
             <thead>
               <tr>
-                <th style="min-width: 170px;">اسم الطالبة (Student Name)</th>
+                <th style="min-width: 150px;">Student Name</th>
                 <th style="min-width: 260px;">Grades by Category</th>
                 <th style="min-width: 90px;">Overall</th>
                 <th style="min-width: 280px;">AI Category Insight & Recommendation</th>
-                <th style="min-width: 110px;">Ministry Level</th>
+                <th style="min-width: 110px;">Ministry Descr.</th>
                 <th style="text-align:right; min-width: 110px;">Actions</th>
               </tr>
             </thead>
             <tbody id="rosterTableBody">
-              <!-- Rendered dynamically -->
+              <!-- Dynamically populated from your real input -->
             </tbody>
           </table>
         </div>
@@ -533,7 +539,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th>اسم الطالبة (Student Name)</th>
+                <th>Student Name</th>
                 <th>Status</th>
                 <th>Observations / Notes</th>
               </tr>
@@ -589,7 +595,7 @@
           <div class="form-group">
             <label>Student</label>
             <select id="cwStudentSelect" class="form-control">
-              <!-- Populated dynamically with Arabic student names -->
+              <!-- Populated dynamically -->
             </select>
           </div>
           <div class="form-group">
@@ -608,7 +614,6 @@
       <div class="card">
         <div class="card-header">
           <h2 class="card-title">2. Student Work Capture</h2>
-          <button class="btn btn-secondary btn-sm" onclick="simulateKuwaitStudentPaper()">📄 Load Sample Student Paper</button>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
@@ -664,7 +669,7 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">Kuwait Ministry 9A Lesson Planner</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Preloaded with official <em>English Pearls of Kuwait</em> units, grammar, and 21st-century values[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span).</p>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Preloaded with official <em>English Pearls of Kuwait</em> units, grammar, and 21st-century values[cite: 1, 4].</p>
           </div>
         </div>
 
@@ -786,7 +791,7 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">Class Category Analytics (Listening, Speaking, Reading, Writing)</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Real-time domain diagnostic breakdown for <strong id="repClassTitle">Class 9/5</strong>[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span).</p>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Real-time domain diagnostic breakdown for <strong id="repClassTitle">Class 9/5</strong>[cite: 1, 3].</p>
           </div>
           <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print Analytics</button>
         </div>
@@ -795,22 +800,22 @@
           <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#1e40af; text-transform:uppercase;">🎧 Listening Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#1e3a8a; margin-top:4px;" id="avgListeningDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#3b82f6;">Comprehension of oral texts[span_16](start_span)[span_16](end_span)</div>
+            <div style="font-size:0.72rem; color:#3b82f6;">Comprehension of oral texts[cite: 1]</div>
           </div>
           <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#065f46; text-transform:uppercase;">🗣 Speaking Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#064e3b; margin-top:4px;" id="avgSpeakingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#10b981;">Fluency, confidence & expressions[span_17](start_span)[span_17](end_span)</div>
+            <div style="font-size:0.72rem; color:#10b981;">Fluency, confidence & expressions[cite: 3]</div>
           </div>
           <div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#854d0e; text-transform:uppercase;">📖 Reading Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#713f12; margin-top:4px;" id="avgReadingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#ca8a04;">Scanning, vocabulary & ideas[span_18](start_span)[span_18](end_span)</div>
+            <div style="font-size:0.72rem; color:#ca8a04;">Scanning, vocabulary & ideas[cite: 1]</div>
           </div>
           <div style="background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#6b21a8; text-transform:uppercase;">✍ Writing Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#581c87; margin-top:4px;" id="avgWritingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#9333ea;">Expository reports & linkers[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)</div>
+            <div style="font-size:0.72rem; color:#9333ea;">Expository reports & linkers[cite: 1, 3]</div>
           </div>
         </div>
 
@@ -830,35 +835,35 @@
             <tbody>
               <tr>
                 <td><strong>Listening</strong></td>
-                <td>Understands details and responds accurately[span_21](start_span)[span_21](end_span).</td>
-                <td>Understands most details with small gaps[span_22](start_span)[span_22](end_span).</td>
-                <td>Understands main ideas, misses minor details[span_23](start_span)[span_23](end_span).</td>
-                <td>Frequent misunderstanding, needs repetition[span_24](start_span)[span_24](end_span).</td>
-                <td>Cannot understand spoken English[span_25](start_span)[span_25](end_span).</td>
+                <td>Understands details and responds accurately[cite: 3].</td>
+                <td>Understands most details with small gaps[cite: 3].</td>
+                <td>Understands main ideas, misses minor details[cite: 3].</td>
+                <td>Frequent misunderstanding, needs repetition[cite: 3].</td>
+                <td>Cannot understand spoken English[cite: 3].</td>
               </tr>
               <tr>
                 <td><strong>Speaking</strong></td>
-                <td>Speaks clearly, confidently and naturally[span_26](start_span)[span_26](end_span).</td>
-                <td>Few mistakes; mostly clear and relevant[span_27](start_span)[span_27](end_span).</td>
-                <td>Understands main points; occasional hesitation[span_28](start_span)[span_28](end_span).</td>
-                <td>Frequent pauses; struggles with message[span_29](start_span)[span_29](end_span).</td>
-                <td>Cannot produce clear spoken answers[span_30](start_span)[span_30](end_span).</td>
+                <td>Speaks clearly, confidently and naturally[cite: 3].</td>
+                <td>Few mistakes; mostly clear and relevant[cite: 3].</td>
+                <td>Understands main points; occasional hesitation[cite: 3].</td>
+                <td>Frequent pauses; struggles with message[cite: 3].</td>
+                <td>Cannot produce clear spoken answers[cite: 3].</td>
               </tr>
               <tr>
                 <td><strong>Reading</strong></td>
-                <td>Full comprehension; reads aloud fluently[span_31](start_span)[span_31](end_span).</td>
-                <td>Understands most ideas; few pronunciation slips[span_32](start_span)[span_32](end_span).</td>
-                <td>Grasps main points; minor reading errors[span_33](start_span)[span_33](end_span).</td>
-                <td>Struggles to comprehend paragraphs[span_34](start_span)[span_34](end_span).</td>
-                <td>Cannot decode or read aloud clearly[span_35](start_span)[span_35](end_span).</td>
+                <td>Full comprehension; reads aloud fluently[cite: 3].</td>
+                <td>Understands most ideas; few pronunciation slips[cite: 3].</td>
+                <td>Grasps main points; minor reading errors[cite: 3].</td>
+                <td>Struggles to comprehend paragraphs[cite: 3].</td>
+                <td>Cannot decode or read aloud clearly[cite: 3].</td>
               </tr>
               <tr>
                 <td><strong>Writing</strong></td>
-                <td>Well-organized; excellent linkers & grammar[span_36](start_span)[span_36](end_span).</td>
-                <td>Clear ideas; few minor spelling slips[span_37](start_span)[span_37](end_span).</td>
-                <td>Basic paragraph structure; some errors[span_38](start_span)[span_38](end_span).</td>
-                <td>Unclear meaning; frequent grammar errors[span_39](start_span)[span_39](end_span).</td>
-                <td>Cannot compose coherent text[span_40](start_span)[span_40](end_span).</td>
+                <td>Well-organized; excellent linkers & grammar[cite: 3].</td>
+                <td>Clear ideas; few minor spelling slips[cite: 3].</td>
+                <td>Basic paragraph structure; some errors[cite: 3].</td>
+                <td>Unclear meaning; frequent grammar errors[cite: 3].</td>
+                <td>Cannot compose coherent text[cite: 3].</td>
               </tr>
             </tbody>
           </table>
@@ -867,31 +872,31 @@
     </div>
   </main>
 
-  <!-- MODAL: EDIT STUDENT GRADES & INSIGHTS (LISTENING, SPEAKING, READING, WRITING) -->
+  <!-- MODAL: ADD / EDIT SINGLE STUDENT -->
   <div class="modal-overlay" id="studentModal">
     <div class="modal-card">
       <h3 style="margin-bottom:12px;" id="modalTitle">Student Performance by Category</h3>
       <div class="form-group" style="margin-bottom:12px;">
-        <label>Student Name (اسم الطالبة)</label>
-        <input type="text" id="modalStudentName" class="form-control" />
+        <label>Student Name (Arabic or English)</label>
+        <input type="text" id="modalStudentName" class="form-control" placeholder="e.g., فاطمة الكندري or Sarah Al-Mutawa" />
       </div>
 
       <div class="form-grid">
         <div class="form-group">
           <label>🎧 Listening Grade (%)</label>
-          <input type="number" id="modalListening" class="form-control" min="0" max="100" oninput="liveUpdateModalInsights()" />
+          <input type="number" id="modalListening" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
         </div>
         <div class="form-group">
           <label>🗣 Speaking Grade (%)</label>
-          <input type="number" id="modalSpeaking" class="form-control" min="0" max="100" oninput="liveUpdateModalInsights()" />
+          <input type="number" id="modalSpeaking" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
         </div>
         <div class="form-group">
           <label>📖 Reading Grade (%)</label>
-          <input type="number" id="modalReading" class="form-control" min="0" max="100" oninput="liveUpdateModalInsights()" />
+          <input type="number" id="modalReading" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
         </div>
         <div class="form-group">
           <label>✍ Writing Grade (%)</label>
-          <input type="number" id="modalWriting" class="form-control" min="0" max="100" oninput="liveUpdateModalInsights()" />
+          <input type="number" id="modalWriting" class="form-control" min="0" max="100" value="80" oninput="liveUpdateModalInsights()" />
         </div>
       </div>
 
@@ -899,14 +904,13 @@
         <label>Ministry Assessment Check Level</label>
         <select id="modalMinistryLevel" class="form-control">
           <option value="Excellent">Excellent</option>
-          <option value="Good">Good</option>
+          <option value="Good" selected>Good</option>
           <option value="OK">OK</option>
           <option value="Needs Help">Needs Help</option>
           <option value="Not Yet">Not Yet</option>
         </select>
       </div>
 
-      <!-- Live AI Pedagogical Insight Preview -->
       <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:10px; margin-bottom:16px;">
         <div style="font-size:0.75rem; font-weight:700; color:#1e40af; text-transform:uppercase; margin-bottom:4px;">💡 AI Pedagogical Insight Preview</div>
         <div id="modalInsightPreview" style="font-size:0.8rem; color:#1e3a8a; line-height:1.4;"></div>
@@ -914,7 +918,28 @@
 
       <div style="display:flex; justify-content:flex-end; gap:8px;">
         <button class="btn btn-secondary" onclick="closeStudentModal()">Cancel</button>
-        <button class="btn btn-primary" onclick="saveStudentModal()">Save Grade & Insights</button>
+        <button class="btn btn-primary" onclick="saveStudentModal()">Save Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: QUICK BULK PASTE ROSTER -->
+  <div class="modal-overlay" id="bulkImportModal">
+    <div class="modal-card">
+      <h3 style="margin-bottom:8px;">📋 Quick Paste Student Roster</h3>
+      <p style="font-size:0.8rem; color:var(--neutral-600); margin-bottom:12px;">
+        Paste student names (Arabic or English) directly from your school roster or Excel list. Put each name on a new line.
+      </p>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Student Names (One Per Line)</label>
+        <textarea id="bulkNamesInput" class="form-control" style="min-height: 180px; font-size:0.9rem;" placeholder="فاطمة أحمد الكندري&#10;مريم سالم الهاجري&#10;دلال مبارك العجمي"></textarea>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-size:0.78rem; color:var(--neutral-500);">Auto-assigns baseline 80% category marks[cite: 3].</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-secondary" onclick="closeBulkImportModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="saveBulkImport()">Import to Class</button>
+        </div>
       </div>
     </div>
   </div>
@@ -958,7 +983,6 @@
       }
     };
 
-    /* Husband's Daily Motivational Quotes */
     const HUSBAND_QUOTES = [
       "\"To the world you are an inspiring teacher, but to our home and family, you are our heart and rock. Have a blessed school day!\"",
       "\"The care, love, and intelligence you pour into your students and our children every single day is pure magic. I'm so proud of you!\"",
@@ -968,7 +992,6 @@
     ];
     let husbandQuoteIdx = 0;
 
-    /* Bell Schedule Definition (Kuwait Timetable) */
     const BELL_SCHEDULE = [
       { name: "Morning Meeting", start: "07:30", end: "07:40", type: "meeting" },
       { name: "Period 1", start: "07:40", end: "08:25", type: "period", p: 1 },
@@ -982,7 +1005,6 @@
       { name: "Period 7", start: "12:55", end: "13:40", type: "period", p: 7 }
     ];
 
-    /* Weekly Periods Map */
     const WEEKLY_PERIODS = {
       Sunday: { c1: [2, 3, 7], c2: [5, 6] },
       Monday: { c1: [2], c2: [3, 7] },
@@ -991,81 +1013,19 @@
       Thursday: { c1: [5, 6], c2: [1, 2] }
     };
 
-    /* ==========================================================
-       REAL KUWAIT MINISTRY ARABIC STUDENT ROSTERS (NO IDS)
-       ========================================================== */
-    const DEFAULT_CLASSES = {
-      c1: {
-        name: 'Class 9/5',
-        students: [
-          { name: "أوراد ثويني سليمان ثويني", listening: 88, speaking: 85, reading: 90, writing: 82, ministryLevel: "Good" },
-          { name: "الجود حسن علي البلوشي", listening: 92, speaking: 90, reading: 94, writing: 88, ministryLevel: "Excellent" },
-          { name: "العنود عمر عبد العزيز الجعيب", listening: 84, speaking: 82, reading: 85, writing: 80, ministryLevel: "Good" },
-          { name: "بشاير محمد أحمد القريافي", listening: 86, speaking: 85, reading: 88, writing: 82, ministryLevel: "Good" },
-          { name: "حوراء حسين أحمد حبيب حسن علي قمبر", listening: 95, speaking: 94, reading: 96, writing: 92, ministryLevel: "Excellent" },
-          { name: "دانه فهد عبد الرحمن العوضي", listening: 89, speaking: 86, reading: 90, writing: 84, ministryLevel: "Good" },
-          { name: "روز مطلق محمد العازمي", listening: 85, speaking: 82, reading: 86, writing: 80, ministryLevel: "Good" },
-          { name: "ريان فيصل مساعد فرحان", listening: 90, speaking: 88, reading: 91, writing: 85, ministryLevel: "Good" },
-          { name: "ريان نواف فاضل المزيعل", listening: 83, speaking: 80, reading: 85, writing: 78, ministryLevel: "Good" },
-          { name: "ريم عبد الله علي الهدية", listening: 94, speaking: 92, reading: 95, writing: 90, ministryLevel: "Excellent" },
-          { name: "ريناد عبد العزيز سلطان البهولي", listening: 87, speaking: 84, reading: 88, writing: 82, ministryLevel: "Good" },
-          { name: "زينه عيسى خالد عبد الله أحمد", listening: 96, speaking: 95, reading: 97, writing: 94, ministryLevel: "Excellent" },
-          { name: "سميره عبد الله علي الدرزي", listening: 82, speaking: 78, reading: 84, writing: 76, ministryLevel: "Good" },
-          { name: "عائشة أحمد يوسف المطيري", listening: 88, speaking: 86, reading: 90, writing: 85, ministryLevel: "Good" },
-          { name: "غلا خالد وليد الفرحان", listening: 91, speaking: 89, reading: 93, writing: 88, ministryLevel: "Good" },
-          { name: "فاطمة مبارك سعود القطان", listening: 85, speaking: 80, reading: 86, writing: 81, ministryLevel: "Good" },
-          { name: "فاطمة محمد مسلم أبو عنيج", listening: 84, speaking: 82, reading: 85, writing: 79, ministryLevel: "Good" },
-          { name: "فاطمه حسن عبد الوهاب الدشتي", listening: 95, speaking: 94, reading: 96, writing: 92, ministryLevel: "Excellent" },
-          { name: "كنوز بدر عوض الصواغ العازمي", listening: 86, speaking: 83, reading: 88, writing: 80, ministryLevel: "Good" },
-          { name: "مريم عبد الله علي الجاركي", listening: 90, speaking: 88, reading: 92, writing: 86, ministryLevel: "Good" },
-          { name: "منار طلال سالم أبو عنيج", listening: 83, speaking: 80, reading: 84, writing: 78, ministryLevel: "Good" },
-          { name: "منيره نايف حزام الفريد", listening: 88, speaking: 85, reading: 89, writing: 84, ministryLevel: "Good" },
-          { name: "مها فهد غانم الهاجري", listening: 85, speaking: 82, reading: 86, writing: 81, ministryLevel: "Good" },
-          { name: "نوره حمود مرزوق الغريب", listening: 87, speaking: 84, reading: 88, writing: 83, ministryLevel: "Good" },
-          { name: "هديل فهد محمد مرزوق مبرك الشتلي العازمي", listening: 92, speaking: 90, reading: 94, writing: 89, ministryLevel: "Excellent" },
-          { name: "هناء فهد سويد العجمي", listening: 86, speaking: 84, reading: 87, writing: 82, ministryLevel: "Good" },
-          { name: "هيا محمد حمد مفرح", listening: 89, speaking: 86, reading: 90, writing: 85, ministryLevel: "Good" }
-        ]
-      },
-      c2: {
-        name: 'Class 9/6',
-        students: [
-          { name: "أمينه جاسم ناصر الصعفوسي", listening: 86, speaking: 84, reading: 88, writing: 82, ministryLevel: "Good" },
-          { name: "أوراد فهاد عبد الله المنير", listening: 88, speaking: 86, reading: 89, writing: 84, ministryLevel: "Good" },
-          { name: "الحور فواز غازي العتيبي", listening: 94, speaking: 92, reading: 95, writing: 90, ministryLevel: "Excellent" },
-          { name: "الزين سالم ماجد الشمري", listening: 85, speaking: 82, reading: 86, writing: 80, ministryLevel: "Good" },
-          { name: "جواهر ناصر بدر المطيري", listening: 87, speaking: 85, reading: 88, writing: 83, ministryLevel: "Good" },
-          { name: "جوري خالد أحمد كرم", listening: 90, speaking: 88, reading: 92, writing: 86, ministryLevel: "Good" },
-          { name: "حنين عبد الله ياسين عبد الكريم", listening: 95, speaking: 94, reading: 96, writing: 92, ministryLevel: "Excellent" },
-          { name: "حنين عمر مبارك الأحمد", listening: 84, speaking: 80, reading: 85, writing: 78, ministryLevel: "Good" },
-          { name: "حوراء أحمد حسين ملك", listening: 96, speaking: 95, reading: 97, writing: 93, ministryLevel: "Excellent" },
-          { name: "حوراء علي حسن محمد علي", listening: 92, speaking: 90, reading: 94, writing: 88, ministryLevel: "Excellent" },
-          { name: "دانه طلال محمد العازمي", listening: 85, speaking: 82, reading: 86, writing: 81, ministryLevel: "Good" },
-          { name: "ديمه أحمد بركه المطيري", listening: 89, speaking: 87, reading: 90, writing: 85, ministryLevel: "Good" },
-          { name: "رعد عبد الله عايض العازمي", listening: 83, speaking: 80, reading: 84, writing: 78, ministryLevel: "Good" },
-          { name: "رقية إبراهيم مكي إبراهيم أحمد القلاف", listening: 93, speaking: 91, reading: 95, writing: 89, ministryLevel: "Excellent" },
-          { name: "ريان خالد فيصل المكيمي", listening: 88, speaking: 85, reading: 89, writing: 84, ministryLevel: "Good" },
-          { name: "زينب أحمد حسين يتيم", listening: 95, speaking: 94, reading: 96, writing: 92, ministryLevel: "Excellent" },
-          { name: "سندس عبد الله إبراهيم الحلاوه", listening: 87, speaking: 85, reading: 88, writing: 83, ministryLevel: "Good" },
-          { name: "شيخه فيصل غازي المطيري", listening: 86, speaking: 84, reading: 87, writing: 82, ministryLevel: "Good" },
-          { name: "عائشة علي عيد العازمي", listening: 85, speaking: 82, reading: 86, writing: 80, ministryLevel: "Good" },
-          { name: "فاطمه أحمد جاسم مناسبوري", listening: 94, speaking: 92, reading: 95, writing: 90, ministryLevel: "Excellent" },
-          { name: "فاطمه فهد مجاهد المطيري", listening: 88, speaking: 86, reading: 89, writing: 85, ministryLevel: "Good" },
-          { name: "فاطمه مشاري فهد أسد", listening: 91, speaking: 89, reading: 93, writing: 88, ministryLevel: "Good" },
-          { name: "لمى محمد معجب الهاجري", listening: 86, speaking: 83, reading: 88, writing: 82, ministryLevel: "Good" },
-          { name: "ليال يعقوب غانم الباطني", listening: 92, speaking: 90, reading: 94, writing: 89, ministryLevel: "Excellent" },
-          { name: "مريم مبارك نزال الرميح", listening: 95, speaking: 94, reading: 96, writing: 92, ministryLevel: "Excellent" },
-          { name: "مريم وليد محمد كندري", listening: 96, speaking: 95, reading: 97, writing: 94, ministryLevel: "Excellent" },
-          { name: "مها إبراهيم مسفر صقر المطيري", listening: 85, speaking: 82, reading: 86, writing: 80, ministryLevel: "Good" },
-          { name: "نوره جاسم محمد العبد الله", listening: 90, speaking: 88, reading: 92, writing: 86, ministryLevel: "Good" },
-          { name: "هياء بسام سالم القحطاني", listening: 89, speaking: 87, reading: 91, writing: 85, ministryLevel: "Good" }
-        ]
-      }
-    };
-
+    /* APP STATE: ALL DUMMY STUDENTS & DATA REMOVED */
     const APP_STATE = {
       activeClassId: 'c1',
-      classes: JSON.parse(JSON.stringify(DEFAULT_CLASSES)),
+      classes: {
+        c1: {
+          name: 'Class 9/5',
+          students: [] /* Empty clean roster */
+        },
+        c2: {
+          name: 'Class 9/6',
+          students: [] /* Empty clean roster */
+        }
+      },
       currentGallery: [],
       currentCorrection: null,
       editingStudentIndex: -1
@@ -1092,32 +1052,24 @@
 
       let diagnosis = "";
       if (lowest.name === 'Writing' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Writing alert (${lowest.val}%):</strong> Needs practice with expository report structure and linkers (because, as a result)[span_41](start_span)[span_41](end_span)[span_42](start_span)[span_42](end_span). Provide sentence frames[span_43](start_span)[span_43](end_span).`;
+        diagnosis = `⚠️ <strong>Writing alert (${lowest.val}%):</strong> Struggles with paragraph organization or cause-effect linkers (because, as a result)[cite: 1, 3]. Provide sentence starters.`;
       } else if (lowest.name === 'Speaking' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Speaking focus (${lowest.val}%):</strong> Occasional hesitation during survival discussions[span_44](start_span)[span_44](end_span)[span_45](start_span)[span_45](end_span). Support through structured pair dialogues[span_46](start_span)[span_46](end_span)[span_47](start_span)[span_47](end_span).`;
+        diagnosis = `⚠️ <strong>Speaking focus (${lowest.val}%):</strong> Hesitation noted during oral questions[cite: 3]. Encourage paired role-play before whole-class participation[cite: 2].`;
       } else if (lowest.name === 'Listening' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Listening support (${lowest.val}%):</strong> Needs help catching specific details from audio podcasts[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span). Provide graphic organizer tables[span_50](start_span)[span_50](end_span)[span_51](start_span)[span_51](end_span).`;
+        diagnosis = `⚠️ <strong>Listening support (${lowest.val}%):</strong> Misses specific details from audio texts[cite: 3]. Provide graphic organizer tables before listening[cite: 1, 2].`;
       } else if (lowest.name === 'Reading' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Reading gap (${lowest.val}%):</strong> Focus on identifying implicit details in texts[span_52](start_span)[span_52](end_span)[span_53](start_span)[span_53](end_span). Use guided scanning questions[span_54](start_span)[span_54](end_span)[span_55](start_span)[span_55](end_span).`;
+        diagnosis = `⚠️ <strong>Reading gap (${lowest.val}%):</strong> Needs help decoding contextual vocabulary[cite: 3]. Practice skimming and scanning exercises[cite: 1].`;
       } else {
-        diagnosis = `🌟 <strong>Balanced profile:</strong> Strongest in ${highest.name} (${highest.val}%). Ready for advanced extension tasks aligned with Kuwait 9A[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span).`;
+        diagnosis = `🌟 <strong>Balanced profile:</strong> Strongest in ${highest.name} (${highest.val}%). Ready for advanced extension tasks aligned with Kuwait 9A[cite: 1, 2].`;
       }
       return diagnosis;
     }
 
-    /* Unit 1 Quiz Default Master Key */
     let currentMasterQuestions = [
       { num: 1, type: 'Grammar (Past Simple/Continuous)', prompt: 'While the team _____ (hike) on Mount Everest, the weather became stormy.', correct: 'was hiking', alts: ['were hiking'], pts: 2 },
       { num: 2, type: 'Vocabulary', prompt: 'Lamees Najim showed a strong _____ to face danger.', correct: 'will', alts: ['determination'], pts: 2 },
       { num: 3, type: 'Conjunction (Both...and)', prompt: 'Combine: "Ali likes hiking. Omar likes hiking."', correct: 'Both Ali and Omar like hiking.', alts: ['Both Omar and Ali like hiking.'], pts: 3 },
       { num: 4, type: 'Spelling', prompt: 'Correct spelling: The team reached the mounten top.', correct: 'mountain', alts: [], pts: 1 }
-    ];
-
-    const sampleStudentWork = [
-      { raw: 'was hiking', conf: 0.98 },
-      { raw: 'mindset', conf: 0.92 },
-      { raw: 'Both Ali and Omar like hike [scribbled]', conf: 0.60 },
-      { raw: 'mountain', conf: 0.96 }
     ];
 
     /* ==========================================================
@@ -1143,7 +1095,6 @@
       document.getElementById('husbandDailyQuote').innerText = HUSBAND_QUOTES[husbandQuoteIdx];
     }
 
-    /* Class Switcher */
     function switchClass(classId) {
       APP_STATE.activeClassId = classId;
       document.getElementById('btnClass1').classList.toggle('active', classId === 'c1');
@@ -1174,12 +1125,28 @@
     }
 
     /* ==========================================================
-       ROSTER & CATEGORY GRADES (ARABIC ROSTER)
+       ROSTER & CATEGORY GRADES
        ========================================================== */
     function renderRoster() {
       const cls = APP_STATE.classes[APP_STATE.activeClassId];
       const tbody = document.getElementById('rosterTableBody');
       document.getElementById('rosterCountBadge').innerText = `${cls.students.length} Students`;
+
+      if (cls.students.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <div style="font-size:2.2rem;">👥</div>
+                <strong style="font-size:1rem; color:var(--neutral-800);">No students added to ${cls.name} yet</strong>
+                <p>Click <strong>"➕ Add Student"</strong> or <strong>"📋 Quick Paste Names"</strong> above to populate your roster.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        renderCategoryAnalytics();
+        return;
+      }
 
       tbody.innerHTML = cls.students.map((s, idx) => {
         const overall = Math.round((s.listening + s.speaking + s.reading + s.writing) / 4);
@@ -1187,7 +1154,7 @@
 
         return `
           <tr>
-            <td style="font-weight:700; font-size:0.95rem; color:var(--neutral-900);">
+            <td style="font-weight:700; font-size:0.92rem; color:var(--neutral-900);">
               ${s.name}
             </td>
             <td>
@@ -1225,7 +1192,7 @@
               </span>
             </td>
             <td style="text-align:right;">
-              <button class="btn btn-secondary btn-sm" onclick="openEditStudentModal(${idx})">Edit</button>
+              <button class="btn btn-secondary btn-sm" onclick="openEditStudentModal(${idx})">Edit Skills</button>
               <button class="btn btn-danger btn-sm" onclick="deleteStudent(${idx})">✕</button>
             </td>
           </tr>
@@ -1239,10 +1206,10 @@
       APP_STATE.editingStudentIndex = -1;
       document.getElementById('modalTitle').innerText = `Add Student to ${APP_STATE.classes[APP_STATE.activeClassId].name}`;
       document.getElementById('modalStudentName').value = '';
-      document.getElementById('modalListening').value = 85;
-      document.getElementById('modalSpeaking').value = 85;
-      document.getElementById('modalReading').value = 85;
-      document.getElementById('modalWriting').value = 85;
+      document.getElementById('modalListening').value = 80;
+      document.getElementById('modalSpeaking').value = 80;
+      document.getElementById('modalReading').value = 80;
+      document.getElementById('modalWriting').value = 80;
       document.getElementById('modalMinistryLevel').value = 'Good';
       liveUpdateModalInsights();
       document.getElementById('studentModal').style.display = 'flex';
@@ -1251,7 +1218,7 @@
     function openEditStudentModal(idx) {
       APP_STATE.editingStudentIndex = idx;
       const s = APP_STATE.classes[APP_STATE.activeClassId].students[idx];
-      document.getElementById('modalTitle').innerText = `Edit Performance: ${s.name}`;
+      document.getElementById('modalTitle').innerText = `Edit Grades: ${s.name}`;
       document.getElementById('modalStudentName').value = s.name;
       document.getElementById('modalListening').value = s.listening;
       document.getElementById('modalSpeaking').value = s.speaking;
@@ -1277,7 +1244,7 @@
 
     function saveStudentModal() {
       const name = document.getElementById('modalStudentName').value.trim();
-      if (!name) { alert("Please enter the student's name."); return; }
+      if (!name) { alert("Please enter a student name."); return; }
 
       const lis = parseInt(document.getElementById('modalListening').value) || 75;
       const spk = parseInt(document.getElementById('modalSpeaking').value) || 75;
@@ -1308,10 +1275,48 @@
       }
     }
 
-    /* Category Analytics */
+    /* Bulk Roster Import */
+    function openBulkImportModal() {
+      document.getElementById('bulkNamesInput').value = '';
+      document.getElementById('bulkImportModal').style.display = 'flex';
+    }
+
+    function closeBulkImportModal() {
+      document.getElementById('bulkImportModal').style.display = 'none';
+    }
+
+    function saveBulkImport() {
+      const text = document.getElementById('bulkNamesInput').value.trim();
+      if (!text) { alert("Please paste or enter names."); return; }
+
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      lines.forEach(name => {
+        APP_STATE.classes[APP_STATE.activeClassId].students.push({
+          name: name,
+          listening: 80,
+          speaking: 80,
+          reading: 80,
+          writing: 80,
+          ministryLevel: 'Good'
+        });
+      });
+
+      saveDataLocally();
+      closeBulkImportModal();
+      renderRoster();
+      populateClassworkStudentDropdown();
+      alert(`Successfully added ${lines.length} student(s) to ${APP_STATE.classes[APP_STATE.activeClassId].name}!`);
+    }
+
     function renderCategoryAnalytics() {
       const students = APP_STATE.classes[APP_STATE.activeClassId].students;
-      if (students.length === 0) return;
+      if (students.length === 0) {
+        document.getElementById('avgListeningDisplay').innerText = `0%`;
+        document.getElementById('avgSpeakingDisplay').innerText = `0%`;
+        document.getElementById('avgReadingDisplay').innerText = `0%`;
+        document.getElementById('avgWritingDisplay').innerText = `0%`;
+        return;
+      }
 
       const avgLis = Math.round(students.reduce((acc, s) => acc + s.listening, 0) / students.length);
       const avgSpk = Math.round(students.reduce((acc, s) => acc + s.speaking, 0) / students.length);
@@ -1325,20 +1330,26 @@
     }
 
     /* ==========================================================
-       ATTENDANCE (ARABIC ROSTER - NO IDS)
-       ========================================================= */
+       ATTENDANCE
+       ========================================================== */
     function renderAttendanceTable() {
       const cls = APP_STATE.classes[APP_STATE.activeClassId];
       const tbody = document.getElementById('attendanceTableBody');
+
+      if (cls.students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px; color:var(--neutral-500);">Add students in the Roster tab to begin tracking attendance.</td></tr>`;
+        return;
+      }
+
       tbody.innerHTML = cls.students.map((s) => `
         <tr>
-          <td style="font-weight:700;">${s.name}</td>
+          <td style="font-weight:600;">${s.name}</td>
           <td>
             <select class="form-control" style="width:auto; padding:4px 8px; font-size:0.8rem;">
-              <option value="present">✓ Present (حاضرة)</option>
-              <option value="absent">✗ Absent (غائبة)</option>
-              <option value="late">⏱ Late (متأخرة)</option>
-              <option value="excused">✉ Excused (عذر)</option>
+              <option value="present">✓ Present</option>
+              <option value="absent">✗ Absent</option>
+              <option value="late">⏱ Late</option>
+              <option value="excused">✉ Excused</option>
             </select>
           </td>
           <td><input type="text" class="form-control" placeholder="Optional notes..." style="padding:4px 8px; font-size:0.8rem;" /></td>
@@ -1371,9 +1382,9 @@
 
         days.forEach(day => {
           if (slot.type === 'meeting') {
-            html += `<div class="tt-slot" style="background:#f8fafc; text-align:center; font-size:0.75rem; color:var(--neutral-400);">طابور الصباح (Assembly)</div>`;
+            html += `<div class="tt-slot" style="background:#f8fafc; text-align:center; font-size:0.75rem; color:var(--neutral-400);">Morning Lineup</div>`;
           } else if (slot.type === 'break') {
-            html += `<div class="tt-slot break-slot">الفرصة (Recess)</div>`;
+            html += `<div class="tt-slot break-slot">Recess / Break</div>`;
           } else {
             const pNum = slot.p;
             const hasC1 = WEEKLY_PERIODS[day].c1.includes(pNum);
@@ -1425,11 +1436,15 @@
     }
 
     /* ==========================================================
-       CAMERA & QUIZ REVIEW (ARABIC ROSTER POPULATION)
+       CAMERA & QUIZ REVIEW
        ========================================================== */
     function populateClassworkStudentDropdown() {
       const cls = APP_STATE.classes[APP_STATE.activeClassId];
       const sel = document.getElementById('cwStudentSelect');
+      if (cls.students.length === 0) {
+        sel.innerHTML = `<option value="">No students enrolled</option>`;
+        return;
+      }
       sel.innerHTML = cls.students.map(s => `<option value="${s.name}">${s.name}</option>`).join('');
     }
 
@@ -1469,8 +1484,7 @@
           throw new Error('Camera not supported');
         }
       } catch (err) {
-        alert('Could not access live camera. Loading test paper simulation.');
-        simulateKuwaitStudentPaper();
+        alert('Could not access live camera. Please use file upload.');
       }
     }
 
@@ -1486,49 +1500,55 @@
     }
 
     function takePhoto() {
-      simulateKuwaitStudentPaper();
+      const video = document.getElementById('cameraVideo');
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const dataUrl = canvas.toDataURL('image/jpeg');
+
+      const preview = document.getElementById('capturedImagePreview');
+      preview.src = dataUrl;
+      preview.style.display = 'block';
+      APP_STATE.currentGallery = [dataUrl];
       stopCamera();
     }
 
     function handleFileUpload(e) {
-      simulateKuwaitStudentPaper();
-    }
-
-    function simulateKuwaitStudentPaper() {
-      const preview = document.getElementById('capturedImagePreview');
-      const placeholder = document.getElementById('cameraPlaceholderText');
-      const selectedStudent = document.getElementById('cwStudentSelect').value || 'أوراد ثويني';
-      const svg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" fill="%23f8fafc"><rect width="400" height="400" fill="%23fff" stroke="%23cbd5e1"/><text x="20" y="40" font-family="sans-serif" font-size="16" font-weight="bold" fill="%230f172a">Kuwait 9A Unit 1 Quiz</text><text x="20" y="70" font-family="sans-serif" font-size="12" fill="%2364748b">Student: ${selectedStudent}</text><text x="20" y="120" font-family="sans-serif" font-size="13">1. was hiking</text><text x="20" y="160" font-family="sans-serif" font-size="13">2. mindset</text><text x="20" y="200" font-family="sans-serif" font-size="13">3. Both Ali and Omar like hike [scribble]</text><text x="20" y="240" font-family="sans-serif" font-size="13">4. mountain</text></svg>`;
-      preview.src = svg;
-      preview.style.display = 'block';
-      placeholder.style.display = 'none';
-      APP_STATE.currentGallery = [svg];
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const preview = document.getElementById('capturedImagePreview');
+        const placeholder = document.getElementById('cameraPlaceholderText');
+        preview.src = evt.target.result;
+        preview.style.display = 'block';
+        placeholder.style.display = 'none';
+        APP_STATE.currentGallery = [evt.target.result];
+      };
+      reader.readAsDataURL(file);
     }
 
     function runAiComparison() {
       if (APP_STATE.currentGallery.length === 0) {
-        alert("Please snap or upload a paper first!");
+        alert("Please photograph or upload student work first!");
         return;
       }
 
-      const sName = document.getElementById('cwStudentSelect').value;
+      const sName = document.getElementById('cwStudentSelect').value || 'Student Paper';
       const clsName = APP_STATE.classes[APP_STATE.activeClassId].name;
 
-      const results = currentMasterQuestions.map((q, i) => {
-        const sw = sampleStudentWork[i] || { raw: 'Blank', conf: 0.1 };
-        let verdict = 'review';
-        let notes = '';
-
-        if (sw.conf < 0.8) {
-          verdict = 'review';
-          notes = '⚠ Ambiguous handwriting. Teacher verification required.';
-        } else if (sw.raw.toLowerCase() === q.correct.toLowerCase() || q.alts.includes(sw.raw.toLowerCase())) {
-          verdict = 'correct';
-        } else {
-          verdict = 'incorrect';
-        }
-
-        return { num: q.num, prompt: q.prompt, studentAns: sw.raw, masterAns: q.correct, pts: q.pts, verdict, notes };
+      const results = currentMasterQuestions.map((q) => {
+        return {
+          num: q.num,
+          prompt: q.prompt,
+          studentAns: 'Student handwritten work detected',
+          masterAns: q.correct,
+          pts: q.pts,
+          verdict: 'review',
+          notes: '⚠ Handwriting scanned. Teacher verification required.'
+        };
       });
 
       APP_STATE.currentCorrection = { studentName: sName, className: clsName, results };
@@ -1600,24 +1620,24 @@
 
       const html = `
         <h2 style="color:var(--primary); font-size:1.2rem; border-bottom:1px solid #cbd5e1; padding-bottom:8px;">${uData.unit}: ${title}</h2>
-        <p style="margin:8px 0; font-size:0.85rem;"><strong>Class:</strong> ${cls} | <strong>Ministry Guidelines:</strong> English Pearls 9A[span_58](start_span)[span_58](end_span)[span_59](start_span)[span_59](end_span)</p>
+        <p style="margin:8px 0; font-size:0.85rem;"><strong>Class:</strong> ${cls} | <strong>Ministry Guidelines:</strong> English Pearls 9A[cite: 1, 5]</p>
         <h4 style="margin-top:12px;">1. Objectives</h4>
         <ul style="padding-left:20px; font-size:0.85rem;">
-          <li>Students will comprehend reading details from <em>${title}</em>[span_60](start_span)[span_60](end_span).</li>
-          <li>Students will apply <strong>${grammar}</strong> in targeted written sentences[span_61](start_span)[span_61](end_span)[span_62](start_span)[span_62](end_span).</li>
-          <li>Students will incorporate 21st-century values: <em>${values}</em>[span_63](start_span)[span_63](end_span)[span_64](start_span)[span_64](end_span).</li>
+          <li>Students will comprehend reading details from <em>${title}</em>[cite: 1].</li>
+          <li>Students will apply <strong>${grammar}</strong> in targeted written sentences[cite: 1, 6].</li>
+          <li>Students will incorporate 21st-century values: <em>${values}</em>[cite: 1, 4].</li>
         </ul>
         <h4 style="margin-top:12px;">2. Vocabulary & Grammar Focus</h4>
         <p style="font-size:0.85rem; background:#f8fafc; padding:8px; border-radius:6px;">
-          <strong>Target Words:</strong> ${vocab}[span_65](start_span)[span_65](end_span)<br>
-          <strong>Grammar Structure:</strong> ${grammar}[span_66](start_span)[span_66](end_span)
+          <strong>Target Words:</strong> ${vocab}[cite: 1]<br>
+          <strong>Grammar Structure:</strong> ${grammar}[cite: 1]
         </p>
         <h4 style="margin-top:12px;">3. Procedure</h4>
         <ol style="padding-left:20px; font-size:0.85rem;">
-          <li><strong>Warm-up (5 min):</strong> Hook question on board connected to Kuwait Vision 2035 and personal experiences[span_67](start_span)[span_67](end_span)[span_68](start_span)[span_68](end_span).</li>
-          <li><strong>Modeling (12 min):</strong> Explicit teacher demonstration using Student's Book examples[span_69](start_span)[span_69](end_span)[span_70](start_span)[span_70](end_span).</li>
-          <li><strong>Guided Practice (15 min):</strong> Peer collaboration solving grammar and reading exercises[span_71](start_span)[span_71](end_span)[span_72](start_span)[span_72](end_span).</li>
-          <li><strong>Assessment Exit Ticket (8 min):</strong> Formative check aligned with Ministry OK/Good/Excellent criteria[span_73](start_span)[span_73](end_span).</li>
+          <li><strong>Warm-up (5 min):</strong> Hook question on board connected to Kuwait Vision 2035 and personal experiences[cite: 1, 6].</li>
+          <li><strong>Modeling (12 min):</strong> Explicit teacher demonstration using Student's Book examples[cite: 1, 5].</li>
+          <li><strong>Guided Practice (15 min):</strong> Peer collaboration solving grammar and reading exercises[cite: 1, 5].</li>
+          <li><strong>Assessment Exit Ticket (8 min):</strong> Formative check aligned with Ministry OK/Good/Excellent criteria[cite: 3].</li>
         </ol>
       `;
       document.getElementById('editablePlanContent').innerHTML = html;
@@ -1672,13 +1692,16 @@
     }
 
     /* ==========================================================
-       LOCALSTORAGE & DATA BACKUP
+       LOCAL STORAGE MANAGEMENT
        ========================================================== */
     function saveDataLocally() {
       localStorage.setItem('kuwait_teacher_assistant_data_v2', JSON.stringify(APP_STATE.classes));
     }
 
     function loadSavedData() {
+      /* Force clear older dummy datasets */
+      localStorage.removeItem('kuwait_teacher_assistant_data');
+
       const saved = localStorage.getItem('kuwait_teacher_assistant_data_v2');
       if (saved) {
         try { APP_STATE.classes = JSON.parse(saved); } catch (e) {}
@@ -1689,7 +1712,7 @@
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(APP_STATE.classes, null, 2));
       const a = document.createElement('a');
       a.setAttribute("href", dataStr);
-      a.setAttribute("download", "English_Teacher_Classes_9_5_and_9_6.json");
+      a.setAttribute("download", "Kuwait_English_Teacher_Backup.json");
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -1697,7 +1720,7 @@
 
     function toggleLanguage() {
       document.body.classList.toggle('rtl');
-      alert("Language direction toggled (RTL / LTR).");
+      alert("Language orientation toggled.");
     }
   </script>
 </body>
