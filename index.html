@@ -147,7 +147,7 @@
     .tab-content.active { display: block; animation: fadeIn 0.2s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Husband Loving Note Banner */
+    /* Loving Husband Banner */
     .husband-love-card {
       background: linear-gradient(135deg, #fff1f2, #fdf2f8);
       border: 1px solid var(--love-border);
@@ -292,7 +292,6 @@
     }
     .empty-state p { margin-top: 8px; font-size: 0.9rem; }
 
-    /* Category Diagnostic Badges */
     .cat-bar-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -379,10 +378,97 @@
     .ans-box { padding: 8px 10px; border-radius: 6px; background: var(--neutral-50); border: 1px solid var(--neutral-200); }
     .ans-box strong { font-size: 0.7rem; color: var(--neutral-600); display: block; }
 
+    /* Kuwait MOE Lesson Plan Output Document Style */
+    .moe-plan-doc {
+      background: white;
+      color: #111827;
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      padding: 24px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+    }
+    .moe-header-box {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    .moe-header-box .moe-left { font-weight: 800; font-size: 0.95rem; }
+    .moe-header-box .moe-right { font-weight: 800; font-size: 0.95rem; }
+    .moe-plan-title {
+      text-align: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin: 10px 0;
+      letter-spacing: 0.05em;
+    }
+    .moe-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+      font-size: 0.84rem;
+    }
+    .moe-meta-table td {
+      padding: 4px 6px;
+      border: none;
+    }
+    .moe-section-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+    }
+    .moe-section-table th, .moe-section-table td {
+      border: 1px solid #94a3b8;
+      padding: 8px 10px;
+      vertical-align: top;
+      font-size: 0.84rem;
+    }
+    .moe-section-table th {
+      background-color: #f1f5f9;
+      width: 22%;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .moe-proc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14px;
+    }
+    .moe-proc-table th, .moe-proc-table td {
+      border: 1px solid #94a3b8;
+      padding: 8px 10px;
+      vertical-align: top;
+      font-size: 0.84rem;
+    }
+    .moe-proc-table th {
+      background-color: #e2e8f0;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .moe-subheading {
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .moe-sign-box {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
     @media print {
       header, .husband-love-card, .schedule-bar, .nav-tabs-wrapper, .btn, .no-print { display: none !important; }
       body { background: white; color: black; }
       .card { border: none; box-shadow: none; padding: 0; }
+      .moe-plan-doc { border: none; padding: 0; }
     }
   </style>
 </head>
@@ -417,7 +503,7 @@
 
     <!-- Navigation Tabs -->
     <div class="nav-tabs-wrapper">
-      <button class="tab-btn active" data-tab="tab-roster" onclick="showTab('tab-roster')">
+      <button class="tab-btn" data-tab="tab-roster" onclick="showTab('tab-roster')">
         <span>👥</span> Student Grades & Insights
       </button>
       <button class="tab-btn" data-tab="tab-attendance" onclick="showTab('tab-attendance')">
@@ -429,7 +515,7 @@
       <button class="tab-btn" data-tab="tab-camera" onclick="showTab('tab-camera')">
         <span>📷</span> Camera & Quiz AI
       </button>
-      <button class="tab-btn" data-tab="tab-planner" onclick="showTab('tab-planner')">
+      <button class="tab-btn active" data-tab="tab-planner" onclick="showTab('tab-planner')">
         <span>📝</span> Kuwait 9A Planner
       </button>
       <button class="tab-btn" data-tab="tab-powerpoint" onclick="showTab('tab-powerpoint')">
@@ -480,15 +566,15 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB 1: STUDENT GRADES & INSIGHTS (CLEAN SLATE)           -->
+    <!-- TAB 1: STUDENT GRADES & INSIGHTS                         -->
     <!-- ======================================================== -->
-    <div id="tab-roster" class="tab-content active">
+    <div id="tab-roster" class="tab-content">
       <div class="card">
         <div class="card-header">
           <div>
             <h2 class="card-title" id="rosterTitle">Class 9/5 Grades & Diagnostic Insights</h2>
             <p style="font-size:0.82rem; color:var(--neutral-600); margin-top:2px;">
-              Categorized performance across <strong>Listening, Speaking, Reading, and Writing</strong> aligned with Kuwait ELT supervision descriptors[cite: 1, 3].
+              Categorized performance across <strong>Listening, Speaking, Reading, and Writing</strong> aligned with Kuwait ELT supervision descriptors[cite: 1].
             </p>
           </div>
           <div style="display:flex; gap:8px;">
@@ -510,9 +596,7 @@
                 <th style="text-align:right; min-width: 110px;">Actions</th>
               </tr>
             </thead>
-            <tbody id="rosterTableBody">
-              <!-- Dynamically populated from your real input -->
-            </tbody>
+            <tbody id="rosterTableBody"></tbody>
           </table>
         </div>
       </div>
@@ -544,9 +628,7 @@
                 <th>Observations / Notes</th>
               </tr>
             </thead>
-            <tbody id="attendanceTableBody">
-              <!-- Populated without IDs -->
-            </tbody>
+            <tbody id="attendanceTableBody"></tbody>
           </table>
         </div>
       </div>
@@ -568,14 +650,12 @@
           </div>
         </div>
 
-        <div class="timetable-grid" id="weeklyTimetableGrid">
-          <!-- Populated by JS -->
-        </div>
+        <div class="timetable-grid" id="weeklyTimetableGrid"></div>
       </div>
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB 4: CAMERA & QUIZ CORRECTION (AI WITH REVIEW GUARD)   -->
+    <!-- TAB 4: CAMERA & QUIZ CORRECTION                          -->
     <!-- ======================================================== -->
     <div id="tab-camera" class="tab-content">
       <div class="card">
@@ -594,9 +674,7 @@
           </div>
           <div class="form-group">
             <label>Student</label>
-            <select id="cwStudentSelect" class="form-control">
-              <!-- Populated dynamically -->
-            </select>
+            <select id="cwStudentSelect" class="form-control"></select>
           </div>
           <div class="form-group">
             <label>Assignment / Quiz Title</label>
@@ -648,7 +726,6 @@
         </div>
       </div>
 
-      <!-- Correction View -->
       <div class="card" id="correctionSection" style="display:none;">
         <div class="card-header">
           <h2 class="card-title">3. Correction & Teacher Overrides</h2>
@@ -662,67 +739,79 @@
     </div>
 
     <!-- ======================================================== -->
-    <!-- TAB 5: KUWAIT 9A LESSON PLANNER (OFFICIAL UNITS)         -->
+    <!-- TAB 5: KUWAIT 9A LESSON PLANNER (OFFICIAL FORMAT)       -->
     <!-- ======================================================== -->
-    <div id="tab-planner" class="tab-content">
+    <div id="tab-planner" class="tab-content active">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Kuwait Ministry 9A Lesson Planner</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Preloaded with official <em>English Pearls of Kuwait</em> units, grammar, and 21st-century values[cite: 1, 4].</p>
+            <h2 class="card-title">Kuwait Ministry 9A Lesson Planner (Official Supervision Standard)</h2>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Standardized layout matching Kuwait Ministry of Education E.L.T. General Supervision[cite: 1, 2].</p>
           </div>
         </div>
 
         <div class="form-grid">
           <div class="form-group">
-            <label>Select Kuwait Unit</label>
+            <label>Select Unit / Lesson Preset</label>
             <select id="kuwaitUnitSelector" class="form-control" onchange="onKuwaitUnitSelect()">
-              <option value="u1">Unit 1: Kuwait: Stories of Success (Explorers & Mindset)</option>
-              <option value="u2">Unit 2: Staying Safe Online (Scams, Chatbots & Security)</option>
-              <option value="u3">Unit 3: Food for Life: Culture, Health, and the Future</option>
-              <option value="u4">Unit 4: Simple Living, Better World (Decluttering & Waste)</option>
+              <option value="u1_5a">Unit 1 – Lesson 5A: Success: More Than Just Talent (Part 1 – Reading & Vocab)</option>
+              <option value="u1_5b">Unit 1 – Lesson 5B: Success: More Than Just Talent (Part 2 – Comprehension & Response)</option>
+              <option value="u1_exp">Unit 1 – Explorers: Kuwaiti Stories of Success (Grammar & Reading)</option>
+              <option value="u2">Unit 2: Staying Safe Online (Scams & Chatbots)</option>
+              <option value="u3">Unit 3: Food for Life (Culture, Health & Future)</option>
+              <option value="u4">Unit 4: Simple Living, Better World</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Target Class</label>
-            <select id="lpClass" class="form-control">
-              <option value="Class 9/5">Class 9/5</option>
-              <option value="Class 9/6">Class 9/6</option>
-            </select>
+            <label>Teacher Name</label>
+            <input type="text" id="lpTeacherName" class="form-control" value="Najat AlKandari" />
           </div>
           <div class="form-group">
-            <label>Lesson Title</label>
-            <input type="text" id="lpTitle" class="form-control" value="Kuwaiti Explorers: Inspiring Journeys" />
+            <label>Day & Date</label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="lpDay" class="form-control" value="Monday" style="width: 50%;" />
+              <input type="text" id="lpDate" class="form-control" value="21/09/26" style="width: 50%;" />
+            </div>
           </div>
           <div class="form-group">
-            <label>Duration</label>
-            <input type="text" id="lpDuration" class="form-control" value="45 Minutes" />
+            <label>Period No. & Timing</label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="lpPeriodNo" class="form-control" value="Lesson 5A" style="width: 50%;" />
+              <input type="text" id="lpPeriodSlots" class="form-control" value="2 + 7" style="width: 50%;" />
+            </div>
           </div>
         </div>
 
         <div class="form-grid">
           <div class="form-group">
-            <label>Grammar Focus</label>
-            <input type="text" id="lpGrammar" class="form-control" value="Past Simple vs Past Continuous / Both...and / Neither...nor" />
+            <label>Target Classes</label>
+            <input type="text" id="lpClasses" class="form-control" value="9-5  9-6" />
           </div>
           <div class="form-group">
-            <label>Official Vocabulary</label>
-            <input type="text" id="lpVocab" class="form-control" value="curious, talent, explorer, proudly, highlight, represent, inspire, expedition, survive" />
+            <label>Module / Unit Title</label>
+            <input type="text" id="lpModule" class="form-control" value="One – &quot;Kuwaiti Stories of Success&quot;" />
           </div>
           <div class="form-group">
-            <label>Values & 21st Century Skills</label>
-            <input type="text" id="lpValues" class="form-control" value="Perseverance, Respect, Responsibility, Courage, Critical Thinking" />
+            <label>Student's Book (SB) / Work Book (WB) Pages</label>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="lpSB" class="form-control" value="25" placeholder="SB" style="width:50%;" />
+              <input type="text" id="lpWB" class="form-control" value="–" placeholder="WB" style="width:50%;" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lesson Topic</label>
+            <input type="text" id="lpTopic" class="form-control" value="Success: More Than Just Talent (Part 1 – Reading & Vocabulary)" />
           </div>
         </div>
 
-        <button class="btn btn-primary" onclick="generateLessonPlan()">✨ Generate Kuwait-Standard Lesson Plan</button>
+        <button class="btn btn-primary" onclick="generateLessonPlan()">✨ Generate Official Kuwait MOE Lesson Plan</button>
 
         <div id="generatedLessonOutput" style="display:none; margin-top:20px; border-top:1px solid var(--neutral-200); padding-top:16px;">
-          <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-            <h3>Lesson Plan Document (Printable)</h3>
-            <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print / PDF</button>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h3>Official Lesson Plan Document (Ministry Supervision Layout)</h3>
+            <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print / Export PDF</button>
           </div>
-          <div id="editablePlanContent" contenteditable="true" style="background:white; border:1px solid var(--neutral-200); padding:20px; border-radius:8px; line-height:1.6; font-size:0.88rem;"></div>
+          <div id="editablePlanContent" contenteditable="true"></div>
         </div>
       </div>
     </div>
@@ -791,7 +880,7 @@
         <div class="card-header">
           <div>
             <h2 class="card-title">Class Category Analytics (Listening, Speaking, Reading, Writing)</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Real-time domain diagnostic breakdown for <strong id="repClassTitle">Class 9/5</strong>[cite: 1, 3].</p>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Real-time domain diagnostic breakdown for <strong id="repClassTitle">Class 9/5</strong>[cite: 1].</p>
           </div>
           <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print Analytics</button>
         </div>
@@ -805,7 +894,7 @@
           <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#065f46; text-transform:uppercase;">🗣 Speaking Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#064e3b; margin-top:4px;" id="avgSpeakingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#10b981;">Fluency, confidence & expressions[cite: 3]</div>
+            <div style="font-size:0.72rem; color:#10b981;">Fluency, confidence & expressions</div>
           </div>
           <div style="background:#fefce8; border:1px solid #fef08a; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#854d0e; text-transform:uppercase;">📖 Reading Average</div>
@@ -815,7 +904,7 @@
           <div style="background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px; padding:12px;">
             <div style="font-size:0.75rem; font-weight:700; color:#6b21a8; text-transform:uppercase;">✍ Writing Average</div>
             <div style="font-size:1.4rem; font-weight:800; color:#581c87; margin-top:4px;" id="avgWritingDisplay">0%</div>
-            <div style="font-size:0.72rem; color:#9333ea;">Expository reports & linkers[cite: 1, 3]</div>
+            <div style="font-size:0.72rem; color:#9333ea;">Expository reports & linkers[cite: 1]</div>
           </div>
         </div>
 
@@ -835,35 +924,35 @@
             <tbody>
               <tr>
                 <td><strong>Listening</strong></td>
-                <td>Understands details and responds accurately[cite: 3].</td>
-                <td>Understands most details with small gaps[cite: 3].</td>
-                <td>Understands main ideas, misses minor details[cite: 3].</td>
-                <td>Frequent misunderstanding, needs repetition[cite: 3].</td>
-                <td>Cannot understand spoken English[cite: 3].</td>
+                <td>Understands details and responds accurately.</td>
+                <td>Understands most details with small gaps.</td>
+                <td>Understands main ideas, misses minor details.</td>
+                <td>Frequent misunderstanding, needs repetition.</td>
+                <td>Cannot understand spoken English.</td>
               </tr>
               <tr>
                 <td><strong>Speaking</strong></td>
-                <td>Speaks clearly, confidently and naturally[cite: 3].</td>
-                <td>Few mistakes; mostly clear and relevant[cite: 3].</td>
-                <td>Understands main points; occasional hesitation[cite: 3].</td>
-                <td>Frequent pauses; struggles with message[cite: 3].</td>
-                <td>Cannot produce clear spoken answers[cite: 3].</td>
+                <td>Speaks clearly, confidently and naturally.</td>
+                <td>Few mistakes; mostly clear and relevant.</td>
+                <td>Understands main points; occasional hesitation.</td>
+                <td>Frequent pauses; struggles with message.</td>
+                <td>Cannot produce clear spoken answers.</td>
               </tr>
               <tr>
                 <td><strong>Reading</strong></td>
-                <td>Full comprehension; reads aloud fluently[cite: 3].</td>
-                <td>Understands most ideas; few pronunciation slips[cite: 3].</td>
-                <td>Grasps main points; minor reading errors[cite: 3].</td>
-                <td>Struggles to comprehend paragraphs[cite: 3].</td>
-                <td>Cannot decode or read aloud clearly[cite: 3].</td>
+                <td>Full comprehension; reads aloud fluently.</td>
+                <td>Understands most ideas; few pronunciation slips.</td>
+                <td>Grasps main points; minor reading errors.</td>
+                <td>Struggles to comprehend paragraphs.</td>
+                <td>Cannot decode or read aloud clearly.</td>
               </tr>
               <tr>
                 <td><strong>Writing</strong></td>
-                <td>Well-organized; excellent linkers & grammar[cite: 3].</td>
-                <td>Clear ideas; few minor spelling slips[cite: 3].</td>
-                <td>Basic paragraph structure; some errors[cite: 3].</td>
-                <td>Unclear meaning; frequent grammar errors[cite: 3].</td>
-                <td>Cannot compose coherent text[cite: 3].</td>
+                <td>Well-organized; excellent linkers & grammar.</td>
+                <td>Clear ideas; few minor spelling slips.</td>
+                <td>Basic paragraph structure; some errors.</td>
+                <td>Unclear meaning; frequent grammar errors.</td>
+                <td>Cannot compose coherent text.</td>
               </tr>
             </tbody>
           </table>
@@ -928,14 +1017,14 @@
     <div class="modal-card">
       <h3 style="margin-bottom:8px;">📋 Quick Paste Student Roster</h3>
       <p style="font-size:0.8rem; color:var(--neutral-600); margin-bottom:12px;">
-        Paste student names (Arabic or English) directly from your school roster or Excel list. Put each name on a new line.
+        Paste student names directly from your school roster. Put each name on a new line.
       </p>
       <div class="form-group" style="margin-bottom:14px;">
         <label>Student Names (One Per Line)</label>
         <textarea id="bulkNamesInput" class="form-control" style="min-height: 180px; font-size:0.9rem;" placeholder="فاطمة أحمد الكندري&#10;مريم سالم الهاجري&#10;دلال مبارك العجمي"></textarea>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:0.78rem; color:var(--neutral-500);">Auto-assigns baseline 80% category marks[cite: 3].</span>
+        <span style="font-size:0.78rem; color:var(--neutral-500);">Auto-assigns baseline 80% marks.</span>
         <div style="display:flex; gap:8px;">
           <button class="btn btn-secondary" onclick="closeBulkImportModal()">Cancel</button>
           <button class="btn btn-primary" onclick="saveBulkImport()">Import to Class</button>
@@ -946,40 +1035,134 @@
 
   <script>
     /* ==========================================================
-       OFFICIAL KUWAIT 9A CURRICULUM DATA MODEL
+       KUWAIT 9A CURRICULUM LESSON PRESETS (MATCHING LESSON 5A & 5B)
        ========================================================== */
-    const KUWAIT_CURRICULUM = {
-      u1: {
-        unit: 'Unit 1: Kuwait: Stories of Success',
-        grammar: 'Past Simple & Past Continuous (while/when) / Both...and / Neither...nor',
-        vocab: 'curious, talent, explorer, proudly, highlight, represent, inspire, remarkable, fulfil, expedition, will, survive, consistently, merely, mindset, efficiently, give up, trust, progress, tough, positive, equally, trait, remain',
-        reading: 'Kuwaiti Explorers: Inspiring Journeys (Fuad Qabazard, Lamees Najim)',
-        writing: 'Two-paragraph expository report on "Expeditions: Safety Preparations and Challenges"',
-        values: 'Perseverance, Respect, Responsibility, Courage, Critical Thinking'
+    const KUWAIT_PRESETS = {
+      u1_5a: {
+        module: "One – \"Kuwaiti Stories of Success\"",
+        topic: "Success: More Than Just Talent (Part 1 – Reading & Vocabulary)",
+        periodNo: "Lesson 5A",
+        day: "Monday",
+        date: "21/09/26",
+        periodSlots: "2+7",
+        sb: "25",
+        wb: "–",
+        outcomes: [
+          "identify the main idea and key supporting details in each paragraph of an expository text about achieving success.",
+          "infer the meaning of target vocabulary from context.",
+          "analyse explicit and implicit details in a text about the habits and qualities that lead to success."
+        ],
+        vocab: "merely, mindset, consistently, efficiently, give up, tough, positive, trust, progress, trait, remain, equally",
+        grammar: "No new grammar.",
+        langFunctions: "Expressing opinions; explaining reasons; discussing habits and qualities for success.",
+        microSkills: "Predicting, skimming for the main idea, scanning for details, inferring meaning from context.",
+        linkers: "Introduced in Lesson 5B (Reading for Details).",
+        challenges: [
+          "Inferring unfamiliar vocabulary from context.",
+          "Keeping pace as vocabulary is introduced after every paragraph."
+        ],
+        solutions: [
+          "Presenting each vocabulary set immediately after its related paragraph, with a definition, example and quick check.",
+          "Using the PowerPoint's built-in check-answer slides right after each activity to confirm understanding before moving on."
+        ],
+        values: "Critical Thinking • Communication • Perseverance • Integrity",
+        aids: "Student’s Book p.25 – PowerPoint (Lesson 5A) – board – vocabulary cards",
+        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Think-Pair-Share, Guided Reading, Word-Guessing Game",
+        assessment: "(e.g. observation, oral questioning, vocabulary concept-checking)<br><strong>Homework:</strong> Reread the blog on Student’s Book p.25 and write one sentence of your own for each of the six words from today’s vocabulary sets.",
+        warmupTime: "4 min.",
+        warmup: "Dividing the class into teams for Guess the Word – 3 Clues Challenge.<br>Giving each team three clues for a hidden word, one at a time.<br>Awarding two points for a correct guess on the first clue, and fewer points for later clues.<br>Reviewing the winning answers together as a class.",
+        preTime: "3 min.",
+        pre: "Introducing the lesson title “Success: More Than Just Talent.”<br>Asking pupils to discuss what success means to them, whether it is the same for everyone, and whether anyone can become successful.<br>Inviting pairs to share their ideas with the class.",
+        whileTime: "23 min.",
+        while: "Asking pupils to skim the whole blog and identify its overall message. (2 min.)<br>Asking pupils to read Paragraph 1 and discuss: “How can we achieve success in life?” (3 min.)<br>Presenting Vocabulary Set 1: merely, mindset, consistently, efficiently, give up, tough – definition, example, quick check for each. (4 min.)<br>Asking pupils to read Paragraph 2 and discuss: “Why is a positive mindset important for success?” (3 min.)<br>Presenting Vocabulary Set 2: positive, trust, progress, trait. (3 min.)<br>Asking pupils to read Paragraph 3 and discuss: “How can we learn from others to move forward?” (3 min.)<br>Presenting Vocabulary Set 3: remain, equally. (2 min.)<br>Asking pupils to read Paragraph 4 and discuss: “How can we make our aims a reality?” (3 min.)",
+        postTime: "3 min.",
+        post: "Displaying the Vocabulary Recap slide showing all twelve words.<br>Asking pupils, in pairs, to use as many of the words as they can in one minute.<br>Checking a few examples together as a class.",
+        wrapTime: "2 min.",
+        wrap: "Asking: “Which new word will you try to use today?”<br>Eliciting a few quick answers before moving to Lesson 5B."
       },
-      u2: {
-        unit: 'Unit 2: Staying Safe Online',
-        grammar: 'Conditionals (First & Second) / Defining Relative Clauses (who, which, that, where, when)',
-        vocab: 'casually, claim, reject, fake, seriously, update, install, phishing, scam, uneasy, access, security, cautious, genuinely, replace, software, manner, assist, provide, efficient, customer, accurate, complex, increasingly',
-        reading: 'Online Risks: The Story of a Digital Scam & Humans vs. Machines: AI Chatbots',
-        writing: 'Expository writing on Online Risks & Safety Tips',
-        values: 'Ethical Use of Technology, Safety & Security, Honesty'
+      u1_5b: {
+        module: "One – \"Kuwaiti Stories of Success\"",
+        topic: "Success: More Than Just Talent (Part 2 – Comprehension & Response)",
+        periodNo: "Lesson 5B",
+        day: "Tuesday",
+        date: "22/09/26",
+        periodSlots: "1+3",
+        sb: "25",
+        wb: "–",
+        outcomes: [
+          "analyse explicit and implicit details in an expository text about achieving success.",
+          "identify the linking words and phrases a writer uses to connect ideas between paragraphs.",
+          "explain factors that contribute to success using evidence from the text."
+        ],
+        vocab: "Reviewing merely, mindset, consistently, efficiently, give up, tough, positive, trust, progress, trait, remain, equally (from Lesson 5A).",
+        grammar: "No new grammar.",
+        langFunctions: "Expressing opinions; explaining reasons; justifying choices with evidence.",
+        microSkills: "Scanning for details, identifying supporting details, recognising text organisation, citing textual evidence.",
+        linkers: "first, in addition, furthermore, finally",
+        challenges: [
+          "Distinguishing the main idea from supporting details in the comprehension questions.",
+          "Giving opinions without evidence from the text."
+        ],
+        solutions: [
+          "Reviewing the blog together before the comprehension questions.",
+          "Asking pupils to underline their evidence in the text before they share an answer."
+        ],
+        values: "Critical Thinking • Communication • Information Literacy • Responsibility • Empathy",
+        aids: "Student’s Book p.25 – PowerPoint (Lesson 5B) – board",
+        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Pair Checking, Guided Discussion, Evidence Hunt",
+        assessment: "(e.g. observation, MCQ answers, written responses, oral discussion)<br><strong>Homework:</strong> Write four sentences explaining what makes a person successful. Use ideas from the blog.",
+        warmupTime: "4 min.",
+        warmup: "Reviewing key vocabulary from Lesson 5A with two or three quick recall questions.<br>Asking pupils to recall the overall message of the blog in one sentence.",
+        preTime: "2 min.",
+        pre: "Displaying the lesson title again as a reminder of the text.<br>Asking pupils what they remember about the four paragraphs from Lesson 5A.",
+        whileTime: "11 min.",
+        while: "Asking pupils to choose the correct answer (a, b, c or d) for three comprehension questions: the main idea of the 4th paragraph, the meaning of a ‘growth mindset’ in the passage, and the feeling the writer wants to create in the reader. (6 min.)<br>Checking answers together as a class.<br>Asking pupils to reread the paragraphs and identify which linking words (first, in addition, furthermore, finally) the writer uses to connect ideas. (5 min.)<br>Checking answers together as a class.",
+        postTime: "14 min.",
+        post: "Asking pupils to discuss three questions in pairs: two habits of successful people, why failure is important, and the writer’s purpose in writing the passage. (6 min.)<br>Inviting volunteers to share supported opinions; checking answers together.<br>Guiding pupils to complete ‘My Success Scrapbook’: one goal, three habits that will help them reach it, a short motivational motto, a small drawing about success, and one important idea learned from the reading. (8 min.)<br>Circulating to give support and help.",
+        wrapTime: "4 min.",
+        wrap: "Asking the Wrap-Up Questions: “What does success mean to you?”, “What habits can help you succeed?”, and “Why is it important never to give up?”<br>Eliciting short answers supported by the text before assigning homework."
       },
-      u3: {
-        unit: 'Unit 3: Food for Life: Culture, Health, and the Future',
-        grammar: 'Passive Voice (Present, Past, Modals) / Comparatives & Superlatives',
-        vocab: 'reflect, serve, symbol, occasion, distinctive, recipe, ingredient, aromatic, commonly, flavour, variety, raw, experience, energetic, source, fibre, significantly, homemade, produce, organic, harmful, label, maintain',
-        reading: 'Tastes of the World (Machboos, Pasta, Sushi) & Healthy Eating: Making Smart Choices',
-        writing: 'Expository writing on Why Eating Well Matters',
-        values: 'Cultural Awareness, Well-being, Sustainability, Gratitude'
-      },
-      u4: {
-        unit: 'Unit 4: Simple Living, Better World',
-        grammar: 'Present Perfect & Continuous / Quantifiers (some, any, much, many, few, little)',
-        vocab: 'focus, necessarily, instead, thoughtful, meaningful, benefit, conserve, balanced, gadget, valuable, responsibly, discard, packaging, preserve, minimise, expense, disposable, consumption, donate, mindful, wasteful',
-        reading: 'What Does It Mean to Live Simply? & Waste Less, Save the Planet',
-        writing: 'Expository report on Living Simply & Reducing Waste',
-        values: 'Sustainability, Mindfulness, Moderation, Generosity'
+      u1_exp: {
+        module: "One – \"Kuwaiti Stories of Success\"",
+        topic: "Kuwaiti Explorers: Inspiring Journeys (Grammar & Reading)",
+        periodNo: "Lesson 1",
+        day: "Wednesday",
+        date: "23/09/26",
+        periodSlots: "2+5",
+        sb: "21-23",
+        wb: "15",
+        outcomes: [
+          "predict and scan for information in a biographical text about Kuwaiti explorers.",
+          "differentiate between the Past Simple and Past Continuous using while and when.",
+          "form sentences connecting ideas using both...and and neither...nor."
+        ],
+        vocab: "curious, talent, explorer, proudly, highlight, represent, inspire, expedition, survive",
+        grammar: "Past Simple vs. Past Continuous (while / when) & Conjunctions (Both...and / Neither...nor).",
+        langFunctions: "Narrating past events; comparing achievements; expressing national pride.",
+        microSkills: "Skimming for gist, scanning for names and dates, deducing grammar rules from text.",
+        linkers: "while, when, both...and, neither...nor",
+        challenges: [
+          "Confusing the time clause order between 'while' (continuous) and 'when' (simple past).",
+          "Subject-verb agreement when using 'Both...and' vs. 'Neither...nor'."
+        ],
+        solutions: [
+          "Provide timeline diagrams on the board illustrating an ongoing action interrupted by a shorter one.",
+          "Concept check questions (CCQs) and pair drills before independent workbook practice."
+        ],
+        values: "Perseverance • Courage • Respect • Responsibility",
+        aids: "Student’s Book p.21-23 – PowerPoint – Board – World Map",
+        strategies: "– C.L.T.     – Task B.L.     – Differentiation     – Active Learning<br><strong>Other:</strong> Timeline Analysis, Pair Check, Think-Pair-Share",
+        assessment: "(e.g. oral responses, board gap-fill, Workbook exercises p.15)<br><strong>Homework:</strong> Workbook page 15, exercises 1 and 2.",
+        warmupTime: "4 min.",
+        warmup: "Displaying pictures of famous expeditions and asking: 'What challenges do explorers face?'<br>Eliciting quick responses to activate interest.",
+        preTime: "4 min.",
+        pre: "Presenting the title and photos of Fuad Qabazard and Lamees Najim.<br>Asking students to predict the hardships they encountered based on the visuals.",
+        whileTime: "22 min.",
+        while: "Skimming the text silently to match paragraphs with headings. (5 min.)<br>Target vocabulary presentation with context sentences and quick checks. (6 min.)<br>Scanning text for sentences containing 'while' and 'when' to highlight the grammar pattern. (6 min.)<br>Guided practice: rewriting sentences using 'Both...and' and 'Neither...nor'. (5 min.)",
+        postTime: "11 min.",
+        post: "Group discussion: Which explorer's journey inspired you more and why?<br>Representatives from each group share one key insight.",
+        wrapTime: "4 min.",
+        wrap: "Exit ticket: Construct one sentence about an explorer using 'while' or 'both...and' before packing up."
       }
     };
 
@@ -1013,18 +1196,11 @@
       Thursday: { c1: [5, 6], c2: [1, 2] }
     };
 
-    /* APP STATE: ALL DUMMY STUDENTS & DATA REMOVED */
     const APP_STATE = {
       activeClassId: 'c1',
       classes: {
-        c1: {
-          name: 'Class 9/5',
-          students: [] /* Empty clean roster */
-        },
-        c2: {
-          name: 'Class 9/6',
-          students: [] /* Empty clean roster */
-        }
+        c1: { name: 'Class 9/5', students: [] },
+        c2: { name: 'Class 9/6', students: [] }
       },
       currentGallery: [],
       currentCorrection: null,
@@ -1052,13 +1228,13 @@
 
       let diagnosis = "";
       if (lowest.name === 'Writing' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Writing alert (${lowest.val}%):</strong> Struggles with paragraph organization or cause-effect linkers (because, as a result)[cite: 1, 3]. Provide sentence starters.`;
+        diagnosis = `⚠️ <strong>Writing alert (${lowest.val}%):</strong> Struggles with paragraph organization or cause-effect linkers (because, as a result)[cite: 1]. Provide sentence starters.`;
       } else if (lowest.name === 'Speaking' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Speaking focus (${lowest.val}%):</strong> Hesitation noted during oral questions[cite: 3]. Encourage paired role-play before whole-class participation[cite: 2].`;
+        diagnosis = `⚠️ <strong>Speaking focus (${lowest.val}%):</strong> Hesitation noted during oral questions. Encourage paired role-play before whole-class participation[cite: 2].`;
       } else if (lowest.name === 'Listening' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Listening support (${lowest.val}%):</strong> Misses specific details from audio texts[cite: 3]. Provide graphic organizer tables before listening[cite: 1, 2].`;
+        diagnosis = `⚠️ <strong>Listening support (${lowest.val}%):</strong> Misses specific details from audio texts. Provide graphic organizer tables before listening[cite: 1, 2].`;
       } else if (lowest.name === 'Reading' && lowest.val < 75) {
-        diagnosis = `⚠️ <strong>Reading gap (${lowest.val}%):</strong> Needs help decoding contextual vocabulary[cite: 3]. Practice skimming and scanning exercises[cite: 1].`;
+        diagnosis = `⚠️ <strong>Reading gap (${lowest.val}%):</strong> Needs help decoding contextual vocabulary. Practice skimming and scanning exercises[cite: 1].`;
       } else {
         diagnosis = `🌟 <strong>Balanced profile:</strong> Strongest in ${highest.name} (${highest.val}%). Ready for advanced extension tasks aligned with Kuwait 9A[cite: 1, 2].`;
       }
@@ -1072,9 +1248,6 @@
       { num: 4, type: 'Spelling', prompt: 'Correct spelling: The team reached the mounten top.', correct: 'mountain', alts: [], pts: 1 }
     ];
 
-    /* ==========================================================
-       INITIALIZATION
-       ========================================================== */
     document.addEventListener('DOMContentLoaded', () => {
       loadSavedData();
       const today = new Date().toISOString().split('T')[0];
@@ -1088,6 +1261,7 @@
       renderAnswerKeyInputs();
       updateScheduleTicker();
       renderCategoryAnalytics();
+      onKuwaitUnitSelect();
     });
 
     function cycleHusbandQuote() {
@@ -1105,7 +1279,6 @@
       document.getElementById('attClassLabel').innerText = cls.name;
       document.getElementById('repClassTitle').innerText = cls.name;
       document.getElementById('cwClassSelect').value = classId;
-      document.getElementById('lpClass').value = cls.name;
       document.getElementById('pptClass').value = cls.name;
       document.getElementById('wsClass').value = cls.name;
 
@@ -1275,7 +1448,6 @@
       }
     }
 
-    /* Bulk Roster Import */
     function openBulkImportModal() {
       document.getElementById('bulkNamesInput').value = '';
       document.getElementById('bulkImportModal').style.display = 'flex';
@@ -1598,48 +1770,178 @@
     }
 
     /* ==========================================================
-       KUWAIT 9A LESSON PLANNER & SLIDES
+       KUWAIT 9A LESSON PLANNER (OFFICIAL MOE SUPERVISION FORMAT)
        ========================================================== */
     function onKuwaitUnitSelect() {
-      const uKey = document.getElementById('kuwaitUnitSelector').value;
-      const uData = KUWAIT_CURRICULUM[uKey];
-      document.getElementById('lpTitle').value = uData.reading;
-      document.getElementById('lpGrammar').value = uData.grammar;
-      document.getElementById('lpVocab').value = uData.vocab;
-      document.getElementById('lpValues').value = uData.values;
+      const key = document.getElementById('kuwaitUnitSelector').value;
+      const preset = KUWAIT_PRESETS[key] || KUWAIT_PRESETS.u1_5a;
+
+      document.getElementById('lpModule').value = preset.module;
+      document.getElementById('lpTopic').value = preset.topic;
+      document.getElementById('lpPeriodNo').value = preset.periodNo;
+      document.getElementById('lpDay').value = preset.day;
+      document.getElementById('lpDate').value = preset.date;
+      document.getElementById('lpPeriodSlots').value = preset.periodSlots;
+      document.getElementById('lpSB').value = preset.sb;
+      document.getElementById('lpWB').value = preset.wb;
     }
 
     function generateLessonPlan() {
-      const uKey = document.getElementById('kuwaitUnitSelector').value;
-      const uData = KUWAIT_CURRICULUM[uKey];
-      const cls = document.getElementById('lpClass').value;
-      const title = document.getElementById('lpTitle').value;
-      const grammar = document.getElementById('lpGrammar').value;
-      const vocab = document.getElementById('lpVocab').value;
-      const values = document.getElementById('lpValues').value;
+      const key = document.getElementById('kuwaitUnitSelector').value;
+      const preset = KUWAIT_PRESETS[key] || KUWAIT_PRESETS.u1_5a;
+
+      const teacherName = document.getElementById('lpTeacherName').value || 'Najat AlKandari';
+      const day = document.getElementById('lpDay').value;
+      const date = document.getElementById('lpDate').value;
+      const classes = document.getElementById('lpClasses').value;
+      const periodSlots = document.getElementById('lpPeriodSlots').value;
+      const periodNo = document.getElementById('lpPeriodNo').value;
+      const moduleTitle = document.getElementById('lpModule').value;
+      const sbPage = document.getElementById('lpSB').value;
+      const wbPage = document.getElementById('lpWB').value;
+      const topic = document.getElementById('lpTopic').value;
+
+      const outcomesList = preset.outcomes.map((o, idx) => `<div>${idx + 1}. ${o}</div>`).join('');
+      const challengesList = preset.challenges.map(c => `<div>• ${c}</div>`).join('');
+      const solutionsList = preset.solutions.map(s => `<div>• ${s}</div>`).join('');
 
       const html = `
-        <h2 style="color:var(--primary); font-size:1.2rem; border-bottom:1px solid #cbd5e1; padding-bottom:8px;">${uData.unit}: ${title}</h2>
-        <p style="margin:8px 0; font-size:0.85rem;"><strong>Class:</strong> ${cls} | <strong>Ministry Guidelines:</strong> English Pearls 9A[cite: 1, 5]</p>
-        <h4 style="margin-top:12px;">1. Objectives</h4>
-        <ul style="padding-left:20px; font-size:0.85rem;">
-          <li>Students will comprehend reading details from <em>${title}</em>[cite: 1].</li>
-          <li>Students will apply <strong>${grammar}</strong> in targeted written sentences[cite: 1, 6].</li>
-          <li>Students will incorporate 21st-century values: <em>${values}</em>[cite: 1, 4].</li>
-        </ul>
-        <h4 style="margin-top:12px;">2. Vocabulary & Grammar Focus</h4>
-        <p style="font-size:0.85rem; background:#f8fafc; padding:8px; border-radius:6px;">
-          <strong>Target Words:</strong> ${vocab}[cite: 1]<br>
-          <strong>Grammar Structure:</strong> ${grammar}[cite: 1]
-        </p>
-        <h4 style="margin-top:12px;">3. Procedure</h4>
-        <ol style="padding-left:20px; font-size:0.85rem;">
-          <li><strong>Warm-up (5 min):</strong> Hook question on board connected to Kuwait Vision 2035 and personal experiences[cite: 1, 6].</li>
-          <li><strong>Modeling (12 min):</strong> Explicit teacher demonstration using Student's Book examples[cite: 1, 5].</li>
-          <li><strong>Guided Practice (15 min):</strong> Peer collaboration solving grammar and reading exercises[cite: 1, 5].</li>
-          <li><strong>Assessment Exit Ticket (8 min):</strong> Formative check aligned with Ministry OK/Good/Excellent criteria[cite: 3].</li>
-        </ol>
+        <div class="moe-plan-doc">
+          <!-- Official Ministry Header -->
+          <div class="moe-header-box">
+            <div class="moe-left">
+              Ministry of Education<br>
+              E.L.T. General Supervision
+            </div>
+            <div class="moe-right">
+              Intermediate Stage
+            </div>
+          </div>
+
+          <div class="moe-plan-title">✱ Lesson Plan ✱</div>
+
+          <!-- Metadata Strip -->
+          <table class="moe-meta-table">
+            <tr>
+              <td><strong>Day:</strong> <u>${day}</u></td>
+              <td><strong>Class:</strong> <u>${classes}</u></td>
+              <td><strong>Module:</strong> <u>${moduleTitle}</u></td>
+              <td><strong>SB:</strong> <u>${sbPage}</u></td>
+            </tr>
+            <tr>
+              <td><strong>Date:</strong> <u>${date}</u></td>
+              <td><strong>Period:</strong> <u>${periodSlots}</u></td>
+              <td><strong>Topic:</strong> <u>${topic}</u></td>
+              <td><strong>Period No.:</strong> <u>${periodNo}</u> &nbsp;&nbsp; <strong>WB:</strong> <u>${wbPage}</u></td>
+            </tr>
+            <tr>
+              <td colspan="4"><strong>Teacher:</strong> <u>${teacherName}</u></td>
+            </tr>
+          </table>
+
+          <!-- Core Curricular Breakdown -->
+          <table class="moe-section-table">
+            <tr>
+              <th>Lesson Learning Outcomes</th>
+              <td>
+                <em>By the end of the lesson, learners can:</em>
+                <div style="margin-top: 4px;">${outcomesList}</div>
+              </td>
+            </tr>
+            <tr>
+              <th>Language Focus</th>
+              <td>
+                <strong>Vocabulary:</strong> ${preset.vocab}<br>
+                <strong>Grammar:</strong> ${preset.grammar}<br>
+                <strong>Language Functions:</strong> ${preset.langFunctions}<br>
+                <strong>Micro-skills:</strong> ${preset.microSkills}<br>
+                <strong>Linkers:</strong> ${preset.linkers}
+              </td>
+            </tr>
+            <tr>
+              <th>Anticipated Challenges</th>
+              <td>${challengesList}</td>
+            </tr>
+            <tr>
+              <th>Proposed Solutions</th>
+              <td>${solutionsList}</td>
+            </tr>
+            <tr>
+              <th>21st-Century Skills & Values</th>
+              <td>${preset.values}</td>
+            </tr>
+            <tr>
+              <th>Teaching Aids</th>
+              <td>${preset.aids}</td>
+            </tr>
+            <tr>
+              <th>Teaching Strategies</th>
+              <td>${preset.strategies}</td>
+            </tr>
+            <tr>
+              <th>Assessment</th>
+              <td>${preset.assessment}</td>
+            </tr>
+          </table>
+
+          <!-- Procedural Stages -->
+          <table class="moe-proc-table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Stage</th>
+                <th style="width: 68%;">Lesson Procedure</th>
+                <th style="width: 12%; text-align: center;">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Warm-up</strong></td>
+                <td>${preset.warmup}</td>
+                <td style="text-align: center;">${preset.warmupTime}</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Sequence of Activities</strong><br>
+                  <span style="font-size:0.75rem; color:#475569;">(Pre – While – Post)</span>
+                </td>
+                <td>
+                  <span class="moe-subheading">Pre-reading</span>
+                  ${preset.pre}
+
+                  <span class="moe-subheading" style="margin-top: 8px;">While-reading</span>
+                  ${preset.while}
+
+                  <span class="moe-subheading" style="margin-top: 8px;">Post-reading</span>
+                  ${preset.post}
+                </td>
+                <td style="text-align: center; font-size: 0.8rem; line-height: 1.6;">
+                  <strong>Pre:</strong> ${preset.preTime}<br>
+                  <strong>While:</strong> ${preset.whileTime}<br>
+                  <strong>Post:</strong> ${preset.postTime}
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Wrap-up</strong></td>
+                <td>${preset.wrap}</td>
+                <td style="text-align: center;">${preset.wrapTime}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Reflection & Signatures -->
+          <div style="margin-top: 14px; font-size: 0.84rem;">
+            <strong>Reflection</strong><br>
+            <div style="margin-top: 4px;">What worked well? ________________________________________________________________________________</div>
+            <div style="margin-top: 6px;">What needs improvement? _________________________________________________________________________</div>
+          </div>
+
+          <div class="moe-sign-box">
+            <div>H.O.D: ___________________________</div>
+            <div>E.L.T. Supervisor: ___________________________</div>
+          </div>
+        </div>
       `;
+
       document.getElementById('editablePlanContent').innerHTML = html;
       document.getElementById('generatedLessonOutput').style.display = 'block';
     }
@@ -1691,17 +1993,12 @@
       document.getElementById('worksheetOutputContainer').style.display = 'block';
     }
 
-    /* ==========================================================
-       LOCAL STORAGE MANAGEMENT
-       ========================================================== */
     function saveDataLocally() {
       localStorage.setItem('kuwait_teacher_assistant_data_v2', JSON.stringify(APP_STATE.classes));
     }
 
     function loadSavedData() {
-      /* Force clear older dummy datasets */
       localStorage.removeItem('kuwait_teacher_assistant_data');
-
       const saved = localStorage.getItem('kuwait_teacher_assistant_data_v2');
       if (saved) {
         try { APP_STATE.classes = JSON.parse(saved); } catch (e) {}
