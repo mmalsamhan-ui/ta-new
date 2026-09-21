@@ -39,421 +39,134 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: var(--font-en);
-      background-color: #f4f6fb;
-      color: var(--neutral-800);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    body { font-family: var(--font-en); background-color: #f4f6fb; color: var(--neutral-800); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden;}
     body.rtl { direction: rtl; font-family: var(--font-ar); }
 
-    header {
-      background-color: var(--white);
-      border-bottom: 1px solid var(--neutral-200);
-      position: sticky;
-      top: 0;
-      z-index: 40;
+    /* Login Gate Styles */
+    #loginGate {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--neutral-900), var(--neutral-800));
+      z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: white; transition: opacity 0.3s ease;
     }
-    .top-bar {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+    .login-box {
+      background: white; padding: 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      text-align: center; color: var(--neutral-900); width: 90%; max-width: 400px;
     }
+    .login-box input {
+      width: 100%; padding: 12px; margin: 20px 0; border: 2px solid var(--neutral-200);
+      border-radius: 8px; font-size: 1.2rem; text-align: center; letter-spacing: 3px;
+    }
+    .login-box input:focus { outline: none; border-color: var(--primary); }
+    .login-box button {
+      width: 100%; padding: 14px; background: var(--primary); color: white; border: none;
+      border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.2s;
+    }
+    .login-box button:hover { background: var(--primary-dark); }
+
+    /* Layout & Header */
+    header { background-color: var(--white); border-bottom: 1px solid var(--neutral-200); position: sticky; top: 0; z-index: 40; }
+    .top-bar { max-width: 1400px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-icon {
-      width: 40px; height: 40px;
-      background: linear-gradient(135deg, var(--primary), #4f46e5);
-      color: white; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 800;
-    }
+    .brand-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #4f46e5); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; }
     .brand-text h1 { font-size: 1.15rem; font-weight: 800; color: var(--neutral-900); }
     .brand-text p { font-size: 0.75rem; color: var(--neutral-600); }
 
-    .class-switcher-container {
-      display: flex;
-      align-items: center;
-      background: var(--neutral-100);
-      padding: 4px;
-      border-radius: 10px;
-      border: 1px solid var(--neutral-200);
-    }
-    .class-btn {
-      padding: 8px 18px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      border: none;
-      background: transparent;
-      color: var(--neutral-600);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-    .class-btn.active {
-      background: var(--white);
-      color: var(--primary);
-      box-shadow: var(--shadow-sm);
-    }
+    .class-switcher-container { display: flex; align-items: center; background: var(--neutral-100); padding: 4px; border-radius: 10px; border: 1px solid var(--neutral-200); }
+    .class-btn { padding: 8px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; border: none; background: transparent; color: var(--neutral-600); cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; }
+    .class-btn.active { background: var(--white); color: var(--primary); box-shadow: var(--shadow-sm); }
 
-    .nav-tabs-wrapper {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      gap: 4px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
+    .nav-tabs-wrapper { max-width: 1400px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
     .nav-tabs-wrapper::-webkit-scrollbar { display: none; }
-    .tab-btn {
-      padding: 12px 16px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--neutral-600);
-      border: none;
-      background: transparent;
-      border-bottom: 2.5px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s;
-    }
-    .tab-btn.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-      font-weight: 700;
-    }
+    .tab-btn { padding: 12px 16px; font-size: 0.85rem; font-weight: 600; color: var(--neutral-600); border: none; background: transparent; border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px; transition: all 0.15s; }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 700; }
 
-    main {
-      max-width: 1400px;
-      width: 100%;
-      margin: 16px auto;
-      padding: 0 20px 40px;
-      flex: 1;
-    }
+    main { max-width: 1400px; width: 100%; margin: 16px auto; padding: 0 20px 40px; flex: 1; }
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.2s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* Husband Loving Note Banner */
-    .husband-love-card {
-      background: linear-gradient(135deg, #fff1f2, #fdf2f8);
-      border: 1px solid var(--love-border);
-      border-radius: var(--radius);
-      padding: 14px 20px;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .husband-love-card { background: linear-gradient(135deg, #fff1f2, #fdf2f8); border: 1px solid var(--love-border); border-radius: var(--radius); padding: 14px 20px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .love-content { display: flex; align-items: center; gap: 12px; }
     .love-content span.heart-icon { font-size: 1.6rem; }
     .love-text h4 { font-size: 0.8rem; text-transform: uppercase; color: #be123c; font-weight: 800; letter-spacing: 0.05em; }
     .love-text p { font-size: 0.92rem; color: #881337; font-weight: 600; font-style: italic; }
 
-    /* Bell Status Bar */
-    .schedule-bar {
-      background: var(--neutral-900);
-      color: white;
-      border-radius: var(--radius);
-      padding: 12px 20px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .schedule-bar { background: var(--neutral-900); color: white; border-radius: var(--radius); padding: 12px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .schedule-status { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
-    .pulse-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--success);
-      box-shadow: 0 0 8px var(--success);
-    }
+    .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); }
 
-    .card {
-      background: var(--white);
-      border-radius: var(--radius);
-      border: 1px solid var(--neutral-200);
-      box-shadow: var(--shadow-sm);
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .card-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--neutral-900);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--neutral-200); box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 20px; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
+    .card-title { font-size: 1.2rem; font-weight: 800; color: var(--neutral-900); display: flex; align-items: center; gap: 8px; }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; }
     .badge-primary { background: var(--primary-light); color: var(--primary); }
-    .badge-success { background: var(--success-bg); color: #065f46; }
-    .badge-danger { background: var(--danger-bg); color: #991b1b; }
-    .badge-warning { background: var(--warning-bg); color: #92400e; }
     .badge-secondary { background: var(--neutral-200); color: var(--neutral-700); }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: all 0.15s;
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: all 0.15s; }
     .btn-primary { background: var(--primary); color: white; }
     .btn-secondary { background: var(--neutral-100); color: var(--neutral-700); border-color: var(--neutral-200); }
     .btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
     .btn-danger { background: var(--danger-bg); color: var(--danger); }
     .btn-sm { padding: 4px 8px; font-size: 0.75rem; border-radius: 6px; }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-      margin-bottom: 16px;
-    }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px; }
     .form-group { display: flex; flex-direction: column; gap: 4px; }
-    .form-group label {
-      font-size: 0.76rem; font-weight: 700;
-      color: var(--neutral-700); text-transform: uppercase;
-    }
-    .form-control {
-      padding: 9px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--neutral-200);
-      font-size: 0.88rem;
-      font-family: inherit;
-      background-color: var(--neutral-50);
-    }
-    .form-control:focus { outline: none; border-color: var(--primary); background: white; }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 8px;
-      border: 1px solid var(--neutral-200);
-    }
-    .table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
-    body.rtl .table { text-align: right; }
-    .table th {
-      background: var(--neutral-100);
-      padding: 10px 14px;
-      font-weight: 700;
-      color: var(--neutral-700);
-      border-bottom: 1px solid var(--neutral-200);
-    }
-    .table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--neutral-200);
-      vertical-align: middle;
-    }
-
-    .cat-bar-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      min-width: 250px;
-    }
-    .cat-pill {
-      background: var(--neutral-100);
-      border: 1px solid var(--neutral-200);
-      border-radius: 6px;
-      padding: 4px 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.72rem;
-    }
-    .cat-pill strong { color: var(--neutral-800); }
-    .cat-pill span.grade-val { font-weight: 800; }
+    .form-group label { font-size: 0.76rem; font-weight: 700; color: var(--neutral-700); text-transform: uppercase; }
+    .form-control { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--neutral-200); font-size: 0.88rem; font-family: inherit; background-color: var(--neutral-50); }
     
-    .insight-card {
-      background: #f8fafc;
-      border-left: 3px solid var(--neutral-400);
-      padding: 6px 10px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.76rem;
-      color: var(--neutral-700);
-      line-height: 1.4;
-      margin-top: 4px;
-    }
+    .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--neutral-200); }
+    .table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; }
+    .table th { background: var(--neutral-100); padding: 10px 14px; font-weight: 700; color: var(--neutral-700); border-bottom: 1px solid var(--neutral-200); }
+    .table td { padding: 12px 14px; border-bottom: 1px solid var(--neutral-200); vertical-align: middle; }
 
-    /* Timetable Grid & Precise Cell Highlighting */
-    .timetable-grid {
-      display: grid;
-      grid-template-columns: 140px repeat(5, 1fr);
-      gap: 6px;
-      overflow-x: auto;
-      font-size: 0.78rem;
-    }
+    .cat-bar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; min-width: 250px; }
+    .cat-pill { background: var(--neutral-100); border: 1px solid var(--neutral-200); border-radius: 6px; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; }
+    .insight-card { background: #f8fafc; border-left: 3px solid var(--neutral-400); padding: 6px 10px; border-radius: 0 6px 6px 0; font-size: 0.76rem; color: var(--neutral-700); line-height: 1.4; margin-top: 4px; }
+
+    /* Timetable Grid & Editor */
+    .timetable-grid { display: grid; grid-template-columns: 140px repeat(5, 1fr); gap: 6px; overflow-x: auto; font-size: 0.78rem; }
     .tt-header { background: var(--neutral-800); color: white; padding: 10px; font-weight: 700; text-align: center; border-radius: 6px; }
     .tt-time-col { background: var(--neutral-100); padding: 8px; font-weight: 700; border-radius: 6px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
-    .tt-slot {
-      background: var(--white);
-      border: 1px solid var(--neutral-200);
-      border-radius: 6px;
-      padding: 8px;
-      min-height: 55px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-    }
-    .tt-slot.c1-slot { background: #eff6ff; border-color: #93c5fd; color: #1e40af; font-weight: 600; }
-    .tt-slot.c2-slot { background: #ecfdf5; border-color: #6ee7b7; color: #065f46; font-weight: 600; }
+    .tt-slot { background: var(--white); border: 1px solid var(--neutral-200); border-radius: 6px; padding: 8px; min-height: 55px; display: flex; flex-direction: column; justify-content: center; text-align: center; transition: all 0.2s; }
+    .tt-slot.c1-slot { background: #eff6ff; border-color: #93c5fd; color: #1e40af; font-weight: 600; cursor: pointer; }
+    .tt-slot.c2-slot { background: #ecfdf5; border-color: #6ee7b7; color: #065f46; font-weight: 600; cursor: pointer; }
+    .tt-slot.c1-slot:hover, .tt-slot.c2-slot:hover { transform: scale(1.05); box-shadow: var(--shadow-md); z-index: 10; }
     .tt-slot.break-slot { background: #fafaf9; border-color: #e7e5e4; color: var(--neutral-400); }
+    .tt-slot select { font-size:0.75rem; padding:4px; width:100%; border:1px solid #cbd5e1; border-radius:4px; }
     
-    .tt-slot.active-target-cell {
-      border: 2.5px solid var(--danger) !important;
-      background: #fee2e2 !important;
-      color: #991b1b !important;
-      box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
-      animation: pulseCell 1.5s infinite;
-      position: relative;
-    }
-    .tt-slot.active-target-cell::after {
-      content: "★ NOW";
-      position: absolute;
-      top: -8px;
-      right: 4px;
-      background: var(--danger);
-      color: white;
-      font-size: 0.55rem;
-      padding: 1px 4px;
-      border-radius: 4px;
-      font-weight: 800;
-    }
-    @keyframes pulseCell {
-      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-
-    /* Textbook Reader Styles */
-    .book-layout {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 20px;
-    }
-    @media(max-width: 900px) {
-      .book-layout { grid-template-columns: 1fr; }
-    }
-    .book-page-viewer {
-      background: white;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 30px;
-      min-height: 500px;
-      position: relative;
-    }
-    .book-toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--neutral-200);
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .highlightable-text {
-      line-height: 1.8;
-      font-size: 1rem;
-      color: #1e293b;
-    }
-    .highlightable-text span.hl-yellow { background-color: #fef08a; cursor: pointer; }
-    .highlightable-text span.hl-green { background-color: #bbf7d0; cursor: pointer; }
-    .highlightable-text span.hl-pink { background-color: #fbcfe8; cursor: pointer; }
+    /* Planner Tabs */
+    .planner-tab-nav { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid var(--neutral-200); padding-bottom: 10px; overflow-x: auto;}
+    .ptab-btn { background: none; border: none; font-size: 0.9rem; font-weight: 700; color: var(--neutral-500); cursor: pointer; padding: 8px 16px; border-radius: 8px; transition: all 0.2s; white-space: nowrap;}
+    .ptab-btn.active { background: var(--primary-light); color: var(--primary); }
+    .ptab-content { display: none; }
+    .ptab-content.active { display: block; animation: fadeIn 0.2s ease; }
 
     /* Exact Kuwait MOE Lesson Plan Output Style */
-    .moe-plan-doc {
-      background: white;
-      color: #111827;
-      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
-      font-size: 0.86rem;
-      line-height: 1.45;
-      padding: 24px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-    }
-    .moe-top-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #334155;
-      margin-bottom: 4px;
-    }
-    .moe-plan-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #b45309;
-      margin-bottom: 10px;
-    }
-    .moe-meta-strip {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #0f172a;
-    }
-    .moe-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 12px;
-    }
-    .moe-table th, .moe-table td {
-      border: 1px solid #64748b;
-      padding: 7px 10px;
-      vertical-align: top;
-      font-size: 0.82rem;
-    }
-    .moe-table th {
-      background-color: #f1f5f9;
-      color: #0f172a;
-      font-weight: 700;
-      width: 27%;
-      text-align: left;
-    }
+    .moe-plan-doc { background: white; color: #000; font-family: 'Times New Roman', Times, serif; font-size: 0.85rem; line-height: 1.4; padding: 30px; border: 1px solid #cbd5e1; border-radius: 8px; }
+    .moe-header-container { text-align: center; font-weight: bold; margin-bottom: 20px; line-height: 1.2; }
+    .moe-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+    .moe-table th, .moe-table td { border: 1px solid #000; padding: 6px 8px; vertical-align: top; }
+    .moe-table th { background-color: #f3f4f6; font-weight: bold; text-align: left; }
+    .moe-table-center th, .moe-table-center td { text-align: center; vertical-align: middle; }
+    .moe-sub-label { font-weight: bold; margin-right: 5px; }
+    .moe-section-title { background-color: #f3f4f6; font-weight: bold; text-align: center; padding: 8px; border: 1px solid #000; }
+    .editable-area { min-height: 20px; outline: none; }
+
+    /* Reader */
+    .book-layout { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+    .book-page-viewer { background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 30px; min-height: 500px; }
+    .book-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--neutral-200); flex-wrap: wrap; gap: 10px; }
+    .highlightable-text span.hl-yellow { background-color: #fef08a; cursor: pointer; }
+    .highlightable-text span.hl-green { background-color: #bbf7d0; cursor: pointer; }
+
+    /* Modal Styles */
+    .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 100; align-items: center; justify-content: center; }
+    .modal-content { background: white; padding: 24px; border-radius: 12px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: var(--shadow-md); }
+    .modal-close { float: right; cursor: pointer; font-size: 1.2rem; font-weight: bold; }
+    .history-entry { border-bottom: 1px solid #e2e8f0; padding: 12px 0; }
+    .history-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 4px; }
 
     @media print {
       header, .husband-love-card, .schedule-bar, .nav-tabs-wrapper, .btn, .no-print { display: none !important; }
@@ -465,7 +178,40 @@
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
+  <!-- SECURE PASSWORD GATE -->
+  <div id="loginGate">
+    <div class="login-box">
+      <div style="font-size: 2.5rem; margin-bottom: 10px;">🛡️</div>
+      <h2 style="margin-bottom: 5px;">Teacher Access</h2>
+      <p style="color: var(--neutral-600); font-size: 0.9rem;">Please enter your password to proceed.</p>
+      <input type="password" id="pwdInput" placeholder="••••••••" onkeypress="if(event.key === 'Enter') checkPwd()">
+      <button onclick="checkPwd()">Login to ETA</button>
+      <p id="pwdError" style="color: var(--danger); display: none; margin-top: 15px; font-weight: 600; font-size: 0.85rem;">Incorrect password. Try again.</p>
+    </div>
+  </div>
+
+  <script>
+    // Logic for Password Gate
+    function checkPwd() {
+      const input = document.getElementById('pwdInput').value;
+      if (input === "najat2026") {
+        sessionStorage.setItem("eta_logged_in", "true");
+        document.getElementById('loginGate').style.opacity = '0';
+        setTimeout(() => document.getElementById('loginGate').style.display = 'none', 300);
+      } else {
+        document.getElementById('pwdError').style.display = 'block';
+        document.getElementById('pwdInput').value = '';
+      }
+    }
+    // Check if already logged in this session
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem("eta_logged_in") === "true") {
+        document.getElementById('loginGate').style.display = 'none';
+      }
+    });
+  </script>
+
+  <!-- MAIN APP INTERFACE -->
   <header>
     <div class="top-bar">
       <div class="brand">
@@ -475,53 +221,27 @@
           <p>Kuwait Intermediate • English Pearls 9A</p>
         </div>
       </div>
-
-      <!-- Quick Class Switcher -->
       <div class="class-switcher-container">
-        <button class="class-btn active" id="btnClass1" onclick="switchClass('c1')">
-          <span>📘</span> Class 9/5
-        </button>
-        <button class="class-btn" id="btnClass2" onclick="switchClass('c2')">
-          <span>📗</span> Class 9/6
-        </button>
+        <button class="class-btn active" id="btnClass1" onclick="switchClass('c1')"><span>📘</span> Class 9/5</button>
+        <button class="class-btn" id="btnClass2" onclick="switchClass('c2')"><span>📗</span> Class 9/6</button>
       </div>
-
       <div style="display: flex; gap: 8px; align-items: center;">
-        <button class="btn btn-danger btn-sm" onclick="resetAppData()" title="Reset Data">🔄 Reset App</button>
-        <button class="btn btn-secondary btn-sm" onclick="exportDataBackup()">💾 Backup Data</button>
         <button class="btn btn-secondary btn-sm" onclick="toggleLanguage()">🌐 EN / العربية</button>
       </div>
     </div>
 
-    <!-- Navigation Tabs -->
     <div class="nav-tabs-wrapper">
-      <button class="tab-btn active" data-tab="tab-roster" onclick="showTab('tab-roster')">
-        <span>👥</span> Student Grades & Insights
-      </button>
-      <button class="tab-btn" data-tab="tab-absent" onclick="showTab('tab-absent')">
-        <span>📋</span> Absent List
-      </button>
-      <button class="tab-btn" data-tab="tab-planner" onclick="showTab('tab-planner')">
-        <span>📝</span> Kuwait 9A Planner
-      </button>
-      <button class="tab-btn" data-tab="tab-textbook" onclick="showTab('tab-textbook')">
-        <span>📖</span> Student Book 9A
-      </button>
-      <button class="tab-btn" data-tab="tab-attendance" onclick="showTab('tab-attendance')">
-        <span>📅</span> Attendance
-      </button>
-      <button class="tab-btn" data-tab="tab-timetable" onclick="showTab('tab-timetable')">
-        <span>⏰</span> Timetable & Bell
-      </button>
-      <button class="tab-btn" data-tab="tab-reports" onclick="showTab('tab-reports')">
-        <span>📈</span> Analytics & Descriptors
-      </button>
+      <button class="tab-btn active" data-tab="tab-roster" onclick="showTab('tab-roster')">👥 Grades & Insights</button>
+      <button class="tab-btn" data-tab="tab-absent" onclick="showTab('tab-absent')">📋 Absent List</button>
+      <button class="tab-btn" data-tab="tab-attendance" onclick="showTab('tab-attendance')">📅 Daily Log & Attendance</button>
+      <button class="tab-btn" data-tab="tab-planner" onclick="showTab('tab-planner')">📝 Generative Lesson Planner</button>
+      <button class="tab-btn" data-tab="tab-textbook" onclick="showTab('tab-textbook')">📖 Student Book 9A</button>
+      <button class="tab-btn" data-tab="tab-timetable" onclick="showTab('tab-timetable')">⏰ Timetable Editor</button>
     </div>
   </header>
 
   <main>
-    <!-- Loving Daily Husband Note with Cycling Button -->
-    <div class="husband-love-card">
+    <div class="husband-love-card no-print">
       <div class="love-content">
         <span class="heart-icon">💖</span>
         <div class="love-text">
@@ -532,8 +252,8 @@
       <button class="btn btn-secondary btn-sm" style="background:white; border-color:var(--love-border); color:var(--love-text);" onclick="cycleHusbandQuote()">Next Note 💕</button>
     </div>
 
-    <!-- Live Bell Schedule & In-Session Ticker -->
-    <div class="schedule-bar">
+    <!-- Live Bell Schedule -->
+    <div class="schedule-bar no-print">
       <div class="schedule-status">
         <div class="pulse-dot"></div>
         <div>
@@ -544,49 +264,25 @@
       <div style="display:flex; align-items:center; gap:10px;">
         <select id="simScheduleSelect" class="form-control" style="background:var(--neutral-800); color:white; border-color:var(--neutral-700); padding:4px 8px; font-size:0.75rem;" onchange="updateLiveSchedule()">
           <option value="auto">Live Clock (Real-time)</option>
-          <option value="assembly">Simulate: Morning Assembly</option>
           <option value="p1">Simulate: Period 1</option>
           <option value="p2">Simulate: Period 2</option>
-          <option value="break1">Simulate: First Recess</option>
           <option value="p3">Simulate: Period 3</option>
-          <option value="p4">Simulate: Period 4</option>
-          <option value="p5">Simulate: Period 5</option>
-          <option value="break2">Simulate: Second Recess</option>
-          <option value="p6">Simulate: Period 6</option>
-          <option value="p7">Simulate: Period 7</option>
         </select>
         <button class="btn btn-primary btn-sm" onclick="jumpToActiveSession()">Go To Active Class</button>
       </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB: STUDENT GRADES & INSIGHTS                           -->
-    <!-- ======================================================== -->
+    <!-- TAB: ROSTER (MASTER PROFILES) -->
     <div id="tab-roster" class="tab-content active">
       <div class="card">
         <div class="card-header">
-          <div>
-            <h2 class="card-title" id="rosterTitle">Class 9/5 Grades & Diagnostic Insights</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600); margin-top:2px;">
-              Categorized performance across <strong>Listening, Speaking, Reading, and Writing</strong> aligned with Kuwait ELT supervision descriptors.
-            </p>
-          </div>
-          <div style="display:flex; gap:8px;">
-            <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
-          </div>
+          <h2 class="card-title" id="rosterTitle">Class 9/5 Grades & Insights</h2>
+          <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
         </div>
-
         <div class="table-wrap">
           <table class="table">
             <thead>
-              <tr>
-                <th style="min-width: 180px;">Student Name</th>
-                <th style="min-width: 260px;">Grades by Category</th>
-                <th style="min-width: 90px;">Overall</th>
-                <th style="min-width: 280px;">AI Category Insight & Recommendation</th>
-                <th style="min-width: 110px;">Ministry Descr.</th>
-                <th style="text-align:right; min-width: 110px;">Actions</th>
-              </tr>
+              <tr><th style="min-width: 180px;">Student Name</th><th style="min-width: 260px;">Grades by Category</th><th style="min-width: 110px;">Ministry Descr.</th><th style="text-align:right;">Actions</th></tr>
             </thead>
             <tbody id="rosterTableBody"></tbody>
           </table>
@@ -594,20 +290,14 @@
       </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB: DAILY ABSENT LIST (BOTH CLASSES)                    -->
-    <!-- ======================================================== -->
+    <!-- TAB: ABSENT -->
     <div id="tab-absent" class="tab-content">
       <div class="card">
         <div class="card-header">
-          <div>
-            <h2 class="card-title">Daily Absentee Report (Classes 9/5 & 9/6)</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Overview of students marked absent across both classes for today.</p>
-          </div>
-          <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print Absent List</button>
+          <h2 class="card-title">Daily Absentee Report</h2>
+          <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print</button>
         </div>
-
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:20px;">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
           <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:16px;">
             <h3 style="font-size:1rem; font-weight:800; color:#1e3a8a; margin-bottom:10px;">📘 Class 9/5 Absences (<span id="c1AbsentCount">0</span>)</h3>
             <div id="c1AbsentListContainer"></div>
@@ -620,138 +310,54 @@
       </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB: KUWAIT 9A LESSON PLANNER                            -->
-    <!-- ======================================================== -->
-    <div id="tab-planner" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">Ministry of Education E.L.T. General Supervision Lesson Planner</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Loaded with all Grade 9A units and lessons directly from the Ministry textbook.</p>
-          </div>
-        </div>
-
-        <div class="form-grid">
-          <div class="form-group" style="grid-column: span 2;">
-            <label>Select Unit & Lesson (Pearls of Kuwait 9A)</label>
-            <select id="kuwaitUnitSelector" class="form-control">
-              <option value="u1_react">Unit 1 – Lesson: Reactivation: Vocabulary & Past Tense (p.22)[cite: 3, 4]</option>
-              <option value="u1_l1">Unit 1, Lesson 1: Kuwaiti Explorers: Inspiring Journeys (Reading p.20-21)</option>
-              <option value="u1_l2">Unit 1, Lesson 2: Past Simple & Past Continuous with While/When (Grammar p.22)</option>
-              <option value="u1_l3">Unit 1, Lesson 3: Survival Stories & Emergencies (Listening p.23)</option>
-              <option value="u1_l4">Unit 1, Lesson 4: Surviving the Unexpected (Speaking & Imperatives p.24)</option>
-              <option value="u1_l5">Unit 1, Lesson 5: Success: More Than Just Talent (Reading p.25-26)</option>
-              <option value="u1_l6">Unit 1, Lesson 6: Both...and / Neither...nor (Grammar p.27)</option>
-              <option value="u1_l7">Unit 1, Lesson 7: Expeditions: Safety Preparations & Challenges (Writing p.28-29)</option>
-              <option value="u2_l1">Unit 2, Lesson 1: Online Risks: The Story of a Digital Scam (Reading p.34-35)</option>
-              <option value="u3_l1">Unit 3, Lesson 1: Tastes of the World: Exploring National Dishes (Reading p.48-49)</option>
-              <option value="u4_l1">Unit 4, Lesson 1: What Does It Mean to Live Simply? (Reading p.62-63)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Teacher Name</label>
-            <input type="text" id="lpTeacherName" class="form-control" value="Najat AlKandari" />
-          </div>
-          <div class="form-group">
-            <label>Day & Date</label>
-            <div style="display:flex; gap:6px;">
-              <input type="text" id="lpDay" class="form-control" value="Monday" style="width: 50%;" />
-              <input type="text" id="lpDate" class="form-control" value="14-9-2026" style="width: 50%;" />
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" onclick="generateLessonPlan()">✨ Generate Official Kuwait MOE Lesson Plan</button>
-
-        <div id="generatedLessonOutput" style="display:none; margin-top:20px; border-top:1px solid var(--neutral-200); padding-top:16px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <h3>Official Lesson Plan Document</h3>
-            <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print / Export PDF</button>
-          </div>
-          <div id="editablePlanContent" contenteditable="true"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: TEXTBOOK READER (LINKED TO COMPRESSED PDF)          -->
-    <!-- ======================================================== -->
-    <div id="tab-textbook" class="tab-content">
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">English Pearls of Kuwait – Grade 9A Textbook Reader</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">View core reading pages, highlight passages, save teacher notes, or open the full PDF[cite: 3].</p>
-          </div>
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <!-- Matches your uploaded compressed PDF filename -->
-            <a href="983529533-Pearls-of-Kuwait-grade-nine-first-term.pdf" target="_blank" class="btn btn-primary btn-sm">📖 Open Full Textbook PDF (All Pages)[cite: 3]</a>
-            <select id="bookPageSelect" class="form-control" style="width:auto;" onchange="changeBookPage(this.value)">
-              <option value="13">Table of Contents (p. 13-16)[cite: 3]</option>
-              <option value="20">Unit 1: Kuwaiti Explorers (p. 20-21)[cite: 3]</option>
-              <option value="25">Unit 1: Success: More Than Just Talent (p. 25-26)[cite: 3]</option>
-              <option value="34">Unit 2: Online Risks & Digital Scam (p. 34-35)[cite: 3]</option>
-              <option value="48">Unit 3: Tastes of the World: National Dishes (p. 48-49)[cite: 3]</option>
-              <option value="62">Unit 4: What Does It Mean to Live Simply? (p. 62-63)[cite: 3]</option>
-              <option value="73">Glossary (p. 73-77)[cite: 3]</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="book-layout">
-          <div class="book-page-viewer">
-            <div class="book-toolbar">
-              <div style="display:flex; gap:6px;">
-                <button class="btn btn-secondary btn-sm" onclick="navPage(-1)">◀ Prev Page</button>
-                <button class="btn btn-secondary btn-sm" onclick="navPage(1)">Next Page ▶</button>
-              </div>
-              <div style="display:flex; gap:6px; align-items:center;">
-                <span style="font-size:0.78rem; font-weight:700;">Highlight Mode:</span>
-                <button class="btn btn-sm" style="background:#fef08a; color:#713f12;" onclick="setHighlightColor('yellow')">Yellow</button>
-                <button class="btn btn-sm" style="background:#bbf7d0; color:#065f46;" onclick="setHighlightColor('green')">Green</button>
-                <button class="btn btn-sm" style="background:#fbcfe8; color:#9d174d;" onclick="setHighlightColor('pink')">Pink</button>
-              </div>
-            </div>
-            <div id="bookPageContentArea" class="highlightable-text" onmouseup="handleTextHighlight()"></div>
-          </div>
-
-          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:16px; display:flex; flex-direction:column;">
-            <h3 style="font-size:0.95rem; font-weight:800; color:#0f172a; margin-bottom:8px;">📌 Teacher Notes (Page <span id="notePageNumDisplay">20</span>)</h3>
-            <p style="font-size:0.75rem; color:#64748b; margin-bottom:10px;">Jot down board instructions or discussion prompts for this specific page. Saves automatically.</p>
-            <textarea id="pageTeacherNotes" class="form-control" style="flex:1; min-height:200px; resize:vertical;" placeholder="Type notes here..." oninput="savePageNotes()"></textarea>
-            <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
-              <span id="saveStatusIndicator" style="font-size:0.7rem; color:#10b981; font-weight:700;">✓ Saved</span>
-              <button class="btn btn-outline btn-sm" onclick="clearPageNotes()">Clear Notes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- TAB: ATTENDANCE                                          -->
-    <!-- ======================================================== -->
+    <!-- TAB: DAILY LOG & ATTENDANCE -->
     <div id="tab-attendance" class="tab-content">
       <div class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Daily Attendance Tracker</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Class: <strong id="attClassLabel">Class 9/5</strong> (Defaults to Present)</p>
+            <h2 class="card-title">Daily Class Log & Attendance</h2>
+            <p style="font-size:0.82rem; color:var(--neutral-600);">Class: <strong id="attClassLabel">Class 9/5</strong></p>
           </div>
-          <div style="display:flex; gap:10px; align-items:center;">
-            <input type="date" id="attDate" class="form-control" style="width: auto;" />
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <input type="date" id="attDate" class="form-control" style="width: auto;" onchange="loadDailyLog()" />
+            <select id="attPeriod" class="form-control" style="width: auto;" onchange="APP_STATE.activePeriod = this.value; loadDailyLog();">
+              <option value="1">Period 1</option><option value="2">Period 2</option><option value="3">Period 3</option>
+              <option value="4">Period 4</option><option value="5">Period 5</option><option value="6">Period 6</option><option value="7">Period 7</option>
+            </select>
             <button class="btn btn-secondary" onclick="markAllAttendance('Present')">Mark All Present</button>
-            <button class="btn btn-primary" onclick="alert('Attendance saved successfully!')">Save Records</button>
+            <button class="btn btn-primary" onclick="saveDailyLog()">Save Records</button>
           </div>
         </div>
+
+        <div id="dailyLogForm" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+            <h3 style="font-size: 1rem; color: var(--primary);">Class Log: <span id="logHeaderInfo"></span></h3>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Lesson Type</label>
+              <select id="logLessonType" class="form-control">
+                <option value="Reading">Reading</option><option value="Listening">Listening</option>
+                <option value="Speaking">Speaking</option><option value="Writing">Writing</option>
+                <option value="Grammar">Grammar</option><option value="Vocabulary">Vocabulary</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Unit</label><input type="text" id="logUnit" class="form-control" placeholder="E.g. Unit 2"></div>
+            <div class="form-group"><label>Lesson</label><input type="text" id="logLesson" class="form-control" placeholder="E.g. Lesson 4"></div>
+            <div class="form-group"><label>Pages</label><input type="text" id="logPages" class="form-control" placeholder="E.g. 34-35"></div>
+            <div class="form-group" style="grid-column: span 2;"><label>Topic</label><input type="text" id="logTopic" class="form-control" placeholder="E.g. Online Risks"></div>
+            <div class="form-group" style="grid-column: span 2;"><label>Learning Objective</label><input type="text" id="logObjective" class="form-control" placeholder="What will students learn?"></div>
+            <div class="form-group" style="grid-column: span 2;"><label>General Class Notes</label><textarea id="logClassNotes" class="form-control" rows="2" placeholder="Record what happened today..."></textarea></div>
+          </div>
+        </div>
+
         <div class="table-wrap">
           <table class="table">
             <thead>
               <tr>
                 <th>Student Name</th>
-                <th>Status (Tap to Change Absent)</th>
-                <th>Observations / Notes</th>
+                <th>Status</th>
+                <th>Individual Note (Saved to Student Profile)</th>
               </tr>
             </thead>
             <tbody id="attendanceTableBody"></tbody>
@@ -760,189 +366,151 @@
       </div>
     </div>
 
-    <!-- ======================================================== -->
-    <!-- TAB: TIMETABLE & BELL SCHEDULE                           -->
-    <!-- ======================================================== -->
+    <!-- TAB: SMART AI GENERATIVE LESSON PLANNER -->
+    <div id="tab-planner" class="tab-content">
+      <div class="card no-print">
+        <h2 class="card-title" style="margin-bottom: 16px;">Generative AI Lesson Planner</h2>
+        
+        <div class="planner-tab-nav">
+          <button class="ptab-btn active" onclick="switchPTab('pt-1', this)">1. Setup & Context</button>
+          <button class="ptab-btn" onclick="switchPTab('pt-2', this)">2. Content & Skills</button>
+          <button class="ptab-btn" onclick="switchPTab('pt-3', this)">3. Procedure & Wrap-up</button>
+          <button class="ptab-btn" style="background:#10b981; color:white;" onclick="generateMoEPreview()">4. Preview & Print MoE Document</button>
+        </div>
+
+        <!-- Editor Tab 1 -->
+        <div id="pt-1" class="ptab-content active">
+          <div class="form-group" style="margin-bottom: 20px; background: #e0f2fe; padding: 12px; border-radius: 8px; border: 1px solid #bae6fd;">
+            <label style="color:#0284c7;">✨ Select Textbook Topic to Generate Plan</label>
+            <select id="plTemplateSelect" class="form-control" onchange="autoFillPlannerTemplate()">
+              <option value="">-- Select a Lesson from Grade 9A to Auto-Fill --</option>
+              <option value="u1_l1">Unit 1, Lesson 1: Kuwaiti Explorers (Reading p.20-21)</option>
+              <option value="u1_l2">Unit 1, Lesson 2: Past Simple & Continuous (Grammar p.22)</option>
+              <option value="u2_l1">Unit 2, Lesson 1: Digital Scam (Reading p.34-35)</option>
+              <option value="u3_l1">Unit 3, Lesson 1: National Dishes (Reading p.48-49)</option>
+              <option value="u4_l1">Unit 4, Lesson 1: Living Simply (Reading p.62-63)</option>
+            </select>
+          </div>
+          <div class="form-grid">
+            <div class="form-group"><label>Unit Title</label><input type="text" id="plUnit" class="form-control"></div>
+            <div class="form-group"><label>Lesson & Skill</label><input type="text" id="plLesson" class="form-control"></div>
+            <div class="form-group"><label>Student Book (SB) Pages</label><input type="text" id="plSB" class="form-control"></div>
+            <div class="form-group"><label>Date</label><input type="text" id="plDate" class="form-control"></div>
+            <div class="form-group"><label>Week</label><input type="text" id="plWeek" class="form-control" value="1st"></div>
+            <div class="form-group"><label>Class</label><input type="text" id="plClass" class="form-control" value="9/5 & 9/6"></div>
+            <div class="form-group"><label>Period</label><input type="text" id="plPeriod" class="form-control" value="1st + 3rd"></div>
+          </div>
+          <div class="form-group">
+            <label>Learning Outcomes (One per line)</label>
+            <textarea id="plOutcomes" class="form-control" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- Editor Tab 2 -->
+        <div id="pt-2" class="ptab-content">
+          <div class="form-grid">
+            <div class="form-group" style="grid-column:span 2;"><label>Vocabulary</label><input type="text" id="plVocab" class="form-control"></div>
+            <div class="form-group"><label>Grammar</label><input type="text" id="plGrammar" class="form-control" value="–"></div>
+            <div class="form-group"><label>Language Functions</label><input type="text" id="plFuncs" class="form-control"></div>
+            <div class="form-group" style="grid-column:span 2;"><label>Anticipated Challenges</label><input type="text" id="plChallenges" class="form-control"></div>
+            <div class="form-group" style="grid-column:span 2;"><label>Proposed Solutions</label><input type="text" id="plSolutions" class="form-control"></div>
+          </div>
+        </div>
+
+        <!-- Editor Tab 3 -->
+        <div id="pt-3" class="ptab-content">
+          <div class="form-group"><label>Warm-up Activity</label><textarea id="plWarmup" class="form-control" rows="3"></textarea></div>
+          <div class="form-group"><label>Pre-Activity Sequence</label><textarea id="plPre" class="form-control" rows="3"></textarea></div>
+          <div class="form-group"><label>While-Activity Sequence</label><textarea id="plWhile" class="form-control" rows="3"></textarea></div>
+          <div class="form-group"><label>Post-Activity Sequence</label><textarea id="plPost" class="form-control" rows="3"></textarea></div>
+          <div class="form-group"><label>Wrap-up</label><textarea id="plWrapup" class="form-control" rows="2"></textarea></div>
+          <div class="form-group"><label>Homework</label><input type="text" id="plHW" class="form-control" value="–"></div>
+        </div>
+      </div>
+
+      <!-- Final Output Preview -->
+      <div id="moePreviewContainer" style="display:none;">
+        <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+          <button class="btn btn-outline" onclick="window.print()">🖨 Print MoE Document</button>
+        </div>
+        <div id="moePreviewCanvas"></div>
+      </div>
+    </div>
+
+    <!-- TAB: TEXTBOOK -->
+    <div id="tab-textbook" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div><h2 class="card-title">Grade 9A Textbook Reader</h2></div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-primary btn-sm" onclick="toggleBookView('pdf')">📄 Embedded PDF (Google Drive)</button>
+            <button class="btn btn-secondary btn-sm" onclick="toggleBookView('interactive')">🖍 Interactive Text</button>
+            <select id="bookPageSelect" class="form-control" style="width:auto;" onchange="changeBookPage(this.value)">
+              <option value="13">Table of Contents (p. 13-16)</option>
+              <option value="20">Unit 1: Kuwaiti Explorers (p. 20-21)</option>
+              <option value="25">Unit 1: Success: More Than Just Talent (p. 25-26)</option>
+              <option value="34">Unit 2: Online Risks & Digital Scam (p. 34-35)</option>
+              <option value="48">Unit 3: Tastes of the World: National Dishes (p. 48-49)</option>
+              <option value="62">Unit 4: What Does It Mean to Live Simply? (p. 62-63)</option>
+              <option value="73">Glossary (p. 73-77)</option>
+            </select>
+          </div>
+        </div>
+        <div class="book-layout">
+          <div class="book-page-viewer" id="interactiveViewerContainer">
+            <div id="bookPageContentArea" class="highlightable-text" onmouseup="handleTextHighlight()"></div>
+          </div>
+          <!-- Google Drive Embed -->
+          <div class="book-page-viewer" id="pdfViewerContainer" style="display:none; padding:0; height:600px;">
+            <iframe src="https://drive.google.com/file/d/16fbeBQpF1OTZwd7EkfjBk6cvQOKzANbl/preview" width="100%" height="100%" style="border:none; border-radius:8px;"></iframe>
+          </div>
+          <!-- Notes Sidebar -->
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:16px; display:flex; flex-direction:column;">
+            <h3 style="font-size:0.95rem; font-weight:800; margin-bottom:8px;">📌 Teacher Notes</h3>
+            <textarea id="pageTeacherNotes" class="form-control" style="flex:1; min-height:200px;" oninput="savePageNotes()"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: TIMETABLE & EDITOR -->
     <div id="tab-timetable" class="tab-content">
       <div class="card">
         <div class="card-header">
-          <div>
-            <h2 class="card-title">Weekly English Timetable & Bell Schedule</h2>
-            <p style="font-size:0.82rem; color:var(--neutral-600);">Highlights only the active class cell for today and time in real-time.</p>
-          </div>
-          <div style="display:flex; gap:8px;">
-            <span class="badge" style="background:#eff6ff; color:#1e40af;">Class 9/5</span>
-            <span class="badge" style="background:#ecfdf5; color:#065f46;">Class 9/6</span>
-          </div>
+          <div><h2 class="card-title">Timetable Editor</h2><p style="font-size:0.82rem; color:var(--neutral-600);">Tap a cell to open its log, or edit the schedule.</p></div>
+          <button class="btn btn-primary btn-sm" onclick="toggleTimetableEditMode()" id="ttEditBtn">⚙️ Edit Timetable</button>
         </div>
         <div class="timetable-grid" id="weeklyTimetableGrid"></div>
       </div>
     </div>
-
-    <div id="tab-reports" class="tab-content"><div class="card"><h2 class="card-title">Analytics</h2></div></div>
   </main>
+
+  <!-- MASTER STUDENT PROFILE MODAL -->
+  <div id="studentHistoryModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" onclick="document.getElementById('studentHistoryModal').style.display='none'">✖</span>
+      <h2 id="historyStudentName" style="margin-bottom:16px; color:var(--neutral-900);">Student Profile</h2>
+      <div id="historyContentWrapper"></div>
+    </div>
+  </div>
 
   <script>
     /* ==========================================================
-       HUSBAND QUOTES CYCLER
+       APP STATE & CORE DATA
        ========================================================== */
-    const HUSBAND_QUOTES = [
-      "\"To the world you are a dedicated teacher, but to our family, you are our whole heart and soul. Have a calm and wonderful day!\"",
-      "\"Remember to take a deep breath today! You inspire your students, and you inspire me even more. Proud of you! 💖\"",
-      "\"No matter how busy classes get, always remember how deeply you are loved at home. You've got this! ✨\"",
-      "\"Your patience and care make all the difference—both in your classroom and with our family. Have a wonderful day! 🌸\""
-    ];
-    let quoteIndex = 0;
-    function cycleHusbandQuote() {
-      quoteIndex = (quoteIndex + 1) % HUSBAND_QUOTES.length;
-      document.getElementById('husbandDailyQuote').textContent = HUSBAND_QUOTES[quoteIndex];
-    }
-
-    /* ==========================================================
-       BOOK READER & ANNOTATION ENGINE
-       ========================================================== */
-    let currentBookPage = 20;
-    let activeHighlightColor = 'yellow';
-
-    const BOOK_PAGES_DB = {
-      13: {
-        title: "Table of Contents & Scope and Sequence (p. 13-16)[cite: 3]",
-        vocab: ["curious", "talent", "explorer", "survival", "scam", "diet"],
-        html: `
-          <h3>Table of Contents & Scope and Sequence</h3>
-          <p>Overview of Learning Units 1 through 4 covering Stories of Success, Staying Safe Online, Food for Life, and Simple Living[cite: 3].</p>
-        `
-      },
-      20: {
-        title: "Unit 1: Kuwaiti Explorers: Inspiring Journeys (SB p. 20–21)[cite: 3]",
-        vocab: ["curious", "talent", "explorer", "proudly", "highlight", "represent", "inspire", "remarkable", "fulfil", "expedition", "will", "survive"],
-        html: `
-          <h3>Kuwaiti Explorers: Inspiring Journeys</h3>
-          <p><strong>Paragraph A:</strong> Kuwait is a proud country with strong values and a rich culture. Families and schools encourage children to be curious, explore new ideas, and develop their talents[cite: 3].</p>
-          <p style="margin-top:14px;"><strong>Paragraph B: Fuad Qabazard</strong> is a Kuwaiti mountaineer who successfully climbed Mount Everest in December 2015. He proudly raised the Kuwaiti flag there to highlight Kuwait's recognition as a "Global Humanitarian Centre."[cite: 3]</p>
-          <p style="margin-top:14px;"><strong>Paragraph C: Lamees Najim</strong> made history in 2018 when she became the first Kuwaiti to reach the North Pole, joining a Euro-Arabian expedition[cite: 3].</p>
-        `
-      },
-      25: {
-        title: "Unit 1: Success: More Than Just Talent (SB p. 25–26)[cite: 3]",
-        vocab: ["merely", "mindset", "consistently", "efficiently", "give up", "tough", "positive", "trust", "progress", "trait", "remain", "equally"],
-        html: `
-          <h3>Success: More Than Just Talent</h3>
-          <p>Success is not merely about talent; it also depends on habits and mindset. Successful people consistently follow smart habits: they set goals, work hard, manage their time efficiently and never give up when things get tough[cite: 3].</p>
-        `
-      },
-      34: {
-        title: "Unit 2: Online Risks: The Story of a Digital Scam (SB p. 34–35)[cite: 3]",
-        vocab: ["casually", "claim", "reject", "fake", "uneasy", "access", "update", "install", "phishing", "scam", "seriously", "security", "cautious"],
-        html: `
-          <h3>Online Risks: The Story of a Digital Scam</h3>
-          <p>Last Friday, Ahmed received an unexpected message claiming he won a 1000 Dinar gift card. The link led to a phishing scam where he lost access to his social media account[cite: 3].</p>
-        `
-      },
-      48: {
-        title: "Unit 3: Tastes of the World: Exploring National Dishes (SB p. 48–49)[cite: 3]",
-        vocab: ["reflect", "serve", "symbol", "occasion", "aromatic", "ingredient", "distinctive", "recipe", "commonly", "flavour", "variety", "raw", "experience"],
-        html: `
-          <h3>Tastes of the World: Exploring National Dishes</h3>
-          <p><strong>Machboos: A Kuwaiti Classic:</strong> Machboos is more than just a national dish in Kuwait; it is a symbol of the country's rich history, culture, and family traditions[cite: 3].</p>
-        `
-      },
-      62: {
-        title: "Unit 4: What Does It Mean to Live Simply? (SB p. 62–63)[cite: 3]",
-        vocab: ["focus", "necessarily", "instead", "thoughtful", "benefit", "conserve", "meaningful", "gadget", "valuable", "balanced"],
-        html: `
-          <h3>What Does It Mean to Live Simply?</h3>
-          <p>Living simply means choosing a lifestyle that focuses on what is truly important, using fewer things, and being more thoughtful about our resources[cite: 3].</p>
-        `
-      },
-      73: {
-        title: "Glossary (p. 73–77)[cite: 3]",
-        vocab: ["access", "accurate", "aromatic", "assist", "balanced", "benefit"],
-        html: `
-          <h3>English Pearls 9A Glossary</h3>
-          <p><strong>access</strong> /'æk.ses/ (noun) - the method or possibility of getting near to a place or person[cite: 3].</p>
-          <p><strong>accurate</strong> /'æk.jə.rət/ (adjective) - correct, exact, and without any mistakes[cite: 3].</p>
-        `
+    let APP_STATE = {
+      activeClass: 'c1',
+      activePeriod: '1',
+      dailyLogs: {}, 
+      isEditingTimetable: false,
+      timetable: [],
+      classes: {
+        c1: { name: 'Class 9/5', students: [] },
+        c2: { name: 'Class 9/6', students: [] }
       }
     };
 
-    function renderTextbookPage(pageNum) {
-      currentBookPage = pageNum;
-      document.getElementById('bookPageSelect').value = pageNum;
-      document.getElementById('notePageNumDisplay').textContent = pageNum;
-
-      const pageData = BOOK_PAGES_DB[pageNum] || BOOK_PAGES_DB[20];
-      const contentArea = document.getElementById('bookPageContentArea');
-      
-      contentArea.innerHTML = `
-        <h3 style="color:#1e3a8a; margin-bottom:10px;">${pageData.title}</h3>
-        <div style="margin-bottom:14px;">
-          ${pageData.vocab.map(v => `<span class="vocab-chip">${v}</span>`).join('')}
-        </div>
-        <div style="border-top:1px solid #e2e8f0; padding-top:14px;">
-          ${pageData.html}
-        </div>
-      `;
-
-      const savedNotes = localStorage.getItem(`kuwait_book_notes_p_${pageNum}`) || '';
-      document.getElementById('pageTeacherNotes').value = savedNotes;
-    }
-
-    function changeBookPage(val) {
-      renderTextbookPage(parseInt(val));
-    }
-
-    function navPage(dir) {
-      const pages = [13, 20, 25, 34, 48, 62, 73];
-      let idx = pages.indexOf(currentBookPage);
-      if (idx === -1) idx = 1;
-      idx += dir;
-      if (idx < 0) idx = 0;
-      if (idx >= pages.length) idx = pages.length - 1;
-      renderTextbookPage(pages[idx]);
-    }
-
-    function setHighlightColor(color) {
-      activeHighlightColor = color;
-    }
-
-    function handleTextHighlight() {
-      const selection = window.getSelection();
-      if (!selection || selection.isCollapsed) return;
-
-      const selectedText = selection.toString().trim();
-      if (!selectedText) return;
-
-      try {
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('span');
-
-        if (activeHighlightColor === 'yellow') span.className = 'hl-yellow';
-        else if (activeHighlightColor === 'green') span.className = 'hl-green';
-        else if (activeHighlightColor === 'pink') span.className = 'hl-pink';
-
-        span.textContent = selectedText;
-        range.deleteContents();
-        range.insertNode(span);
-        selection.removeAllRanges();
-      } catch (err) {}
-    }
-
-    function savePageNotes() {
-      const notes = document.getElementById('pageTeacherNotes').value;
-      localStorage.setItem(`kuwait_book_notes_p_${currentBookPage}`, notes);
-      const indicator = document.getElementById('saveStatusIndicator');
-      indicator.textContent = "✓ Saved";
-    }
-
-    function clearPageNotes() {
-      document.getElementById('pageTeacherNotes').value = '';
-      localStorage.removeItem(`kuwait_book_notes_p_${currentBookPage}`);
-    }
-
-    /* ==========================================================
-       REAL STUDENT ROSTERS (58 Students total, 29 per class)
-       ========================================================== */
+    // Full 55 Students Restored
     const INITIAL_STUDENTS_C1 = [
       { name: "اوراد ثويني سليمان ثويني", ministryLevel: "Not Evaluated" },
       { name: "الجود حسن علي البلوشي", ministryLevel: "Not Evaluated" },
@@ -1004,10 +572,10 @@
       { name: "هيا بسام سالم القحطاني", ministryLevel: "Not Evaluated" }
     ];
 
-    /* ==========================================================
-       EXACT TIMETABLE & BELL SCHEDULE WITH PRECISE CELL TARGET
-       ========================================================== */
-    const TIMETABLE_SLOTS = [
+    APP_STATE.classes.c1.students = INITIAL_STUDENTS_C1;
+    APP_STATE.classes.c2.students = INITIAL_STUDENTS_C2;
+
+    const DEFAULT_TIMETABLE = [
       { p: "Assembly", time: "07:30 - 07:40", sun: "break", mon: "break", tue: "break", wed: "break", thu: "break", label: "لقاء الصباح", startMin: 450, endMin: 460 },
       { p: 1, time: "07:40 - 08:25", sun: "", mon: "", tue: "c2", wed: "", thu: "c2", startMin: 460, endMin: 505 },
       { p: 2, time: "08:30 - 09:15", sun: "c1", mon: "c1", tue: "c2", wed: "c2", thu: "c2", startMin: 510, endMin: 555 },
@@ -1020,293 +588,101 @@
       { p: 7, time: "12:55 - 13:40", sun: "", mon: "c2", tue: "", wed: "c1", thu: "", startMin: 775, endMin: 820 }
     ];
 
-    const DAYS_MAP = ['sun', 'mon', 'tue', 'wed', 'thu'];
+    APP_STATE.timetable = JSON.parse(localStorage.getItem('eta_timetable')) || JSON.parse(JSON.stringify(DEFAULT_TIMETABLE));
 
-    function renderTimetable(activeRowIndex = -1, activeDayKey = '') {
-      const grid = document.getElementById('weeklyTimetableGrid');
-      if (!grid) return;
-      grid.innerHTML = `
-        <div class="tt-header">Period & Time</div>
-        <div class="tt-header">Sunday</div>
-        <div class="tt-header">Monday</div>
-        <div class="tt-header">Tuesday</div>
-        <div class="tt-header">Wednesday</div>
-        <div class="tt-header">Thursday</div>
-      `;
-
-      TIMETABLE_SLOTS.forEach((slot, idx) => {
-        const timeCol = document.createElement('div');
-        timeCol.className = 'tt-time-col';
-        const title = typeof slot.p === 'number' ? `Period ${slot.p}` : slot.label;
-        timeCol.innerHTML = `<span>${title}</span><span style="font-size:0.68rem; color:var(--neutral-500);">${slot.time}</span>`;
-        grid.appendChild(timeCol);
-
-        DAYS_MAP.forEach(dayKey => {
-          const cellVal = slot[dayKey];
-          const cell = document.createElement('div');
-          let className = 'tt-slot';
-          let text = '';
-          if (cellVal === 'c1') {
-            className += ' c1-slot';
-            text = 'Class 9/5';
-          } else if (cellVal === 'c2') {
-            className += ' c2-slot';
-            text = 'Class 9/6';
-          } else {
-            className += ' break-slot';
-            text = slot.label ? slot.label : '-';
-          }
-
-          if (idx === activeRowIndex && dayKey === activeDayKey) {
-            className += ' active-target-cell';
-          }
-
-          cell.className = className;
-          cell.innerHTML = `<strong>${text}</strong>`;
-          grid.appendChild(cell);
-        });
-      });
-    }
-
-    function updateLiveSchedule() {
-      const sim = document.getElementById('simScheduleSelect').value;
-      const now = new Date();
-      let hour = now.getHours();
-      let min = now.getMinutes();
-      let totalMin = hour * 60 + min;
-      let dayOfWeek = now.getDay();
-
-      let activeRowIdx = -1;
-      let activeDayKey = 'sun';
-      let statusText = "";
-      let classLabel = "";
-
-      if (sim === 'assembly') { activeRowIdx = 0; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Morning Assembly (07:30 - 07:40)"; classLabel = "• School starting"; }
-      else if (sim === 'p1') { activeRowIdx = 1; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 1 (07:40 - 08:25)"; classLabel = "• In session"; }
-      else if (sim === 'p2') { activeRowIdx = 2; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 2 (08:30 - 09:15)"; classLabel = "• In session"; }
-      else if (sim === 'break1') { activeRowIdx = 3; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "First Recess (09:15 - 09:30)"; classLabel = "• Break time"; }
-      else if (sim === 'p3') { activeRowIdx = 4; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 3 (09:30 - 10:15)"; classLabel = "• In session"; }
-      else if (sim === 'p4') { activeRowIdx = 5; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 4 (10:20 - 11:05)"; classLabel = "• In session"; }
-      else if (sim === 'p5') { activeRowIdx = 6; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 5 (11:10 - 11:55)"; classLabel = "• In session"; }
-      else if (sim === 'break2') { activeRowIdx = 7; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Second Recess (11:55 - 12:05)"; classLabel = "• Break time"; }
-      else if (sim === 'p6') { activeRowIdx = 8; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 6 (12:05 - 12:50)"; classLabel = "• In session"; }
-      else if (sim === 'p7') { activeRowIdx = 9; activeDayKey = DAYS_MAP[dayOfWeek >= 0 && dayOfWeek <= 4 ? dayOfWeek : 1]; statusText = "Period 7 (12:55 - 13:40)"; classLabel = "• Final period"; }
-      else {
-        if (dayOfWeek === 5 || dayOfWeek === 6 || totalMin > 820 || totalMin < 450) {
-          activeRowIdx = 0;
-          activeDayKey = 'mon';
-          statusText = "After Hours / Weekend — Next Working Day Queued";
-          classLabel = "• Next working day: Monday Morning Assembly (07:30 AM)";
-        } else {
-          activeDayKey = DAYS_MAP[dayOfWeek];
-          for (let i = 0; i < TIMETABLE_SLOTS.length; i++) {
-            if (totalMin >= TIMETABLE_SLOTS[i].startMin && totalMin < TIMETABLE_SLOTS[i].endMin) {
-              activeRowIdx = i;
-              break;
-            }
-          }
-          if (activeRowIdx !== -1) {
-            statusText = `${TIMETABLE_SLOTS[activeRowIdx].label || 'Period ' + TIMETABLE_SLOTS[activeRowIdx].p} (${TIMETABLE_SLOTS[activeRowIdx].time})`;
-            classLabel = "• Active now";
-          } else {
-            activeRowIdx = 1;
-            statusText = "Between Sessions — Ready";
-            classLabel = "• Next upcoming session highlighted";
-          }
-        }
-      }
-
-      document.getElementById('currentPeriodDisplay').textContent = statusText;
-      document.getElementById('currentPeriodClassLabel').textContent = classLabel;
-      renderTimetable(activeRowIdx, activeDayKey);
-    }
-
-    function jumpToActiveSession() {
-      showTab('tab-timetable');
-    }
-
-    /* ==========================================================
-       EXACT INSPECTION SAMPLE PRESETS
-       ========================================================== */
-    const KUWAIT_PRESETS = {
-      u1_react: {
-        day: "Monday", date: "14-9-2026", module: "1", sb: "–", period: "3 + 7", topic: "Reactivation: Vocabulary & Past Tense",
-        outcomes: [
-          "Use the target vocabulary (patience, protect, infographic, device, receive, provide) in context.",
-          "Build past tense sentences describing a holiday experience, using time expressions and descriptive details."
-        ],
-        vocab: "patience, protect, infographic, device, receive, provide",
-        grammar: "Past simple tense (revision)",
-        funcs: "Describing past experiences; narrating a sequence of events; giving details about a holiday",
-        microSkills: "Recalling and using vocabulary in context, speaking fluently about past experiences, writing short past-tense texts",
-        linkers: "first, then, after that, finally, during my holiday",
-        challenges: [
-          "Students may forget the meaning or pronunciation of some vocabulary words.",
-          "Students may struggle to use past tense verbs correctly."
-        ],
-        solutions: [
-          "Review each word with its Arabic translation and a clear example before practice.",
-          "Model a correct past-tense example before asking students to produce their own."
-        ],
-        values: "Communication and self-expression skills; critical thinking through recalling and applying prior knowledge; confidence in sharing personal experiences",
-        aids: "Projector / PowerPoint slides / Student's Book & Workbook",
-        strategies: "– C.L.T. – Task B.L. – Project B.L. – Differentiation – Active Learning",
-        assessment: "Observation of vocabulary use during the speaking activity. Review of written paragraphs for past-tense accuracy and vocabulary use.<br><strong>Homework:</strong> Finish the paragraph if not completed in class.",
-        warmupTime: "5 min.",
-        warmup: "• Introducing myself to students.<br>• Showing a quick visual or gesture clue for each vocabulary word and asking students to guess it.<br>• Asking a few volunteers to use one of the words correctly in a spoken sentence.<br>• Briefly reviewing the Arabic meaning of any word students find difficult.",
-        seqTime: "30 min.",
-        seq: "<strong>Vocabulary Reactivation:</strong><br>• Reviewing the six words (patience, protect, infographic, device, receive, provide) with their Arabic translations and example sentences using the PowerPoint.<br>• Asking quick concept-check questions to confirm understanding.<br><br><strong>Speaking: My Holiday Experience:</strong><br>• Modeling a short past-tense description of a holiday experience using the target vocabulary and time expressions (first, then, after that, finally).<br>• Asking students to talk in pairs about their own holiday experience, using at least two vocabulary words.<br><br><strong>Writing: My Holiday Experience:</strong><br>• Asking students to write a short paragraph about their holiday in the past tense, including at least three vocabulary words, time expressions, and descriptive details.<br>• Circulating to support students and check for accurate past-tense use.",
-        wrapTime: "5 min.",
-        wrap: "• Asking a few volunteers to read their paragraph aloud or share it with a partner.<br>• Giving students feedback and previewing the next lesson.",
-        worked: "I talked to them with kindness and treated them as adults.",
-        improve: "Needed to break the ice a bit more because they were shy."
-      }
+    // Full 7 Pages Database Restored
+    const BOOK_PAGES_DB = {
+      13: { title: "Table of Contents & Scope and Sequence (p. 13-16)", vocab: ["curious", "talent", "explorer", "survival", "scam", "diet"], html: `<h3>Table of Contents & Scope and Sequence</h3><p>Overview of Learning Units 1 through 4 covering Stories of Success, Staying Safe Online, Food for Life, and Simple Living.</p>` },
+      20: { title: "Unit 1: Kuwaiti Explorers: Inspiring Journeys (SB p. 20–21)", vocab: ["curious", "talent", "explorer", "proudly", "highlight", "represent", "inspire", "remarkable", "fulfil", "expedition", "will", "survive"], html: `<h3>Kuwaiti Explorers: Inspiring Journeys</h3><p><strong>Paragraph A:</strong> Kuwait is a proud country with strong values and a rich culture. Families and schools encourage children to be curious, explore new ideas, and develop their talents.</p><p style="margin-top:14px;"><strong>Paragraph B: Fuad Qabazard</strong> is a Kuwaiti mountaineer who successfully climbed Mount Everest in December 2015. He proudly raised the Kuwaiti flag there to highlight Kuwait's recognition as a "Global Humanitarian Centre."</p><p style="margin-top:14px;"><strong>Paragraph C: Lamees Najim</strong> made history in 2018 when she became the first Kuwaiti to reach the North Pole, joining a Euro-Arabian expedition.</p>` },
+      25: { title: "Unit 1: Success: More Than Just Talent (SB p. 25–26)", vocab: ["merely", "mindset", "consistently", "efficiently", "give up", "tough", "positive", "trust", "progress", "trait", "remain", "equally"], html: `<h3>Success: More Than Just Talent</h3><p>Success is not merely about talent; it also depends on habits and mindset. Successful people consistently follow smart habits: they set goals, work hard, manage their time efficiently and never give up when things get tough.</p>` },
+      34: { title: "Unit 2: Online Risks: The Story of a Digital Scam (SB p. 34–35)", vocab: ["casually", "claim", "reject", "fake", "uneasy", "access", "update", "install", "phishing", "scam", "seriously", "security", "cautious"], html: `<h3>Online Risks: The Story of a Digital Scam</h3><p>Last Friday, Ahmed received an unexpected message claiming he won a 1000 Dinar gift card. The link led to a phishing scam where he lost access to his social media account.</p>` },
+      48: { title: "Unit 3: Tastes of the World: Exploring National Dishes (SB p. 48–49)", vocab: ["reflect", "serve", "symbol", "occasion", "aromatic", "ingredient", "distinctive", "recipe", "commonly", "flavour", "variety", "raw", "experience"], html: `<h3>Tastes of the World: Exploring National Dishes</h3><p><strong>Machboos: A Kuwaiti Classic:</strong> Machboos is more than just a national dish in Kuwait; it is a symbol of the country's rich history, culture, and family traditions.</p>` },
+      62: { title: "Unit 4: What Does It Mean to Live Simply? (SB p. 62–63)", vocab: ["focus", "necessarily", "instead", "thoughtful", "benefit", "conserve", "meaningful", "gadget", "valuable", "balanced"], html: `<h3>What Does It Mean to Live Simply?</h3><p>Living simply means choosing a lifestyle that focuses on what is truly important, using fewer things, and being more thoughtful about our resources.</p>` },
+      73: { title: "Glossary (p. 73–77)", vocab: ["access", "accurate", "aromatic", "assist", "balanced", "benefit"], html: `<h3>English Pearls 9A Glossary</h3><p><strong>access</strong> /'æk.ses/ (noun) - the method or possibility of getting near to a place or person.</p><p><strong>accurate</strong> /'æk.jə.rət/ (adjective) - correct, exact, and without any mistakes.</p>` }
     };
 
-    function generateLessonPlan() {
-      const unitKey = document.getElementById('kuwaitUnitSelector').value;
-      const preset = KUWAIT_PRESETS[unitKey] || KUWAIT_PRESETS.u1_react;
-      const teacher = document.getElementById('lpTeacherName').value;
-      const day = document.getElementById('lpDay').value;
-      const date = document.getElementById('lpDate').value;
+    /* ==========================================================
+       DAILY LOG & ATTENDANCE
+       ========================================================== */
+    function getLogKey() {
+      const date = document.getElementById('attDate').value;
+      return `${date}_${APP_STATE.activeClass}_${APP_STATE.activePeriod || '1'}`;
+    }
 
-      const outputHtml = `
-        <div class="moe-plan-doc">
-          <div class="moe-top-header">
-            <div>Ministry of Education<br>E.L.T. General Supervision</div>
-            <div style="text-align:right;">Intermediate Stage</div>
+    function loadDailyLog() {
+      const key = getLogKey();
+      document.getElementById('logHeaderInfo').textContent = `${APP_STATE.classes[APP_STATE.activeClass].name} - Period ${APP_STATE.activePeriod}`;
+      
+      const log = APP_STATE.dailyLogs[key] || {};
+      document.getElementById('logLessonType').value = log.lessonType || 'Reading';
+      document.getElementById('logUnit').value = log.unit || '';
+      document.getElementById('logLesson').value = log.lesson || '';
+      document.getElementById('logPages').value = log.pages || '';
+      document.getElementById('logTopic').value = log.topic || '';
+      document.getElementById('logObjective').value = log.objective || '';
+      document.getElementById('logClassNotes').value = log.classNotes || '';
+
+      renderAttendance(); 
+    }
+
+    function saveDailyLog() {
+      const key = getLogKey();
+      const log = {
+        date: document.getElementById('attDate').value,
+        classId: APP_STATE.activeClass,
+        period: APP_STATE.activePeriod,
+        lessonType: document.getElementById('logLessonType').value,
+        unit: document.getElementById('logUnit').value,
+        lesson: document.getElementById('logLesson').value,
+        pages: document.getElementById('logPages').value,
+        topic: document.getElementById('logTopic').value,
+        objective: document.getElementById('logObjective').value,
+        classNotes: document.getElementById('logClassNotes').value,
+        studentNotes: {},
+        attendance: {}
+      };
+
+      document.querySelectorAll('#attendanceTableBody tr').forEach(row => {
+        const studentName = row.querySelector('.att-select').getAttribute('data-student');
+        log.attendance[studentName] = row.querySelector('.att-select').value;
+        const note = row.querySelector('.student-note-input').value.trim();
+        if (note) log.studentNotes[studentName] = note;
+      });
+
+      APP_STATE.dailyLogs[key] = log;
+      alert('Class Log and Attendance saved successfully!');
+    }
+
+    function showStudentProfile(studentName) {
+      let absents = 0;
+      let notesHtml = '';
+      
+      Object.values(APP_STATE.dailyLogs).forEach(log => {
+        if (log.attendance && log.attendance[studentName] === 'Absent') absents++;
+        const note = log.studentNotes && log.studentNotes[studentName];
+        if (note) {
+          notesHtml += `<div class="history-entry"><div class="history-date">${log.date} — ${APP_STATE.classes[log.classId].name} — Period ${log.period} — ${log.lessonType}</div><div class="history-note" style="font-size:0.95rem;">"${note}"</div></div>`;
+        }
+      });
+
+      const profileHtml = `
+        <div style="display:flex; gap:20px; margin-bottom: 20px;">
+          <div style="background:var(--danger-bg); padding:16px; border-radius:8px; flex:1; text-align:center;">
+            <h4 style="color:var(--danger); font-size:0.8rem; text-transform:uppercase;">Total Absences</h4>
+            <p style="font-size:1.8rem; font-weight:bold; color:var(--danger); margin-top:5px;">${absents}</p>
           </div>
-          <div class="moe-plan-title">Lesson plan *</div>
-          
-          <div class="moe-meta-strip">
-            <div><strong>Day:</strong> ${day}</div>
-            <div><strong>Class:</strong> 9-5 & 9-6</div>
-            <div><strong>Module:</strong> ${preset.module}</div>
-            <div><strong>SB:</strong> ${preset.sb}</div>
-            <div><strong>Date:</strong> ${date}</div>
-            <div><strong>Period:</strong> ${preset.period}</div>
-            <div style="width:100%;"><strong>Topic:</strong> ${preset.topic}</div>
-          </div>
-
-          <table class="moe-table">
-            <tr>
-              <th>Lesson Learning Outcomes :</th>
-              <td><ul>${preset.outcomes.map(o => `<li>${o}</li>`).join('')}</ul></td>
-            </tr>
-            <tr>
-              <th>Language Focus :</th>
-              <td>
-                <strong>Vocabulary:</strong> ${preset.vocab}<br>
-                <strong>Grammar:</strong> ${preset.grammar}<br>
-                <strong>Language Functions:</strong> ${preset.funcs}<br>
-                <strong>Micro-skills:</strong> ${preset.microSkills}<br>
-                <strong>Linkers:</strong> ${preset.linkers}
-              </td>
-            </tr>
-            <tr>
-              <th>21st-Century Skills & Values :</th>
-              <td>${preset.values}</td>
-            </tr>
-            <tr>
-              <th>Anticipated Challenges :</th>
-              <td>
-                <strong>challenge 1:</strong> ${preset.challenges[0]}<br>
-                <strong>challenge 2:</strong> ${preset.challenges[1]}
-              </td>
-            </tr>
-            <tr>
-              <th>Proposed Solutions :</th>
-              <td>
-                <strong>Solution 1:</strong> ${preset.solutions[0]}<br>
-                <strong>Solution 2:</strong> ${preset.solutions[1]}
-              </td>
-            </tr>
-            <tr>
-              <th>Teaching strategies :</th>
-              <td>${preset.strategies}</td>
-            </tr>
-            <tr>
-              <th>Teaching Aids :</th>
-              <td>${preset.aids}</td>
-            </tr>
-          </table>
-
-          <table class="moe-table">
-            <tr>
-              <th>Lesson Procedure</th>
-              <th style="width:18%;">Time</th>
-            </tr>
-            <tr>
-              <td><strong>Warm-up:</strong><br>${preset.warmup}</td>
-              <td>${preset.warmupTime}</td>
-            </tr>
-            <tr>
-              <td><strong>Sequence of Activities (Pre – While – Post):</strong><br>${preset.seq}</td>
-              <td>${preset.seqTime}</td>
-            </tr>
-            <tr>
-              <td><strong>Wrap-up:</strong><br>${preset.wrap}</td>
-              <td>${preset.wrapTime}</td>
-            </tr>
-            <tr>
-              <td colspan="2"><strong>Assessment :</strong><br>${preset.assessment}</td>
-            </tr>
-            <tr>
-              <td colspan="2"><strong>what worked well? :</strong><br><input type="text" class="form-control" value="${preset.worked}" style="background:#fff;"></td>
-            </tr>
-            <tr>
-              <td colspan="2"><strong>what needs improvement? :</strong><br><input type="text" class="form-control" value="${preset.improve}" style="background:#fff;"></td>
-            </tr>
-          </table>
-
-          <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:700; font-size:0.85rem;">
-            <div>H.O.D: ........................</div>
-            <div>E.L.T. Supervisor</div>
+          <div style="background:var(--primary-light); padding:16px; border-radius:8px; flex:1; text-align:center;">
+            <h4 style="color:var(--primary-dark); font-size:0.8rem; text-transform:uppercase;">Overall Grade</h4>
+            <p style="font-size:1.8rem; font-weight:bold; color:var(--primary); margin-top:5px;">A</p>
           </div>
         </div>
+        <h3 style="font-size:1rem; border-bottom:2px solid var(--neutral-200); padding-bottom:8px; margin-bottom:12px; color:var(--neutral-800);">Classroom Notes & History</h3>
+        <div>${notesHtml || '<p style="color:var(--neutral-600); font-style:italic;">No notes recorded for this student yet.</p>'}</div>
       `;
 
-      document.getElementById('editablePlanContent').innerHTML = outputHtml;
-      document.getElementById('generatedLessonOutput').style.display = 'block';
-    }
-
-    /* ==========================================================
-       APP STATE & RENDERING
-       ========================================================== */
-    let APP_STATE = {
-      activeClass: 'c1',
-      classes: {
-        c1: { name: 'Class 9/5', students: INITIAL_STUDENTS_C1 },
-        c2: { name: 'Class 9/6', students: INITIAL_STUDENTS_C2 }
-      }
-    };
-
-    function renderRoster() {
-      const tbody = document.getElementById('rosterTableBody');
-      const currentClass = APP_STATE.classes[APP_STATE.activeClass];
-      document.getElementById('rosterTitle').textContent = currentClass.name + " Grades & Diagnostic Insights";
-      document.getElementById('rosterCountBadge').textContent = currentClass.students.length + " Students";
-      tbody.innerHTML = '';
-
-      currentClass.students.forEach((student) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><strong>${student.name}</strong></td>
-          <td>
-            <div class="cat-bar-grid">
-              <div class="cat-pill">🎧 L: <span class="grade-val">-</span></div>
-              <div class="cat-pill">🗣 S: <span class="grade-val">-</span></div>
-              <div class="cat-pill">📖 R: <span class="grade-val">-</span></div>
-              <div class="cat-pill">✍ W: <span class="grade-val">-</span></div>
-            </div>
-          </td>
-          <td><span class="badge badge-secondary">-</span></td>
-          <td><div class="insight-card">Awaiting baseline assessment.</div></td>
-          <td><span class="badge badge-secondary">${student.ministryLevel}</span></td>
-          <td style="text-align:right;"><button class="btn btn-secondary btn-sm">Edit</button></td>
-        `;
-        tbody.appendChild(row);
-      });
+      document.getElementById('historyStudentName').textContent = studentName + " - Master Profile";
+      document.getElementById('historyContentWrapper').innerHTML = profileHtml;
+      document.getElementById('studentHistoryModal').style.display = 'flex';
     }
 
     function renderAttendance() {
@@ -1314,84 +690,210 @@
       const currentClass = APP_STATE.classes[APP_STATE.activeClass];
       document.getElementById('attClassLabel').textContent = currentClass.name;
       tbody.innerHTML = '';
+      
+      const existingLog = APP_STATE.dailyLogs[getLogKey()] || {};
+
       currentClass.students.forEach((student) => {
+        const attVal = existingLog.attendance && existingLog.attendance[student.name] ? existingLog.attendance[student.name] : "Present";
+        const noteVal = existingLog.studentNotes && existingLog.studentNotes[student.name] ? existingLog.studentNotes[student.name] : "";
         const row = document.createElement('tr');
         row.innerHTML = `
-          <td><strong>${student.name}</strong></td>
+          <td><strong>${student.name}</strong><br><span style="cursor:pointer; font-size:0.75rem; color:var(--primary);" onclick="showStudentProfile('${student.name}')">👤 View Profile</span></td>
           <td>
-            <select class="form-control att-select" style="width: 140px; padding: 6px; font-weight:700; color:#065f46; background:#d1fae5;" onchange="onAttendanceChange(this); updateAbsentList();">
-              <option value="Present" selected>Present</option>
-              <option value="Absent">Absent</option>
-              <option value="Late">Late</option>
-              <option value="Excused">Excused</option>
+            <select class="form-control att-select" data-student="${student.name}" onchange="updateAbsentList();" style="font-weight:700;">
+              <option value="Present" ${attVal === 'Present' ? 'selected' : ''}>Present</option>
+              <option value="Absent" ${attVal === 'Absent' ? 'selected' : ''}>Absent</option>
             </select>
           </td>
-          <td>
-            <input type="text" class="form-control" placeholder="Add note..." style="width: 100%; padding: 6px;">
-          </td>
+          <td><input type="text" class="form-control student-note-input" value="${noteVal}" style="width:100%;"></td>
         `;
         tbody.appendChild(row);
       });
-      const dateInput = document.getElementById('attDate');
-      if(!dateInput.value) dateInput.valueAsDate = new Date();
       updateAbsentList();
     }
 
-    function onAttendanceChange(selectElem) {
-      if(selectElem.value === 'Present') {
-        selectElem.style.color = '#065f46';
-        selectElem.style.background = '#d1fae5';
-      } else {
-        selectElem.style.color = '#991b1b';
-        selectElem.style.background = '#fee2e2';
-      }
-    }
-
     function markAllAttendance(status) {
-      document.querySelectorAll('.att-select').forEach(sel => {
-        sel.value = status;
-        if(status === 'Present') {
-          sel.style.color = '#065f46';
-          sel.style.background = '#d1fae5';
-        } else {
-          sel.style.color = '#991b1b';
-          sel.style.background = '#fee2e2';
-        }
-      });
+      document.querySelectorAll('.att-select').forEach(sel => sel.value = status);
       updateAbsentList();
     }
 
     function updateAbsentList() {
-      const c1Container = document.getElementById('c1AbsentListContainer');
-      const c2Container = document.getElementById('c2AbsentListContainer');
-      if (!c1Container || !c2Container) return;
-
-      let c1Absents = [];
-      let c2Absents = [];
-
-      const rows = document.querySelectorAll('#attendanceTableBody tr');
-      rows.forEach(row => {
-        const name = row.cells[0].textContent;
-        const status = row.querySelector('.att-select').value;
-        if (status === 'Absent') {
-          if (APP_STATE.activeClass === 'c1') c1Absents.push(name);
-          else c2Absents.push(name);
-        }
+      let absents = [];
+      document.querySelectorAll('#attendanceTableBody tr').forEach(row => {
+        if (row.querySelector('.att-select').value === 'Absent') absents.push(row.querySelector('.att-select').getAttribute('data-student'));
       });
-
-      document.getElementById('c1AbsentCount').textContent = c1Absents.length;
-      document.getElementById('c2AbsentCount').textContent = c2Absents.length;
-
-      c1Container.innerHTML = c1Absents.length > 0 ? c1Absents.map(n => `<div style="padding:4px 0; border-bottom:1px solid #e2e8f0; font-weight:600;">• ${n}</div>`).join('') : '<p style="color:#64748b; font-size:0.85rem; font-style:italic;">No absences recorded for Class 9/5.</p>';
-      c2Container.innerHTML = c2Absents.length > 0 ? c2Absents.map(n => `<div style="padding:4px 0; border-bottom:1px solid #e2e8f0; font-weight:600;">• ${n}</div>`).join('') : '<p style="color:#64748b; font-size:0.85rem; font-style:italic;">No absences recorded for Class 9/6.</p>';
+      const container = APP_STATE.activeClass === 'c1' ? document.getElementById('c1AbsentListContainer') : document.getElementById('c2AbsentListContainer');
+      const count = APP_STATE.activeClass === 'c1' ? document.getElementById('c1AbsentCount') : document.getElementById('c2AbsentCount');
+      if(container) {
+        count.textContent = absents.length;
+        container.innerHTML = absents.map(n => `<div style="padding:4px 0; border-bottom:1px solid #e2e8f0; font-weight:600;">• ${n}</div>`).join('');
+      }
     }
 
+    /* ==========================================================
+       GENERATIVE LESSON PLANNER (SMART AUTO-FILL)
+       ========================================================== */
+    function switchPTab(tabId, btnElem) {
+      document.querySelectorAll('.ptab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.ptab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btnElem.classList.add('active');
+      document.getElementById('moePreviewContainer').style.display = 'none';
+    }
+
+    const GENERATIVE_LESSON_DB = {
+      u1_l1: { unit: "Unit 1: Kuwait: Stories of Success", lesson: "Lesson 1 – Reading", sb: "20-21", vocab: "curious, talent, explorer, proudly, remarkable", funcs: "Expressing opinions; discussing Kuwaiti explorers", obj: "interpret implicit details about Kuwaiti explorers.", pre: "Introduce new vocabulary via PPT.\nChoral drill pronunciation.", while: "Students read p.20-21 silently.\nDiscuss comprehension questions.", post: "Students write 3 sentences summarizing Fuad's achievements." },
+      u1_l2: { unit: "Unit 1: Kuwait: Stories of Success", lesson: "Lesson 2 – Grammar", sb: "22", vocab: "–", funcs: "Using past simple and continuous.", obj: "apply past continuous accurately in sentences.", pre: "Write 'While I was sleeping...' on board.\nElicit rule.", while: "Explain Grammar rule.\nStudents complete p.22 tasks.", post: "Students share their sentences." },
+      u2_l1: { unit: "Unit 2: Staying Safe Online", lesson: "Lesson 1 – Reading", sb: "34-35", vocab: "fake, scam, phishing, security, access", funcs: "Giving advice on digital safety.", obj: "analyze a text about digital scams.", pre: "Ask: 'Have you ever received a fake message?'\nReview vocab.", while: "Read Ahmed's story on p.34.\nAnswer True/False questions.", post: "Discuss safe vs unsafe actions online." },
+      u3_l1: { unit: "Unit 3: Food for Life", lesson: "Lesson 1 – Reading", sb: "48-49", vocab: "recipe, distinctive, flavour, ingredient", funcs: "Describing cultural dishes.", obj: "identify main ideas about international food.", pre: "Show pictures of Sushi and Pasta.\nElicit ingredients.", while: "Students read text.\nComplete matching exercise.", post: "Discuss: What is your favorite national dish?" },
+      u4_l1: { unit: "Unit 4: Simple Living", lesson: "Lesson 1 – Reading", sb: "62-63", vocab: "conserve, meaningful, balanced, gadget", funcs: "Discussing lifestyle choices.", obj: "understand the concept of living simply.", pre: "Brainstorm: What is simple living?\nWrite ideas on board.", while: "Read passage.\nHighlight benefits of reducing waste.", post: "Write one way to live simply this week." }
+    };
+
+    function autoFillPlannerTemplate() {
+      const selection = document.getElementById('plTemplateSelect').value;
+      if(!selection || !GENERATIVE_LESSON_DB[selection]) return;
+
+      const data = GENERATIVE_LESSON_DB[selection];
+      
+      document.getElementById('plUnit').value = data.unit;
+      document.getElementById('plLesson').value = data.lesson;
+      document.getElementById('plSB').value = data.sb;
+      document.getElementById('plOutcomes').value = `1. By the end of the lesson, learners can ${data.obj}\n2. use target vocabulary in context.\n3. engage effectively in activities.`;
+      
+      document.getElementById('plVocab').value = data.vocab;
+      document.getElementById('plFuncs').value = data.funcs;
+      document.getElementById('plChallenges').value = `Students may struggle with new vocabulary or reading comprehension.`;
+      document.getElementById('plSolutions').value = `Provide visual aids and guided concept checking questions.`;
+
+      document.getElementById('plWarmup').value = `Greet students. Quick review of previous lesson.`;
+      document.getElementById('plPre').value = data.pre;
+      document.getElementById('plWhile').value = data.while;
+      document.getElementById('plPost').value = data.post;
+      document.getElementById('plWrapup').value = `Exit ticket: Write one new word learned today.`;
+    }
+
+    function generateMoEPreview() {
+      document.querySelectorAll('.ptab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('moePreviewContainer').style.display = 'block';
+
+      const html = `
+        <div class="moe-plan-doc">
+          <div class="moe-header-container">Ministry of Education<br>E.L.T. General Supervision<br>Lesson Plan</div>
+          <table class="moe-table moe-table-center">
+            <tr><th>Date</th><th>Week</th><th>Class</th><th>Period</th><th>Learning Unit</th><th>Lesson & Skill</th><th>SB</th><th>WB</th></tr>
+            <tr>
+              <td>${document.getElementById('plDate').value}</td>
+              <td>${document.getElementById('plWeek').value}</td>
+              <td>${document.getElementById('plClass').value}</td>
+              <td>${document.getElementById('plPeriod').value}</td>
+              <td>${document.getElementById('plUnit').value}</td>
+              <td>${document.getElementById('plLesson').value}</td>
+              <td>${document.getElementById('plSB').value}</td>
+              <td>–</td>
+            </tr>
+          </table>
+          <table class="moe-table">
+            <tr><th style="width: 20%;">Lesson Learning Outcomes</th><td>${document.getElementById('plOutcomes').value.replace(/\n/g, '<br>')}</td></tr>
+            <tr><th>Language Focus</th><td><span class="moe-sub-label">Vocabulary:</span> ${document.getElementById('plVocab').value}<br><span class="moe-sub-label">Grammar:</span> ${document.getElementById('plGrammar').value}<br><span class="moe-sub-label">Functions:</span> ${document.getElementById('plFuncs').value}</td></tr>
+            <tr><th>Anticipated Challenges</th><td>${document.getElementById('plChallenges').value}</td></tr>
+            <tr><th>Proposed Solutions</th><td>${document.getElementById('plSolutions').value}</td></tr>
+            <tr><th>Teaching Strategies</th><td>★C.L.T. ★Task B.L. ★Active Learning</td></tr>
+          </table>
+          <table class="moe-table">
+            <tr><th colspan="2" style="text-align:center;">Lesson Procedure</th><th style="width: 15%; text-align:center;">Time</th></tr>
+            <tr><td style="width: 15%; font-weight:bold; background-color:#f3f4f6;">Warm-up</td><td>${document.getElementById('plWarmup').value}</td><td style="text-align:center;">5 min</td></tr>
+            <tr><td colspan="3" class="moe-section-title">Sequence of Activities (Pre – While – Post)</td></tr>
+            <tr><td style="font-weight:bold; background-color:#f3f4f6;">Pre-activity:</td><td>${document.getElementById('plPre').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">10 min</td></tr>
+            <tr><td style="font-weight:bold; background-color:#f3f4f6;">While-activity:</td><td>${document.getElementById('plWhile').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">12 min</td></tr>
+            <tr><td style="font-weight:bold; background-color:#f3f4f6;">Post-activity:</td><td>${document.getElementById('plPost').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">3 min</td></tr>
+            <tr><td style="font-weight:bold; background-color:#f3f4f6;">Wrap-up</td><td>${document.getElementById('plWrapup').value}</td><td style="text-align:center;">5 min</td></tr>
+          </table>
+          <table class="moe-table">
+            <tr><th style="width: 25%;">Assessment Tools</th><td>Observation – Peer Assessment</td></tr>
+            <tr><th>Homework:</th><td>${document.getElementById('plHW').value}</td></tr>
+          </table>
+        </div>
+      `;
+      document.getElementById('moePreviewCanvas').innerHTML = html;
+    }
+
+    /* ==========================================================
+       TIMETABLE EDITOR
+       ========================================================== */
+    const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu'];
+
+    function renderTimetable() {
+      const grid = document.getElementById('weeklyTimetableGrid');
+      if (!grid) return;
+      grid.innerHTML = `<div class="tt-header">Period</div><div class="tt-header">Sun</div><div class="tt-header">Mon</div><div class="tt-header">Tue</div><div class="tt-header">Wed</div><div class="tt-header">Thu</div>`;
+
+      APP_STATE.timetable.forEach((slot, idx) => {
+        grid.innerHTML += `<div class="tt-time-col"><span>${slot.p}</span><span style="font-size:0.6rem;">${slot.time}</span></div>`;
+        DAYS.forEach(dayKey => {
+          const cellVal = slot[dayKey];
+          
+          if (APP_STATE.isEditingTimetable) {
+            let options = `
+              <option value="c1" ${cellVal === 'c1' ? 'selected' : ''}>Class 9/5</option>
+              <option value="c2" ${cellVal === 'c2' ? 'selected' : ''}>Class 9/6</option>
+              <option value="break" ${cellVal === 'break' ? 'selected' : ''}>Break</option>
+              <option value="" ${cellVal === '' ? 'selected' : ''}>Empty</option>
+            `;
+            grid.innerHTML += `<div class="tt-slot"><select onchange="saveTimetableCell(${idx}, '${dayKey}', this.value)">${options}</select></div>`;
+          } else {
+            let className = 'tt-slot ' + (cellVal === 'c1' ? 'c1-slot' : cellVal === 'c2' ? 'c2-slot' : 'break-slot');
+            let text = cellVal === 'c1' ? 'Class 9/5' : cellVal === 'c2' ? 'Class 9/6' : (slot.label || '-');
+            let clickEvent = (cellVal === 'c1' || cellVal === 'c2') ? `onclick="openDailyLog('${cellVal}', '${slot.p}')" title="Click to open Daily Log"` : "";
+            grid.innerHTML += `<div class="${className}" ${clickEvent}><strong>${text}</strong></div>`;
+          }
+        });
+      });
+    }
+
+    function toggleTimetableEditMode() {
+      APP_STATE.isEditingTimetable = !APP_STATE.isEditingTimetable;
+      document.getElementById('ttEditBtn').innerHTML = APP_STATE.isEditingTimetable ? "💾 Save Timetable" : "⚙️ Edit Timetable";
+      if(!APP_STATE.isEditingTimetable) {
+        localStorage.setItem('eta_timetable', JSON.stringify(APP_STATE.timetable));
+      }
+      renderTimetable();
+    }
+
+    function saveTimetableCell(index, day, value) {
+      APP_STATE.timetable[index][day] = value;
+    }
+
+    function openDailyLog(classId, periodId) {
+      switchClass(classId);
+      APP_STATE.activePeriod = periodId;
+      document.getElementById('attPeriod').value = periodId;
+      showTab('tab-attendance');
+      loadDailyLog();
+    }
+
+    /* ==========================================================
+       TEXTBOOK VIEWER
+       ========================================================== */
+    function renderTextbookPage(pageNum) {
+      currentBookPage = pageNum;
+      const data = BOOK_PAGES_DB[pageNum] || BOOK_PAGES_DB[20];
+      document.getElementById('bookPageContentArea').innerHTML = `<h3>${data.title}</h3><div style="margin-bottom:14px;">${data.vocab.map(v => `<span class="badge badge-secondary" style="margin-right:4px;">${v}</span>`).join('')}</div><div>${data.html}</div>`;
+    }
+    function changeBookPage(val) { renderTextbookPage(parseInt(val)); }
+    function toggleBookView(view) {
+      document.getElementById('interactiveViewerContainer').style.display = view === 'interactive' ? 'block' : 'none';
+      document.getElementById('pdfViewerContainer').style.display = view === 'pdf' ? 'block' : 'none';
+    }
+
+    /* ==========================================================
+       UTILITIES
+       ========================================================== */
     function switchClass(classId) {
       APP_STATE.activeClass = classId;
       document.getElementById('btnClass1').classList.toggle('active', classId === 'c1');
       document.getElementById('btnClass2').classList.toggle('active', classId === 'c2');
       renderRoster(); 
-      renderAttendance();
+      loadDailyLog();
     }
 
     function showTab(tabId) {
@@ -1399,36 +901,72 @@
       document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
-      if (tabId === 'tab-timetable') {
-        updateLiveSchedule();
-      }
-      if (tabId === 'tab-textbook') {
-        renderTextbookPage(20);
-      }
-      if (tabId === 'tab-absent') {
-        updateAbsentList();
-      }
+      if (tabId === 'tab-timetable') renderTimetable();
     }
 
-    function resetAppData() {
-      if(confirm("Reset app data?")) {
-        APP_STATE.classes.c1.students = INITIAL_STUDENTS_C1;
-        APP_STATE.classes.c2.students = INITIAL_STUDENTS_C2;
-        renderRoster();
-        renderAttendance();
-        alert("App reset successfully.");
-      }
+    function renderRoster() {
+      const tbody = document.getElementById('rosterTableBody');
+      const currentClass = APP_STATE.classes[APP_STATE.activeClass];
+      document.getElementById('rosterTitle').textContent = currentClass.name + " Grades & Insights";
+      document.getElementById('rosterCountBadge').textContent = currentClass.students.length + " Students";
+      tbody.innerHTML = '';
+
+      // Fully restored 4-column grades & Insight Card
+      currentClass.students.forEach((student) => {
+        tbody.innerHTML += `
+          <tr>
+            <td><strong>${student.name}</strong></td>
+            <td>
+              <div class="cat-bar-grid">
+                <div class="cat-pill">🎧 L: <span class="grade-val">-</span></div>
+                <div class="cat-pill">🗣 S: <span class="grade-val">-</span></div>
+                <div class="cat-pill">📖 R: <span class="grade-val">-</span></div>
+                <div class="cat-pill">✍ W: <span class="grade-val">-</span></div>
+              </div>
+            </td>
+            <td><span class="badge badge-secondary">${student.ministryLevel}</span></td>
+            <td style="text-align:right;"><button class="btn btn-secondary btn-sm" onclick="showStudentProfile('${student.name}')">👤 View Profile</button></td>
+          </tr>
+        `;
+      });
     }
 
-    function toggleLanguage() {
-      document.body.classList.toggle('rtl');
-    }
+    function updateLiveSchedule() {
+      const now = new Date();
+      let hour = now.getHours();
+      let min = now.getMinutes();
+      let totalMin = hour * 60 + min;
+      
+      let activeRowIdx = -1;
+      let activeDayKey = DAYS_MAP[now.getDay()];
+
+      for (let i = 0; i < APP_STATE.timetable.length; i++) {
+        if (totalMin >= APP_STATE.timetable[i].startMin && totalMin < APP_STATE.timetable[i].endMin) {
+          activeRowIdx = i; break;
+        }
+      }
+
+      if (activeRowIdx !== -1) {
+        document.getElementById('currentPeriodDisplay').textContent = `${APP_STATE.timetable[activeRowIdx].label || 'Period ' + APP_STATE.timetable[activeRowIdx].p} (${APP_STATE.timetable[activeRowIdx].time})`;
+        document.getElementById('currentPeriodClassLabel').textContent = "• Active now";
+      } else {
+        document.getElementById('currentPeriodDisplay').textContent = "Between Sessions";
+        document.getElementById('currentPeriodClassLabel').textContent = "• Ready";
+      }
+    } 
+
+    function toggleLanguage() { document.body.classList.toggle('rtl'); }
 
     window.onload = function() {
+      const dateInput = document.getElementById('attDate');
+      if(!dateInput.value) dateInput.valueAsDate = new Date();
+      document.getElementById('plDate').value = dateInput.value;
+      
       renderRoster(); 
-      renderAttendance();
-      updateLiveSchedule();
+      loadDailyLog();
+      renderTimetable();
       renderTextbookPage(20);
+      updateLiveSchedule();
       setInterval(updateLiveSchedule, 60000);
     };
   </script>
