@@ -92,9 +92,18 @@
     .love-text h4 { font-size: 0.8rem; text-transform: uppercase; color: #be123c; font-weight: 800; letter-spacing: 0.05em; }
     .love-text p { font-size: 0.92rem; color: #881337; font-weight: 600; font-style: italic; }
 
-    .schedule-bar { background: var(--neutral-900); color: white; border-radius: var(--radius); padding: 12px 20px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .schedule-bar { background: var(--neutral-900); color: white; border-radius: var(--radius); padding: 12px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
     .schedule-status { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
     .pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success); box-shadow: 0 0 8px var(--success); }
+
+    /* Live Teacher Utilities Bar */
+    .live-tools-strip {
+      background: white; border: 1px solid var(--neutral-200); border-radius: var(--radius);
+      padding: 10px 18px; margin-bottom: 20px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px; flex-wrap: wrap; box-shadow: var(--shadow-sm);
+    }
+    .tool-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .timer-badge { font-family: monospace; font-size: 1.15rem; font-weight: 800; background: var(--neutral-100); padding: 4px 10px; border-radius: 6px; border: 1px solid var(--neutral-200); color: var(--neutral-900); min-width: 75px; text-align: center; }
 
     .card { background: var(--white); border-radius: var(--radius); border: 1px solid var(--neutral-200); box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 20px; }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
@@ -168,8 +177,22 @@
     .history-entry { border-bottom: 1px solid #e2e8f0; padding: 12px 0; }
     .history-date { font-size: 0.8rem; color: var(--primary); font-weight: 700; margin-bottom: 4px; }
 
+    /* Homework Grid */
+    .hw-grid-box {
+      background: #f8fafc; border: 1px solid var(--neutral-200); border-radius: 8px;
+      padding: 12px 14px; margin-bottom: 16px;
+    }
+    .hw-student-pill {
+      display: inline-flex; align-items: center; gap: 6px; background: white;
+      padding: 4px 10px; border-radius: 6px; border: 1px solid var(--neutral-200);
+      margin: 4px; font-size: 0.78rem; font-weight: 600; cursor: pointer; user-select: none;
+    }
+    .hw-student-pill.done {
+      background: #ecfdf5; border-color: #6ee7b7; color: #065f46;
+    }
+
     @media print {
-      header, .husband-love-card, .schedule-bar, .nav-tabs-wrapper, .btn, .no-print { display: none !important; }
+      header, .husband-love-card, .schedule-bar, .live-tools-strip, .nav-tabs-wrapper, .btn, .no-print { display: none !important; }
       body { background: white; color: black; }
       .card { border: none; box-shadow: none; padding: 0; }
       .moe-plan-doc { border: none; padding: 0; }
@@ -272,12 +295,35 @@
       </div>
     </div>
 
+    <!-- LIVE TEACHER ERGONOMICS STRIP (Timer, Fair-Call Picker, Group Generator) -->
+    <div class="live-tools-strip no-print">
+      <div class="tool-group">
+        <span style="font-size:0.8rem; font-weight:700; color:var(--neutral-700);">⏱️ Activity Timer:</span>
+        <span id="liveTimerDisplay" class="timer-badge">05:00</span>
+        <button class="btn btn-sm btn-primary" id="btnTimerToggle" onclick="toggleTimer()">Start</button>
+        <button class="btn btn-sm btn-secondary" onclick="resetTimer(5)">5m</button>
+        <button class="btn btn-sm btn-secondary" onclick="resetTimer(10)">10m</button>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn btn-sm btn-secondary" style="font-weight:700;" onclick="pickRandomFairStudent()">🎯 Fair-Call Picker</button>
+        <span id="pickedStudentDisplay" style="font-size:0.85rem; font-weight:700; color:var(--primary); min-width: 140px;">Ready</span>
+      </div>
+
+      <div class="tool-group">
+        <button class="btn btn-sm btn-outline" style="font-weight:700;" onclick="openGroupGeneratorModal()">👥 Quick Groups</button>
+      </div>
+    </div>
+
     <!-- TAB: ROSTER (MASTER PROFILES) -->
     <div id="tab-roster" class="tab-content active">
       <div class="card">
         <div class="card-header">
           <h2 class="card-title" id="rosterTitle">Class 9/5 Grades & Insights</h2>
-          <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="btn btn-outline btn-sm" onclick="generateHODDigest()">📊 Weekly HOD Digest</button>
+            <span class="badge badge-primary" id="rosterCountBadge">0 Students</span>
+          </div>
         </div>
         <div class="table-wrap">
           <table class="table">
@@ -295,7 +341,10 @@
       <div class="card">
         <div class="card-header">
           <h2 class="card-title">Daily Absentee Report</h2>
-          <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print</button>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-dark btn-sm" onclick="generateSubGoBag()">📋 Sub Teacher "Go-Bag"</button>
+            <button class="btn btn-outline btn-sm" onclick="window.print()">🖨 Print</button>
+          </div>
         </div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
           <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:16px;">
@@ -327,6 +376,15 @@
             <button class="btn btn-secondary" onclick="markAllAttendance('Present')">Mark All Present</button>
             <button class="btn btn-primary" onclick="saveDailyLog()">Save Records</button>
           </div>
+        </div>
+
+        <!-- QUICK HOMEWORK TRACKER -->
+        <div class="hw-grid-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.82rem; font-weight:800; color:var(--neutral-700);">📝 Quick Homework Submission Tracker (Tap to toggle):</span>
+            <button class="btn btn-sm btn-secondary" onclick="markAllHomeworkDone()">Mark All Done</button>
+          </div>
+          <div id="hwStudentPillList" style="display:flex; flex-wrap:wrap;"></div>
         </div>
 
         <div id="dailyLogForm" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 20px;">
@@ -374,7 +432,7 @@
         <div class="planner-tab-nav">
           <button class="ptab-btn active" onclick="switchPTab('pt-1', this)">1. Setup & Context</button>
           <button class="ptab-btn" onclick="switchPTab('pt-2', this)">2. Content & Skills</button>
-          <button class="ptab-btn" onclick="switchPTab('pt-3', this)">3. Procedure & Wrap-up</button>
+          <button class="ptab-btn" onclick="switchPTab('pt-3', this)">3. Procedure & Differentiation</button>
           <button class="ptab-btn" style="background:#10b981; color:white;" onclick="generateMoEPreview()">4. Preview & Print MoE Document</button>
         </div>
 
@@ -417,12 +475,39 @@
           </div>
         </div>
 
-        <!-- Editor Tab 3 -->
+        <!-- Editor Tab 3: Procedures & Differentiation Tools -->
         <div id="pt-3" class="ptab-content">
           <div class="form-group"><label>Warm-up Activity</label><textarea id="plWarmup" class="form-control" rows="3"></textarea></div>
           <div class="form-group"><label>Pre-Activity Sequence</label><textarea id="plPre" class="form-control" rows="3"></textarea></div>
           <div class="form-group"><label>While-Activity Sequence</label><textarea id="plWhile" class="form-control" rows="3"></textarea></div>
           <div class="form-group"><label>Post-Activity Sequence</label><textarea id="plPost" class="form-control" rows="3"></textarea></div>
+
+          <!-- DIFFERENTIATED TASKS & VOCAB TRAPS PANEL -->
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px; margin: 16px 0;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+              <strong style="color:#166534; font-size:0.88rem;">🎯 3-Tier Differentiated Practice Tasks</strong>
+              <button class="btn btn-sm btn-primary" onclick="autoGenerateTieredTasks()">Auto-Generate From Topic</button>
+            </div>
+            <div class="form-grid">
+              <div class="form-group"><label style="color:#15803d;">🟢 Support Tier</label><input type="text" id="diffSupportTask" class="form-control" value="Match vocabulary to picture clues or fill in cloze sentences with word banks."></div>
+              <div class="form-group"><label style="color:#b45309;">🟡 Core Tier</label><input type="text" id="diffCoreTask" class="form-control" value="Answer open-ended textbook comprehension prompts using complete sentences."></div>
+              <div class="form-group"><label style="color:#1d4ed8;">🔵 Extension Tier</label><input type="text" id="diffExtTask" class="form-control" value="Synthesize reading concepts to write a short 30-word personal reflection."></div>
+            </div>
+
+            <div style="margin-top:10px;">
+              <strong style="color:#991b1b; font-size:0.8rem;">⚠️ Common L1 Error Traps & Phonics Reminders:</strong>
+              <input type="text" id="vocabTrapInput" class="form-control" style="margin-top:4px;" value="Watch for confusing 'much/many' with uncountable nouns and pronunciation of silent letters.">
+            </div>
+
+            <div style="margin-top:12px; border-top:1px solid #bbf7d0; padding-top:10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <strong style="color:#166534; font-size:0.85rem;">🎟️ 2-Minute Exit Ticket Questions:</strong>
+                <button class="btn btn-sm btn-secondary" onclick="generateExitTicket()">Generate Ticket</button>
+              </div>
+              <textarea id="exitTicketBox" class="form-control" rows="2" style="margin-top:6px;">1. Write one sentence using today's target word correctly.&#10;2. What was the central message of today's lesson?</textarea>
+            </div>
+          </div>
+
           <div class="form-group"><label>Wrap-up</label><textarea id="plWrapup" class="form-control" rows="2"></textarea></div>
           <div class="form-group"><label>Homework</label><input type="text" id="plHW" class="form-control" value="–"></div>
         </div>
@@ -430,7 +515,8 @@
 
       <!-- Final Output Preview -->
       <div id="moePreviewContainer" style="display:none;">
-        <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+        <div class="no-print" style="display:flex; justify-content:flex-end; margin-bottom:12px; gap:8px;">
+          <button class="btn btn-secondary" onclick="document.getElementById('moePreviewContainer').style.display='none'; document.querySelector('.card.no-print').style.display='block';">✏️ Back to Edit</button>
           <button class="btn btn-outline" onclick="window.print()">🖨 Print MoE Document</button>
         </div>
         <div id="moePreviewCanvas"></div>
@@ -494,6 +580,27 @@
     </div>
   </div>
 
+  <!-- QUICK GROUP GENERATOR MODAL -->
+  <div id="groupGenModal" class="modal-overlay">
+    <div class="modal-content" style="max-width: 520px;">
+      <span class="modal-close" onclick="document.getElementById('groupGenModal').style.display='none'">✖</span>
+      <h3 style="margin-bottom:12px; color:var(--neutral-900);">👥 Smart Group / Pair Generator</h3>
+      <p style="font-size:0.82rem; color:var(--neutral-600); margin-bottom:14px;">Automatically generates teams from students currently marked <strong>Present</strong> in <span id="groupClassLabel"></span>.</p>
+      
+      <div style="display:flex; gap:10px; align-items:center; margin-bottom:16px;">
+        <label style="font-size:0.85rem; font-weight:700;">Group Size:</label>
+        <select id="groupSizeSelect" class="form-control" style="width:auto;">
+          <option value="2">Pairs (2 Students)</option>
+          <option value="3" selected>Trios (3 Students)</option>
+          <option value="4">Quads (4 Students)</option>
+        </select>
+        <button class="btn btn-primary btn-sm" onclick="buildStudentGroups()">Shuffle & Group</button>
+      </div>
+
+      <div id="groupResultsBox" style="max-height: 320px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
   <script>
     /* ==========================================================
        APP STATE & CORE DATA
@@ -502,6 +609,7 @@
       activeClass: 'c1',
       activePeriod: '1',
       dailyLogs: {}, 
+      homeworkState: {},
       isEditingTimetable: false,
       timetable: [],
       classes: {
@@ -602,6 +710,279 @@
     };
 
     /* ==========================================================
+       1. LIVE ACTIVITY TIMER
+       ========================================================== */
+    let timerTotalSecs = 300;
+    let timerInterval = null;
+
+    function formatTimerDisplay() {
+      const mins = Math.floor(timerTotalSecs / 60).toString().padStart(2, '0');
+      const secs = (timerTotalSecs % 60).toString().padStart(2, '0');
+      document.getElementById('liveTimerDisplay').textContent = `${mins}:${secs}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('btnTimerToggle');
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = "Resume";
+      } else {
+        btn.textContent = "Pause";
+        timerInterval = setInterval(() => {
+          if (timerTotalSecs > 0) {
+            timerTotalSecs--;
+            formatTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            btn.textContent = "Done!";
+            alert("⏰ Activity Time is up!");
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer(mins) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      timerTotalSecs = mins * 60;
+      document.getElementById('btnTimerToggle').textContent = "Start";
+      formatTimerDisplay();
+    }
+
+    /* ==========================================================
+       2. EQUITABLE FAIR-CALL RANDOM PICKER
+       ========================================================== */
+    let fairCallHistory = { c1: [], c2: [] };
+
+    function pickRandomFairStudent() {
+      const activeList = APP_STATE.classes[APP_STATE.activeClass].students;
+      const key = getLogKey();
+      const currentLog = APP_STATE.dailyLogs[key] || {};
+      
+      // Filter out absent students
+      const presentStudents = activeList.filter(s => {
+        const status = (currentLog.attendance && currentLog.attendance[s.name]) || 'Present';
+        return status === 'Present';
+      });
+
+      if (presentStudents.length === 0) {
+        alert("All students are marked absent!");
+        return;
+      }
+
+      let calledPool = fairCallHistory[APP_STATE.activeClass];
+      let eligible = presentStudents.filter(s => !calledPool.includes(s.name));
+
+      // If everyone in the class has been called, reset pool
+      if (eligible.length === 0) {
+        calledPool.length = 0;
+        eligible = presentStudents;
+      }
+
+      const picked = eligible[Math.floor(Math.random() * eligible.length)];
+      calledPool.push(picked.name);
+      document.getElementById('pickedStudentDisplay').textContent = `👉 ${picked.name}`;
+    }
+
+    /* ==========================================================
+       3. SMART GROUP & PAIR GENERATOR
+       ========================================================== */
+    function openGroupGeneratorModal() {
+      document.getElementById('groupClassLabel').textContent = APP_STATE.classes[APP_STATE.activeClass].name;
+      buildStudentGroups();
+      document.getElementById('groupGenModal').style.display = 'flex';
+    }
+
+    function buildStudentGroups() {
+      const size = parseInt(document.getElementById('groupSizeSelect').value);
+      const activeList = APP_STATE.classes[APP_STATE.activeClass].students;
+      const key = getLogKey();
+      const currentLog = APP_STATE.dailyLogs[key] || {};
+      
+      // Only group students present in the room today
+      const presentStudents = activeList.filter(s => {
+        const status = (currentLog.attendance && currentLog.attendance[s.name]) || 'Present';
+        return status === 'Present';
+      });
+
+      const shuffled = [...presentStudents].sort(() => 0.5 - Math.random());
+      let groups = [];
+      for (let i = 0; i < shuffled.length; i += size) {
+        groups.push(shuffled.slice(i, i + size));
+      }
+
+      let html = '<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">';
+      groups.forEach((grp, idx) => {
+        html += `
+          <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:6px; padding:10px;">
+            <strong style="font-size:0.85rem; color:var(--primary);">Group ${idx + 1}</strong>
+            <ul style="margin-top:6px; padding-left:18px; font-size:0.8rem; line-height:1.4;">
+              ${grp.map(s => `<li>${s.name}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      });
+      html += '</div>';
+      document.getElementById('groupResultsBox').innerHTML = html;
+    }
+
+    /* ==========================================================
+       4. QUICK HOMEWORK SUBMISSION TRACKER
+       ========================================================== */
+    function renderHomeworkTracker() {
+      const key = getLogKey();
+      if (!APP_STATE.homeworkState[key]) APP_STATE.homeworkState[key] = {};
+      const hwData = APP_STATE.homeworkState[key];
+      const students = APP_STATE.classes[APP_STATE.activeClass].students;
+      
+      const container = document.getElementById('hwStudentPillList');
+      container.innerHTML = students.map(s => {
+        const isDone = hwData[s.name] === true;
+        return `
+          <div class="hw-student-pill ${isDone ? 'done' : ''}" onclick="toggleHW('${s.name}')">
+            <span>${isDone ? '✓' : '○'}</span>
+            <span>${s.name}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleHW(studentName) {
+      const key = getLogKey();
+      if (!APP_STATE.homeworkState[key]) APP_STATE.homeworkState[key] = {};
+      APP_STATE.homeworkState[key][studentName] = !APP_STATE.homeworkState[key][studentName];
+      renderHomeworkTracker();
+    }
+
+    function markAllHomeworkDone() {
+      const key = getLogKey();
+      if (!APP_STATE.homeworkState[key]) APP_STATE.homeworkState[key] = {};
+      APP_STATE.classes[APP_STATE.activeClass].students.forEach(s => {
+        APP_STATE.homeworkState[key][s.name] = true;
+      });
+      renderHomeworkTracker();
+    }
+
+    /* ==========================================================
+       5. PARENT SNIPPET, SUB GO-BAG, AND HOD DIGEST
+       ========================================================== */
+    function copyParentSnippet(studentName) {
+      const text = `Dear Parent, ${studentName} is showing consistent participation in Grade 9 English class. She engages well in lesson activities. To maximize progress, please encourage continued daily vocabulary review and completing assigned workbook readings. Thank you for your partnership!`;
+      navigator.clipboard.writeText(text);
+      alert(`Copied parent update snippet for ${studentName} to clipboard!\n\n"${text}"`);
+    }
+
+    function generateSubGoBag() {
+      const subWin = window.open('', '_blank');
+      const dateStr = document.getElementById('attDate').value || new Date().toLocaleDateString('en-GB');
+      const activeClass = APP_STATE.classes[APP_STATE.activeClass];
+      const key = getLogKey();
+      const currentLog = APP_STATE.dailyLogs[key] || {};
+      
+      let absentees = [];
+      activeList = activeClass.students.forEach(s => {
+        if (currentLog.attendance && currentLog.attendance[s.name] === 'Absent') {
+          absentees.push(s.name);
+        }
+      });
+      const absText = absentees.length > 0 ? absentees.join(' • ') : "All students present.";
+
+      subWin.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Substitute Teacher Emergency Guide - ${activeClass.name}</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 25px; line-height: 1.5; color: #111; }
+            h2, h3 { margin-bottom: 6px; }
+            .box { border: 1px solid #cbd5e1; background: #f8fafc; padding: 12px 16px; border-radius: 6px; margin-bottom: 14px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+            th, td { border: 1px solid #999; padding: 6px 10px; text-align: left; }
+            th { background: #eee; }
+          </style>
+        </head>
+        <body>
+          <h2>Kuwait Ministry of Education • English Relief Plan</h2>
+          <p><strong>Class:</strong> ${activeClass.name} | <strong>Date:</strong> ${dateStr} | <strong>Teacher:</strong> Najat AlKandari</p>
+          <div class="box">
+            <strong>Today's Reported Absentees:</strong><br>
+            ${absText}
+          </div>
+          <div class="box">
+            <strong>Today's Routine & Lesson Scope:</strong><br>
+            1. Direct students to open <em>English Pearls 9A</em> to Unit 2 (Reading).<br>
+            2. Students complete reading comprehension questions silently in their notebooks (15 mins).<br>
+            3. Review answers together on the whiteboard.<br>
+            4. Collect notebooks at the end of the period.
+          </div>
+          <div class="box">
+            <strong>Classroom Rules & Student Leaders:</strong><br>
+            • Students may work in quiet pairs when instructed.<br>
+            • Class Monitors: Orad Thuwaini & Aljood Al-Baloushi (will assist with workbook distribution).
+          </div>
+          <script>window.print();<\/script>
+        </body>
+        </html>
+      `);
+      subWin.document.close();
+    }
+
+    function generateHODDigest() {
+      const activeClass = APP_STATE.classes[APP_STATE.activeClass];
+      const key = getLogKey();
+      const currentLog = APP_STATE.dailyLogs[key] || {};
+      
+      let absCount = 0;
+      activeClass.students.forEach(s => {
+        if (currentLog.attendance && currentLog.attendance[s.name] === 'Absent') absCount++;
+      });
+      const presentCount = activeClass.students.length - absCount;
+      const attRate = Math.round((presentCount / activeClass.students.length) * 100);
+
+      const digest = `
+WEEKLY DEPARTMENT DIGEST (HOD REPORT)
+-----------------------------------------------
+Class: ${activeClass.name}
+Curriculum Pacing: On schedule with Ministry distribution
+Today's Attendance Rate: ${attRate}% (${presentCount}/${activeClass.students.length} Present)
+Current Module Focus: English Pearls 9A - Unit 1 & 2 Core Competencies
+Diagnostic Focus: Listening & Speaking participation reinforcement
+Submitted by: Teacher Najat AlKandari
+-----------------------------------------------
+      `.trim();
+      alert(digest);
+    }
+
+    /* ==========================================================
+       6. TIERED TASKS & EXIT TICKET LOGIC
+       ========================================================== */
+    function autoGenerateTieredTasks() {
+      const template = document.getElementById('plTemplateSelect').value;
+      if (template === 'u1_l1') {
+        document.getElementById('diffSupportTask').value = "Match explorer names to their accomplishments using visual cues.";
+        document.getElementById('diffCoreTask').value = "Locate and write 3 specific facts about Fuad Qabazard from the passage.";
+        document.getElementById('diffExtTask').value = "Write a short 3-sentence diary entry imagining you are reaching Mount Everest.";
+        document.getElementById('vocabTrapInput').value = "Distinguish pronunciation between 'explorer' /ɪkˈsplɔː.rər/ and 'expedition'.";
+      } else if (template === 'u1_l2') {
+        document.getElementById('diffSupportTask').value = "Fill in blanks with was/were based on the subject pronoun.";
+        document.getElementById('diffCoreTask').value = "Combine two past events using 'while' or 'when' accurately.";
+        document.getElementById('diffExtTask').value = "Draft a 4-line mystery scene incorporating both Simple Past and Past Continuous.";
+        document.getElementById('vocabTrapInput').value = "Irregular past tense spelling traps (e.g. caught, taught, drove).";
+      } else {
+        document.getElementById('diffSupportTask').value = "Underline key target vocabulary in the provided sentences.";
+        document.getElementById('diffCoreTask').value = "Formulate 3 complete sentences using target language items.";
+        document.getElementById('diffExtTask').value = "Summarize the lesson's main moral/concept in an original short paragraph.";
+      }
+    }
+
+    function generateExitTicket() {
+      const topic = document.getElementById('plLesson').value || "today's lesson";
+      document.getElementById('exitTicketBox').value = `1. Write one new vocabulary word you learned during ${topic}.\n2. In one clear sentence, explain how you will use this concept in your daily English communication.`;
+    }
+
+    /* ==========================================================
        DAILY LOG & ATTENDANCE
        ========================================================== */
     function getLogKey() {
@@ -623,6 +1004,7 @@
       document.getElementById('logClassNotes').value = log.classNotes || '';
 
       renderAttendance(); 
+      renderHomeworkTracker();
     }
 
     function saveDailyLog() {
@@ -650,7 +1032,7 @@
       });
 
       APP_STATE.dailyLogs[key] = log;
-      alert('Class Log and Attendance saved successfully!');
+      alert('Class Log, Attendance, and Homework records saved successfully!');
     }
 
     function showStudentProfile(studentName) {
@@ -675,6 +1057,9 @@
             <h4 style="color:var(--primary-dark); font-size:0.8rem; text-transform:uppercase;">Overall Grade</h4>
             <p style="font-size:1.8rem; font-weight:bold; color:var(--primary); margin-top:5px;">A</p>
           </div>
+        </div>
+        <div style="margin-bottom:14px; text-align:right;">
+          <button class="btn btn-secondary btn-sm" onclick="copyParentSnippet('${studentName}')">💬 Copy Parent Snippet</button>
         </div>
         <h3 style="font-size:1rem; border-bottom:2px solid var(--neutral-200); padding-bottom:8px; margin-bottom:12px; color:var(--neutral-800);">Classroom Notes & History</h3>
         <div>${notesHtml || '<p style="color:var(--neutral-600); font-style:italic;">No notes recorded for this student yet.</p>'}</div>
@@ -739,6 +1124,7 @@
       document.getElementById(tabId).classList.add('active');
       btnElem.classList.add('active');
       document.getElementById('moePreviewContainer').style.display = 'none';
+      document.querySelector('.card.no-print').style.display = 'block';
     }
 
     const GENERATIVE_LESSON_DB = {
@@ -770,11 +1156,18 @@
       document.getElementById('plWhile').value = data.while;
       document.getElementById('plPost').value = data.post;
       document.getElementById('plWrapup').value = `Exit ticket: Write one new word learned today.`;
+
+      autoGenerateTieredTasks();
     }
 
     function generateMoEPreview() {
       document.querySelectorAll('.ptab-content').forEach(el => el.classList.remove('active'));
+      document.querySelector('.card.no-print').style.display = 'none';
       document.getElementById('moePreviewContainer').style.display = 'block';
+
+      const supportTask = document.getElementById('diffSupportTask').value;
+      const coreTask = document.getElementById('diffCoreTask').value;
+      const extTask = document.getElementById('diffExtTask').value;
 
       const html = `
         <div class="moe-plan-doc">
@@ -797,7 +1190,7 @@
             <tr><th>Language Focus</th><td><span class="moe-sub-label">Vocabulary:</span> ${document.getElementById('plVocab').value}<br><span class="moe-sub-label">Grammar:</span> ${document.getElementById('plGrammar').value}<br><span class="moe-sub-label">Functions:</span> ${document.getElementById('plFuncs').value}</td></tr>
             <tr><th>Anticipated Challenges</th><td>${document.getElementById('plChallenges').value}</td></tr>
             <tr><th>Proposed Solutions</th><td>${document.getElementById('plSolutions').value}</td></tr>
-            <tr><th>Teaching Strategies</th><td>★C.L.T. ★Task B.L. ★Active Learning</td></tr>
+            <tr><th>Teaching Strategies</th><td>★C.L.T. ★Task B.L. ★Active Learning ★Differentiation</td></tr>
           </table>
           <table class="moe-table">
             <tr><th colspan="2" style="text-align:center;">Lesson Procedure</th><th style="width: 15%; text-align:center;">Time</th></tr>
@@ -806,10 +1199,11 @@
             <tr><td style="font-weight:bold; background-color:#f3f4f6;">Pre-activity:</td><td>${document.getElementById('plPre').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">10 min</td></tr>
             <tr><td style="font-weight:bold; background-color:#f3f4f6;">While-activity:</td><td>${document.getElementById('plWhile').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">12 min</td></tr>
             <tr><td style="font-weight:bold; background-color:#f3f4f6;">Post-activity:</td><td>${document.getElementById('plPost').value.replace(/\n/g, '<br>')}</td><td style="text-align:center;">3 min</td></tr>
+            <tr><td style="font-weight:bold; background-color:#f3f4f6;">Differentiated Practice</td><td><strong>Support:</strong> ${supportTask}<br><strong>Core:</strong> ${coreTask}<br><strong>Extension:</strong> ${extTask}</td><td style="text-align:center;">Ongoing</td></tr>
             <tr><td style="font-weight:bold; background-color:#f3f4f6;">Wrap-up</td><td>${document.getElementById('plWrapup').value}</td><td style="text-align:center;">5 min</td></tr>
           </table>
           <table class="moe-table">
-            <tr><th style="width: 25%;">Assessment Tools</th><td>Observation – Peer Assessment</td></tr>
+            <tr><th style="width: 25%;">Assessment Tools</th><td>Observation – Formative Exit Ticket – Peer Assessment</td></tr>
             <tr><th>Homework:</th><td>${document.getElementById('plHW').value}</td></tr>
           </table>
         </div>
@@ -821,6 +1215,7 @@
        TIMETABLE EDITOR
        ========================================================== */
     const DAYS = ['sun', 'mon', 'tue', 'wed', 'thu'];
+    const DAYS_MAP = { 0: 'sun', 1: 'mon', 2: 'tue', 3: 'wed', 4: 'thu' };
 
     function renderTimetable() {
       const grid = document.getElementById('weeklyTimetableGrid');
@@ -886,8 +1281,19 @@
     }
 
     /* ==========================================================
-       UTILITIES
+       UTILITIES & LOVE NOTES
        ========================================================== */
+    const HUSBAND_QUOTES = [
+      `"To the world you are a dedicated teacher, but to our family, you are our whole heart and soul. Have a calm and wonderful day!"`,
+      `"Your patience and kindness inspire every student you teach. So proud of you every single day!"`,
+      `"Take a deep breath and have a great class. You are doing amazing work, Najat!"`
+    ];
+    let quoteIdx = 0;
+    function cycleHusbandQuote() {
+      quoteIdx = (quoteIdx + 1) % HUSBAND_QUOTES.length;
+      document.getElementById('husbandDailyQuote').textContent = HUSBAND_QUOTES[quoteIdx];
+    }
+
     function switchClass(classId) {
       APP_STATE.activeClass = classId;
       document.getElementById('btnClass1').classList.toggle('active', classId === 'c1');
@@ -925,21 +1331,24 @@
               </div>
             </td>
             <td><span class="badge badge-secondary">${student.ministryLevel}</span></td>
-            <td style="text-align:right;"><button class="btn btn-secondary btn-sm" onclick="showStudentProfile('${student.name}')">👤 View Profile</button></td>
+            <td style="text-align:right;">
+              <button class="btn btn-secondary btn-sm" onclick="showStudentProfile('${student.name}')">👤 View Profile</button>
+            </td>
           </tr>
         `;
       });
     }
 
     function updateLiveSchedule() {
+      const simVal = document.getElementById('simScheduleSelect').value;
       const now = new Date();
-      let hour = now.getHours();
-      let min = now.getMinutes();
-      let totalMin = hour * 60 + min;
+      let totalMin = now.getHours() * 60 + now.getMinutes();
+
+      if (simVal === 'p1') totalMin = 470;
+      else if (simVal === 'p2') totalMin = 520;
+      else if (simVal === 'p3') totalMin = 580;
       
       let activeRowIdx = -1;
-      let activeDayKey = DAYS_MAP[now.getDay()];
-
       for (let i = 0; i < APP_STATE.timetable.length; i++) {
         if (totalMin >= APP_STATE.timetable[i].startMin && totalMin < APP_STATE.timetable[i].endMin) {
           activeRowIdx = i; break;
@@ -955,6 +1364,19 @@
       }
     } 
 
+    function jumpToActiveSession() {
+      const now = new Date();
+      let totalMin = now.getHours() * 60 + now.getMinutes();
+      let dayKey = DAYS_MAP[now.getDay()] || 'sun';
+
+      let activeSlot = APP_STATE.timetable.find(s => totalMin >= s.startMin && totalMin < s.endMin);
+      if (activeSlot && (activeSlot[dayKey] === 'c1' || activeSlot[dayKey] === 'c2')) {
+        openDailyLog(activeSlot[dayKey], activeSlot.p);
+      } else {
+        showTab('tab-attendance');
+      }
+    }
+
     function toggleLanguage() { document.body.classList.toggle('rtl'); }
 
     window.onload = function() {
@@ -966,6 +1388,7 @@
       loadDailyLog();
       renderTimetable();
       renderTextbookPage(20);
+      formatTimerDisplay();
       updateLiveSchedule();
       setInterval(updateLiveSchedule, 60000);
     };
